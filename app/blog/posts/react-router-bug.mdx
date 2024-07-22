@@ -1,0 +1,95 @@
+---
+title: history.push not re-rendering component.
+publishedAt: "2020-10-07"
+summary: React-router got me agitated indefinitiely. Problem with history and react-router versioning.
+---
+
+## Introduction
+
+Ever been stuck on a pesky bug that seemed impossible to crack? I sure have. Let me share my journey of tackling a tricky bug that kept me scratching my head for weeks. The good news? It turned out to be a simple solution that I missed for way too long. So, let's dive in and see how I finally conquered this coding conundrum.
+
+Imagine this – a tiny piece of code caused a major headache that lasted for weeks. And guess what? I wasn't alone in this struggle. A bunch of us were baffled by the same bug, spending hours trying to figure it out.
+
+So, who's the troublemaker? It's none other than the `react-router` package. If you're curious to recreate the bug or want to check out what others have said about it, you can find the link below.
+
+- [history.push not re-rendering component.](https://github.com/ReactTraining/react-router/issues/7415)
+
+## The Bug Story
+
+Let's break it down. We have two components: `CreateProduct` and `AllProducts`. The first component helps us create new products and sends them to a server. Then, it's the job of our second component to show all the products on a page.
+
+But here's the twist – when we switched from creating a product to viewing all products, the new product didn't show up right away. We had to refresh the page to see it. Sounds frustrating, right? It's like the page forgot to show the new item until we gave it a little nudge.
+
+## The Clue: A Tricky Component
+
+Enter our key player – the `AllProducts` component. It had a special power called `useEffect`. This power helped it fetch new data and update the page. But guess what? It wasn't working as expected.
+
+Check out this piece of code:
+
+```jsx title="AllProducts.js"
+const AllProducts = () => {
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+    setLoading(false);
+  }, []);
+```
+
+## The Hunt for Answers
+
+With my detective hat on, I tried different things. Some folks suggested changing the version of a package called history. Others said we should wrap a certain piece of code in useEffect.
+
+```bash
+$ npm list history
+npm list v1.13.0
+
+├─ history@5.0.0
+├─ react-router-dom@5.2.0
+│  └─ history@4.10.1
+└─ react-router@5.2.0
+   └─ history@4.10.1
+
+$ npm i history@4.10.1
+```
+
+But here's the truth – none of those solutions worked for me. I was hitting dead ends left and right.
+
+## The Eureka Moment: Finding the fix
+
+Finally, after a lot of trial and error, I stumbled upon something. In the React Docs, I discovered that useEffect had a secret trick. I could tell it to pay attention only when certain things changed. And that's when things clicked.
+
+```jsx title="AllProducts.js" {7}
+const AllProducts = () => {
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+    setLoading(false);
+  }, []);
+```
+
+```jsx title="AllProducts.js" {7}
+const AllProducts = () => {
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+    setLoading(false);
+  }, [products]);
+};
+```
+
+## What We Missed
+
+I realized I missed something important. I forgot to tell `useEffect` about the new products. So, React didn't know it needed to update the page. No wonder I had to refresh to see the changes!
+
+With this small tweak, the `AllProducts` component woke up. It started showing new data without needing a push.
+
+## Lessons Learned
+
+This bug taught me something valuable. Even the tiniest detail can make a big difference in coding. It's like solving a puzzle – sometimes the missing piece is right in front of you. And you know what? This experience made me better at coding. It taught me to stay patient and keep learning, even when things get tough.
+
+## Conclusion
+
+So, there you have it. My bug-hunting adventure that turned out to be a lesson in persistence. Coding is like a journey, full of surprises and challenges. With the right mindset, you can overcome anything. Happy coding!

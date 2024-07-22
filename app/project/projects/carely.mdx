@@ -1,0 +1,194 @@
+---
+title: Carely
+summary: Carely was built as a set of enrollee-centered, goal-oriented, culturally relevant and logical steps to assure that an enrollee receives needed services in a supportive, effective, efficient, timely and cost-effective manner.
+publishedAt: "2023-07-20"
+image: /projects/cover/carely.png
+tags: ["API", "Swagger", "UX", "UI"]
+---
+
+This project is a piece of a pie, me and my team members contributed to during the summer. There were 4-5 different teams including ours,
+with 4-5 team members on each team that worked on various features of the
+product.
+
+## Overview
+
+Carely was built as a set of enrollee-centered, goal-oriented, culturally relevant and logical steps to assure that an enrollee receives needed services in a supportive, effective, efficient, timely and cost-effective manner. Care management emphasizes prevention, continuity of care and coordination of care, which advocates for, and links enrollees to, services as necessary across providers and settings. At a minimum, care management functions must include, but are not limited to:
+
+1. Early identification of enrollees who have or may have special needs;
+2. Assessment of an enrollee's risk factors;
+3. Development of a plan of care;
+4. Referrals and assistance to ensure timely access to providers;
+5. Coordination of care actively linking the enrollee to providers, medical services, residential, social, behavioral, and other support services where needed; 6. Monitoring;
+6. Continuity of care; and,
+7. Follow-up and documentation.
+
+## Feature my team worked on
+
+## Case Notes
+
+Case Notes (Web portal) provides an efficient way of documenting and monitoring all the components, evaluations, and encounters between patients and health professionals. It is for case managers, caregivers, and patients to precisely gather and retain information about the customer. Case notes will be used to evaluate the effectiveness of the services a customer receives.
+
+It will display all related customer information including identification of needs and preferences, and scheduled appointments which create the visibility, patients and health professionals lack.
+
+Unlike the traditional way of manually keeping records of patients. The case notes aim to automate and streamline the documentation and record-keeping process. It allows case managers to easily identify and analyze the customer profile which helps to precisely make decisions. Our product will serve as a reference tool to record and assist with administrative decision-making and case review and show the relations in current trends.
+
+## Opportunity
+
+Health might be considered the most important factor in human life. Therefore it is very important to be able to continuously track and document every aspect of it. Case notes serve as a running record and documentation of patients’ interaction with health providers to keep track of any information relevant to their treatment. Case managers are dedicated to serving the ever-changing requirements of their clients. As a result, case managers will keep track of clients’ progress, goals, and treatment responses in a case note.
+
+## Product vision
+
+A solution that drives the optimization of every facet of documenting components, evaluations, and encounters between patients and health professionals, evaluating the effectiveness of the services received by the patients, creating information visibility, promoting automated and streamline methods to identify and analyze customer profile in order to make precise and informed decisions.
+
+## Key stakeholders
+
+<NextUITable
+  data={{
+    headers: ["#", "Stakeholder", "Use case"],
+    rows: [
+      [
+        "1.",
+        "Patients",
+        "Retrieve case information, monitor case health, and access self-service.",
+      ],
+      [
+        "2.",
+        "Medical practitioners",
+        "Access patient information to build personalized case plan, and perform risk evaluation.",
+      ],
+      ["3.", "Insurance providers", "Provide services to fit patient needs."],
+      ["4.", "Care-givers", "Access health information, and review cases."],
+      [
+        "5.",
+        "Case managers",
+        "Maintains external data, determines plan objectives and suggests health recommendations.",
+      ],
+      [
+        "6.",
+        "PM/BA's",
+        "Responsible for gathering and prioritizing requirements of the case notes system.",
+      ],
+      [
+        "7.",
+        "Development team",
+        "Responsible for design and implementation of the case notes backend and frontend system.",
+      ],
+    ],
+  }}
+/>
+
+## Basic requirements for persona description
+
+1. <u>Background information</u> - Customer’s circumstances and conditions.
+2. <u>Reason statement</u> - The purpose of the interview/meeting.
+3. <u>Observation statement</u> - Differentiate one customer from another (Objective
+   - facts).
+4. <u>Content statement</u> - Key events.
+5. <u>Results statement</u> - Evaluation of the meeting in relation to the purpose.
+   - Should disclose if purpose was achieved or not.
+6. <u>Impression statement</u> - Links case manager’s plan.
+7. <u>Plan statement</u> - should include next steps assignment. - Should include
+   the next meeting date. - Connected to Immediate Plan (IP). - Include reasons for
+   the next meeting.
+
+## Example - User Persona
+
+<Image
+  src="/projects/carely/user-persona.png"
+  alt="persona"
+  priority
+  width={800}
+  height={800}
+/>
+
+## Available features
+
+- Create/manage a case.
+- Categorize cases based on top-level categories.
+- Create case notes/Comment on cases.
+- Filter cases by category or severity definitions.
+- Add Profile Image.
+- Record content of the meeting.
+- Record milestones of the case.
+- Record solutions of the case.
+- Add severity definition for the cases.
+
+## User stories considered
+
+1. <u>As an admin:</u>
+
+   - I should be able to create, and manage case managers, so that I can assure appropriate medical care for the patients.
+
+2. <u>As a case manager:</u>
+
+   - I should be able to create, and manage a case, so that I can retrieve a clients’ case information and case history on demand.
+   - I should be able to attach top-level categories to a case, so that it is easier to retrieve cases based on the category.
+   - I should be able to attach severity definitions to the case, so that volatile cases can be monitored closely.
+   - I should be able to implement a dedicated client plan, so that the efficacy of a plan can be closely monitored.
+   - I should be able to create a case note, on any of my cases, so that I can retrieve notes in the future while dealing with a case.
+
+In addition, we have formulated specific acceptance criteria for each user story. For example:
+
+## User story
+
+As a case manager, I should be able to upload my profile picture, so that I can display my image on my profile.
+
+## Acceptance Criteria
+
+- [x] A user should not be able to upload if the upload file is missing.
+- [x] A user should only be able to upload file size < 1 MB.
+- [x] A user should be able to only upload image MIME types (png, jpeg, jpg, etc.).
+
+## Case manager persona ERD
+
+<Image src="/projects/carely/erd.png" alt="erd" width={800} height={800} />
+
+## Tech Stack (Frontend)
+
+- `Next.js` - Production ready applications and scales.2.
+- `Typescript` - For type-safety.
+- `Tailwind CSS` - Next generation Typescript and Node ORM.
+- `Iron-session` - Node.js stateless session utility.
+- `Vercel` - Seamless deployment and scaling.
+
+## Tech Stack (Backend)
+
+- `Postman` - Design and test API.
+- `Jest + Supertest` - E2E testing.
+- `Nest.js` - Progressive Node.js framework.
+- `Typescript` - For type-safety
+- `Prisma` - Next generation Typescript and Node ORM.
+- `Planetscale` - Scalable MYSQL platform.
+- `Vercel` - Serverless, event-driven compute service.
+
+## Resources
+
+## API design
+
+The case manager API design can be found [here](https://github.com/Boro23-wq/Case-Manager-API-Design), and link to the swagger API documentation can be found [here.](https://app.swaggerhub.com/apis-docs/Boro23-wq/case-manager/1.0#/)
+
+## API backend
+
+The Case Manager API is built using the Active Record Pattern. Using the Active Record approach, one can define all their query methods inside the model itself, and save, remove, and load objects using model methods. Simply, the Active Record pattern is an approach to access database within the defined models.
+
+The API backend can be found [here.](https://github.com/Boro23-wq/casenotesweb-backend)
+
+## Frontend
+
+The frontend of Carely is written in Next.js, Typescript, and TailwindCSS.
+
+<Callout emoji="💡">
+  Next.js gives you the best developer experience with all the features you need
+  for production: hybrid static & server rendering, TypeScript support, smart
+  bundling, route pre-fetching, and more. No config needed.
+</Callout>
+
+<Image
+  src="/projects/carely/carely.gif"
+  alt="frontend-demo"
+  unoptimized
+  width={800}
+  height={800}
+/>
+
+All the frontend related files can be found [here](https://github.com/Boro23-wq/cs-673-frontend).
