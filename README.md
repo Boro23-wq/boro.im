@@ -10,6 +10,8 @@ This ismy porfolio site with a blog. Includes:
 - Tailwind v4
 - Vercel Speed Insights / Web Analytics
 - Geist font
+- Light/Dark Mode
+- Next UI
 
 ## How to use the starter template
 

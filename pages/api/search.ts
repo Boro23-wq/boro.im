@@ -5,7 +5,7 @@ import { getSortedPostsData } from "@/lib/posts";
 // Load posts data
 const posts =
   process.env.NODE_ENV === "production"
-    ? require("cache/blog-posts").posts
+    ? require("../../cache/blog-posts").posts
     : getSortedPostsData();
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
