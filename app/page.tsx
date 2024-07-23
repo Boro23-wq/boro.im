@@ -14,20 +14,38 @@ const social = [
 export default function Page() {
   return (
     <div>
-      <section className="leading-relaxed dark:text-[#d4d4d4]">
+      <section
+        data-animation-controller="true"
+        className="leading-relaxed dark:text-[#d4d4d4]"
+      >
         {/* intro */}
-        <div className="fade-in delay-200 flex items-center mb-4">
+        <div
+          style={{ "--stagger": 1 } as React.CSSProperties}
+          data-animate
+          className="animate-enter flex items-center mb-4"
+        >
           <h4 className="font-medium text-lg mb-5 tracking-normal">
             Sintu Boro
           </h4>
         </div>
-        <p className="fade-in mb-5 delay-400">
+
+        {/* bio */}
+        <p
+          style={{ "--stagger": 2 } as React.CSSProperties}
+          data-animate
+          className="animate-enter mb-5"
+        >
           <span className="newsreader-400">Developing experiences.</span> I have
           transformed complex business processes into efficient and
           user-friendly digital experiences.
         </p>
 
-        <p className="fade-in delay-400 text-md">
+        {/* work highlight */}
+        <p
+          style={{ "--stagger": 3 } as React.CSSProperties}
+          data-animate
+          className="animate-enter text-md"
+        >
           Currently working alongside the{" "}
           <Link
             href="https://www.beacontechinc.com/"
@@ -39,19 +57,38 @@ export default function Page() {
           team to build and deliver robust software solutions.
         </p>
 
-        {/* highlight */}
-        <div className="flex items-center mt-14">
-          <h4 className="newsreader-400 fade-in delay-600">Highlight.</h4>
+        {/* main blog/project highlight */}
+        <div
+          style={{ "--stagger": 4 } as React.CSSProperties}
+          data-animate
+          className="animate-enter flex items-center mt-14"
+        >
+          <h4 className="newsreader-400 ">Highlight.</h4>
         </div>
-        <div className="my-4 fade-in delay-800">
+
+        {/* scroll */}
+        <div
+          style={{ "--stagger": 5 } as React.CSSProperties}
+          data-animate
+          className="my-4 animate-enter"
+        >
           <Scroller />
         </div>
 
         {/* experience */}
-        <div className="fade-in delay-1000 flex items-center mt-10">
+        <div
+          style={{ "--stagger": 6 } as React.CSSProperties}
+          data-animate
+          className="animate-enter flex items-center mt-10"
+        >
           <h4 className="newsreader-400 mb-2">Current experience.</h4>
         </div>
-        <div className="fade-in delay-1200">
+
+        <div
+          style={{ "--stagger": 7 } as React.CSSProperties}
+          data-animate
+          className="animate-enter"
+        >
           <div className="pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
             <p>
               Programmer Analyst IV with the Enterprise and Data Architecture
@@ -66,7 +103,12 @@ export default function Page() {
               (DCF).
             </p>
           </div>
-          <div className="pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+
+          <div
+            style={{ "--stagger": 8 } as React.CSSProperties}
+            data-animate
+            className="animate-enter pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
+          >
             <p>
               My day-to-day activities include administering and customizing the
               Collibra DGC platform to meet user and agency requirements,
@@ -76,7 +118,11 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="pt-4 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+          <div
+            style={{ "--stagger": 9 } as React.CSSProperties}
+            data-animate
+            className="animate-enter pt-4 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
+          >
             <p>
               Discover more about my current projects, past and present{" "}
               <Link
@@ -90,10 +136,19 @@ export default function Page() {
           </div>
 
           {/* connect */}
-          <div className="fade-in delay-1000 flex items-center mt-14">
+          <div
+            style={{ "--stagger": 10 } as React.CSSProperties}
+            data-animate
+            className="animate-enter flex items-center mt-14"
+          >
             <h4 className="newsreader-400">Connect with me.</h4>
           </div>
-          <div className="fade-in delay-1400 my-6">
+
+          <div
+            style={{ "--stagger": 11 } as React.CSSProperties}
+            data-animate
+            className="animate-enter delay-1400 my-6"
+          >
             <ul className="flex flex-wrap">
               {social.map((social, index) => (
                 <li

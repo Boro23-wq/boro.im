@@ -9,6 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       keyframes: {
+        enter: {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "100%": { opacity: "1", transform: "none" },
+        },
         "border-spin": {
           "100%": {
             transform: "rotate(-360deg)",
@@ -27,6 +31,7 @@ const config: Config = {
         "bounce-x": "bounce-x 1s ease-in-out infinite",
         "left-translate": "left-translate 0.5s forwards",
         "border-spin": "border-spin 7s linear infinite",
+        enter: "enter 0.6s both",
       },
     },
   },
