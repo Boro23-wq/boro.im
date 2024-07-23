@@ -323,6 +323,7 @@ main.footer {
   }
 }
 
+/* blog/project table blur */
 .table-blur {
   position: relative;
   scrollbar-width: none !important;
@@ -344,16 +345,9 @@ main.footer {
   );
 }
 
-@media (max-width: 688px) {
+@media (max-width: 640px) {
   .table-blur {
     --gradient-size-start: 2px;
-    --gradient-size-end: 10%;
-  }
-}
-
-@media (min-width: 688px) {
-  .table-blur {
-    --gradient-size-start: 10px;
     --gradient-size-end: 10%;
   }
 }
@@ -569,13 +563,19 @@ mark[data-highlighted-chars] {
   @apply list-decimal pl-6;
 }
 
-/* .prose th {
-  @apply text-left pb-2 border-b border-neutral-200 dark:border-neutral-700;
+.prose th {
+  @apply text-left font-normal py-2 border-b dark:border-neutral-700;
 }
 
 .prose td {
-  @apply text-left py-1 pr-4;
-} */
+  @apply text-sm text-neutral-600 dark:text-neutral-400 text-start align-text-top py-2 sm:py-2.5 pr-4 text-balance;
+}
+
+@media (max-width: 640px) {
+  .prose td {
+    min-width: 200px;
+  }
+}
 
 .prose > :first-child {
   margin-top: 1.25em !important;
@@ -613,16 +613,20 @@ input[type="email"] {
   appearance: none;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"]:checked {
   @apply mr-2;
 }
 
-/* table {
+input[type="checkbox"] {
+  @apply mr-2 bg-black;
+}
+
+table {
   display: block;
   max-width: fit-content;
   overflow-x: auto;
   white-space: nowrap;
-} */
+}
 
 blockquote {
   border-left-width: 4px;
