@@ -81,7 +81,7 @@ export function BlogPosts({ page }: BlogPostsProps) {
             <p className="text-sm text-neutral-400 dark:text-neutral-600 w-[100px] tabular-nums relative">
               {year}
             </p>
-            <hr className="ml-4 absolute left-10 right-0 top-1/2 transform -translate-y-1/2 border-t border-neutral-200 dark:border-neutral-800" />
+            <hr className="ml-4 absolute left-10 right-0 top-1/2 transform -translate-y-1/2 border-t border-neutral-200 dark:border-neutral-700" />
           </div>
 
           {posts.map((post, index) => {

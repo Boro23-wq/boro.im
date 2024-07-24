@@ -556,7 +556,7 @@ mark[data-highlighted-chars] {
 }
 
 .prose li {
-  @apply my-2 text-neutral-800 dark:text-neutral-400;
+  @apply my-2 text-neutral-600 dark:text-neutral-400;
 }
 
 .prose ol {
@@ -578,8 +578,8 @@ mark[data-highlighted-chars] {
 }
 
 .prose > :first-child {
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 .prose .callout > p {
@@ -590,7 +590,7 @@ mark[data-highlighted-chars] {
   text-wrap: balance;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .blog-section:hover .title:not(:hover) {
     @apply text-neutral-400 dark:text-neutral-500 transition-all;
   }

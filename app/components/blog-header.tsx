@@ -24,7 +24,7 @@ export default function BlogHeaderWSearch() {
 
   return (
     <div className="dark:text-[#d4d4d4]">
-      <div className="relative flex justify-between mt-0 sm:mt-1 items-center">
+      <div className="relative flex justify-between mt-0 mt-1 !mb-8 items-center">
         <p className="newsreader-400-tall font-medium text-xs mt-1">{`/ blog`}</p>
         <div className="flex items-center">
           <button

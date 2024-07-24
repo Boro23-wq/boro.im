@@ -37,7 +37,7 @@ export default function Page() {
         >
           <span className="newsreader-400">Developing experiences.</span> I have
           transformed complex business processes into efficient and
-          user-friendly digital experiences.
+          user-friendly interfaces.
         </p>
 
         {/* work highlight */}
@@ -111,10 +111,9 @@ export default function Page() {
           >
             <p>
               My day-to-day activities include administering and customizing the
-              Collibra DGC platform to meet user and agency requirements,
-              translating business processes into workflows; utilize APIs, and
-              automation scripts, to support platform administration and manage
-              data organization to name a few.
+              Collibra DGC platform to meet user requirements, translating
+              business processes into workflows; support platform administration
+              and data organization.
             </p>
           </div>
 
@@ -124,12 +123,12 @@ export default function Page() {
             className="animate-enter pt-4 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
           >
             <p>
-              Discover more about my current projects, past and present{" "}
+              Discover more about my current projects, past and present work{" "}
               <Link
                 className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
                 href="/work"
               >
-                work
+                here
               </Link>
               .
             </p>

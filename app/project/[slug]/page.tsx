@@ -143,7 +143,7 @@ export default function Project({ params }) {
           )}
         </div>
 
-        <hr className="h-0.5 mx-auto bg-neutral-200 border-0 dark:bg-neutral-700" />
+        <hr className="h-0.5 mx-auto !mt-0 mb-4 bg-neutral-200 border-0 md:my-6 dark:bg-neutral-700" />
 
         <article className="prose">
           <CustomMDX source={project.content} />
