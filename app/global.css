@@ -548,7 +548,7 @@ mark[data-highlighted-chars] {
 }
 
 .prose ul {
-  @apply list-[disc] pl-5;
+  @apply list-[disc] pl-6;
 }
 
 .prose ul.contains-task-list li.task-list-item {

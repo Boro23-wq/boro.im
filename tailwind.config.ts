@@ -24,7 +24,7 @@ const config: Config = {
         },
         "left-translate": {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-8px)" }, // -2 translates to 8px
+          "100%": { transform: "translateX(-8px)" },
         },
       },
       animation: {
