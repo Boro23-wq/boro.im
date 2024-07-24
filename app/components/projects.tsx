@@ -24,7 +24,7 @@ export function Projects() {
             <Link href={`/project/${project.slug}`} className="">
               <div className="flex items-center relative mb-2">
                 <p className="newsreader-400-tall">{project.metadata.title}</p>
-                <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+                <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-600 transition-colors duration-300" />
               </div>
 
               <p className="text-sm mt-0.5 text-neutral-400 dark:text-neutral-500">

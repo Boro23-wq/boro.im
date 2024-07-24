@@ -14,7 +14,7 @@ export default function Page() {
 
       <BlogHeaderWSearch />
 
-      <section className="mt-8 md:mt-10 leading-relaxed">
+      <section className="mb-8 mt-4 leading-relaxed">
         <BlogPosts page="blog" />
       </section>
     </>

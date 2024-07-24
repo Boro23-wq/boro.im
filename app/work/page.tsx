@@ -15,8 +15,8 @@ export default function Page() {
       <section className="leading-relaxed dark:text-[#d4d4d4]">
         <p className="newsreader-400-tall font-medium mt-1">{`/ work`}</p>
         <div className="mt-8 flex justify-start items-start flex-col sm:flex-row">
-          <div className="flex mr-6">
-            <p className="text-pretty text-neutral-600 dark:text-neutral-400">
+          <div className="flex mr-6 mb-2">
+            <p className="text-pretty text-neutral-800 dark:text-neutral-300">
               Experienced software developer with a knack for enhancing web
               applications, streamlining development processes through
               innovative solutions.
@@ -27,22 +27,25 @@ export default function Page() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center mt-3 sm:mt-0 border border-neutral-200 dark:border-neutral-700 bg-neutral-100 text-neutral-500 hover:text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 px-2.5 py-1 rounded-md transition-all"
+            className="flex items-center mt-3 mb-5 sm:mb-0 sm:mt-1.5 border border-neutral-200 dark:border-neutral-700 bg-neutral-100 text-neutral-500 hover:text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 px-2.5 py-1 rounded-md transition-all"
           >
             <button className="flex text-nowrap text-sm">Read my CV</button>
             <DownloadIcon className="flex w-3.5 h-3.5 ml-2" />
           </Link>
         </div>
+        <div className="my-4">
+          <p className="newsreader-400-tall">Experience</p>
+        </div>
         <div className="prose prose-neutral dark:prose-invert mt-4">
           {/* beacon */}
           <>
-            <div className="flex items-center relative mb-2">
-              <p className="text-sm !mb-0">May, 2024 - Current</p>
-              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+            <div className="flex items-center relative !m-0 !mb-1">
+              <p className="text-xs uppercase !mb-0">May, 2024 - Current</p>
+              <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
             </div>
 
             <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
                 Beacon Technologies, Inc.
               </p>
               <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
@@ -52,7 +55,7 @@ export default function Page() {
 
             <ul className="!mt-4">
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Enhanced Efficiency:
                 </span>{" "}
                 Developed code for Collibra ingestion, reduced upload time by
@@ -60,7 +63,7 @@ export default function Page() {
                 efficiency by 25%.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   {" "}
                   Workflow Optimization:
                 </span>{" "}
@@ -69,7 +72,7 @@ export default function Page() {
                 management, resulting in a 50% reduction in manual effort.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Issue Resolution:
                 </span>{" "}
                 Addressed and resolved 90% of production issues within a couple
@@ -78,7 +81,7 @@ export default function Page() {
                 files.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Process Improvement:
                 </span>{" "}
                 Reviewed and improved 20 existing diagrams, implementing best
@@ -123,14 +126,14 @@ export default function Page() {
           </>
 
           {/* Smart solutions */}
-          <div className="mt-8">
-            <div className="flex items-center relative mb-2">
-              <p className="text-sm !mb-0">Sep, 2023 - May, 2024</p>
-              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+          <div className="mt-10">
+            <div className="flex items-center relative !m-0 !mb-1">
+              <p className="text-xs uppercase !mb-0">Sep, 2023 - May, 2024</p>
+              <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
             </div>
 
             <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
                 Smart Solutions, Inc.
               </p>
               <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
@@ -140,7 +143,7 @@ export default function Page() {
 
             <ul className="!mt-4">
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Platform Administration:
                 </span>{" "}
                 Administered and customized the Collibra platform, leveraging
@@ -148,13 +151,16 @@ export default function Page() {
                 and increasing user interface customization by 20%.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300"> Implementation:</span>{" "}
+                <span className="!text-neutral-700 dark:!text-neutral-300">
+                  {" "}
+                  Implementation:
+                </span>{" "}
                 Implemented 10+ efficient workflows and governance flows,
                 translating business processes into the Collibra platform,
                 leading to a 15% improvement in business process efficiency.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   API and Process Streamlining:
                 </span>{" "}
                 Utilized Java and configured APIs to support platform
@@ -195,14 +201,14 @@ export default function Page() {
           </div>
 
           {/* Wave */}
-          <div className="mt-8">
-            <div className="flex items-center relative mb-2">
-              <p className="text-sm !mb-0">May, 2022 - Sep, 2023</p>
-              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+          <div className="mt-10">
+            <div className="flex items-center relative !m-0 !mb-1">
+              <p className="text-xs uppercase !mb-0">May, 2022 - Sep, 2023</p>
+              <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
             </div>
 
             <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
                 Wave DDS
               </p>
               <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
@@ -212,7 +218,7 @@ export default function Page() {
 
             <ul className="!mt-4">
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Comprehensive UI/UX Development:
                 </span>{" "}
                 Demonstrated all stages of UI/UX development, creating personas,
@@ -220,7 +226,7 @@ export default function Page() {
                 Figma.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Agile Collaboration:
                 </span>{" "}
                 Worked seamlessly in an Agile environment, collaborating with
@@ -228,7 +234,7 @@ export default function Page() {
                 specifications, including detailed design rationale.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Effective UX Practices:
                 </span>{" "}
                 Followed best UX design practices to build compelling
@@ -258,14 +264,14 @@ export default function Page() {
           </div>
 
           {/* Slotly */}
-          <div className="mt-8">
-            <div className="flex items-center relative mb-2">
-              <p className="text-sm !mb-0">Jan, 2021 - Aug, 2021</p>
-              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+          <div className="mt-10">
+            <div className="flex items-center relative !m-0 !mb-1">
+              <p className="text-xs uppercase !mb-0">Jan, 2021 - Aug, 2021</p>
+              <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
             </div>
 
             <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
                 Slotly
               </p>
               <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
@@ -275,14 +281,14 @@ export default function Page() {
 
             <ul className="!mt-4">
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Enhanced Web Application:
                 </span>{" "}
                 Built type-safe components with Next.js and TypeScript,
                 improving average user time on page by 2 minutes.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Optimized Scheduling Platform:
                 </span>{" "}
                 Led the redesign and migration of an end-to-end scheduling
@@ -290,7 +296,7 @@ export default function Page() {
                 web vitals, resulting in better FID and LCP metrics.
               </li>
               <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="dark:!text-neutral-300">
+                <span className="!text-neutral-700 dark:!text-neutral-300">
                   Improved Development Processes:
                 </span>{" "}
                 Overhauled the CI/CD pipeline, increasing code delivery speed by
