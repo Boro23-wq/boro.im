@@ -5,7 +5,6 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import Pre from "./pre";
 import RoundedImage from "./rounded-image";
-import { NextUITable } from "./next-ui-table";
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
@@ -25,6 +24,30 @@ const options = {
 interface CalloutProps {
   emoji: string;
   children: React.ReactNode;
+}
+
+function Table({ data }) {
+  let headers = data.headers.map((header, index) => (
+    <th className="newsreader-400" key={index}>
+      {header}
+    </th>
+  ));
+  let rows = data.rows.map((row, index) => (
+    <tr key={index}>
+      {row.map((cell, cellIndex) => (
+        <td key={cellIndex}>{cell}</td>
+      ))}
+    </tr>
+  ));
+
+  return (
+    <table className="table-blur">
+      <thead>
+        <tr className="">{headers}</tr>
+      </thead>
+      <tbody className="">{rows}</tbody>
+    </table>
+  );
 }
 
 function CustomLink(props) {
@@ -88,7 +111,7 @@ function CustomCheckbox({ checked, children }) {
         type="checkbox"
         checked={checked}
         readOnly
-        className="form-checkbox h-3.5 w-3.5 accent-neutral-600 hover:accent-neutral-700 dark:accent-neutral-400 dark:hover:accent-neutral-300 transition-all duration-150 ease-in-out"
+        className="h-3.5 w-3.5 accent-neutral-600 checked:dark:accent-neutral-400 transition-all duration-150 ease-in-out"
       />
       <label className="ml-1">{children}</label>
     </div>
@@ -130,7 +153,7 @@ let components = {
   a: CustomLink,
   li: CustomListItem,
   Callout,
-  NextUITable,
+  Table,
   pre: Pre,
 };
 

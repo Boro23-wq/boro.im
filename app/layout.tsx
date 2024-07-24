@@ -1,6 +1,5 @@
 import "./global.css";
 import { ThemeProvider } from "next-themes";
-import { NextUIProvider } from "@nextui-org/system";
 import { Newsreader } from "next/font/google";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
@@ -92,30 +91,28 @@ export default function RootLayout({
       lang="en"
       className={cx(GeistSans.className, newsreader.variable)}
     >
-      <NextUIProvider>
-        <body className="antialiased">
-          <ThemeProvider
-            attribute="class"
-            enableColorScheme={false}
-            enableSystem={true}
-          >
-            <div className="main-container">
-              <div
-                className="main-blur relative h-[100px]"
-                aria-hidden="true"
-              ></div>
-              <main className="main py-16 sm:py-28">
-                <div className="main-grid">
-                  {children}
-                  <Analytics />
-                  <SpeedInsights />
-                </div>
-              </main>
-            </div>
-            <Footer />
-          </ThemeProvider>
-        </body>
-      </NextUIProvider>
+      <body className="antialiased">
+        <ThemeProvider
+          attribute="class"
+          enableColorScheme={false}
+          enableSystem={true}
+        >
+          <div className="main-container">
+            <div
+              className="main-blur relative h-[100px]"
+              aria-hidden="true"
+            ></div>
+            <main className="main py-16 sm:py-28">
+              <div className="main-grid">
+                {children}
+                <Analytics />
+                <SpeedInsights />
+              </div>
+            </main>
+          </div>
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
