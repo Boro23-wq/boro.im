@@ -91,8 +91,8 @@ export default function Page() {
         >
           <div className="pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
             <p>
-              Programmer Analyst IV with the Enterprise and Data Architecture
-              team at the{" "}
+              I'm currently working as a Programmer Analyst IV with the
+              Enterprise and Data Architecture team at the{" "}
               <Link
                 className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
                 href="https://dcf.wisconsin.gov/"

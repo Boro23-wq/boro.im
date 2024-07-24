@@ -1,4 +1,6 @@
+import { DownloadIcon } from "lucide-react";
 import { Sidebar } from "../components/sidebar";
+import Link from "next/link";
 
 export const metadata = {
   title: "Work",
@@ -12,136 +14,313 @@ export default function Page() {
 
       <section className="leading-relaxed dark:text-[#d4d4d4]">
         <p className="newsreader-400-tall font-medium mt-1">{`/ work`}</p>
-        <div className="prose prose-neutral dark:prose-invert mt-8 md:mt-10">
-          <p className="!text-neutral-700 dark:!text-neutral-400">
-            As a developer/programmer analyst, I specialize in customizing and
-            optimizing software platforms for improved efficiency and user
-            experience. I focus on delivering impactful solutions that enhance
-            both the functionality and usability of the systems I work with.
-          </p>
-          <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-
-          <p className="newsreader-400-tall !mb-0">Beacon Technologies, Inc.</p>
-          <div className="flex flex-col md:flex-row justify-between">
-            <p className="text-sm !text-neutral-500 !dark:text-neutral-400">
-              IT Consultant/Programmer Analyst IV
-            </p>
-            <p className="hidden md:block text-xs !text-neutral-500 !dark:text-neutral-400">
-              May, 2024 - Current
+        <div className="mt-8 flex justify-start items-start flex-col sm:flex-row">
+          <div className="flex mr-6">
+            <p className="text-pretty text-neutral-600 dark:text-neutral-400">
+              Experienced software developer with a knack for enhancing web
+              applications, streamlining development processes through
+              innovative solutions.
             </p>
           </div>
-          <p className="!text-neutral-500 dark:!text-neutral-400">
-            I joined Beacon Technologies as a merger with Smart Solutions. While
-            the company name might have changed, the core focus of being part of
-            a great team and delivering robust software solutions remains the
-            same.
-          </p>
-          <ul>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Completed POC phase, developing code for Collibra ingestion.
-              Utilized Postman scripts for content upload, reducing upload time
-              by 30%. Conducted preliminary testing on 10+ sample files,
-              ensuring 99% accuracy for import readiness.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Implemented workflows and governance flows, translating business
-              processes into 10+ efficient workflows within the Collibra
-              platform.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Resolved 90% of production issues within a week, ensuring
-              uninterrupted operation. Developed script for bulk deletion,
-              reducing deletion time by 40%.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Streamlined asset management processes, resulting in 50% reduction
-              in manual effort.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Reviewed 20 existing diagrams, implementing best practices for
-              visualizing relationships.
-            </li>
-          </ul>
-          <p className="!text-neutral-500 dark:!text-neutral-400">
-            Since joining Beacon Tech I have addressed code issues, increased BO
-            extraction efficiency by 25%, conducted comprehensive BO extractor
-            runs on 50+ files, identified and resolved 60% of existing issues.
-          </p>
 
-          <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+          <Link
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center mt-3 sm:mt-0 border border-neutral-200 dark:border-neutral-700 bg-neutral-100 text-neutral-500 hover:text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 px-2.5 py-1 rounded-md transition-all"
+          >
+            <button className="flex text-nowrap text-sm">Read my CV</button>
+            <DownloadIcon className="flex w-3.5 h-3.5 ml-2" />
+          </Link>
+        </div>
+        <div className="prose prose-neutral dark:prose-invert mt-4">
+          {/* beacon */}
+          <>
+            <div className="flex items-center relative mb-2">
+              <p className="text-sm !mb-0">May, 2024 - Current</p>
+              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+            </div>
 
-          <h2 className="newsreader-400-tall !mb-0">Smart Solutions, Inc.</h2>
-          <div className="flex flex-col md:flex-row justify-between">
-            <p className="my-0 text-sm !text-neutral-500 !dark:text-neutral-400">
-              IT Consultant/Programmer Analyst IV
-            </p>
-            <p className="hidden md:block my-0 text-xs !text-neutral-500 !dark:text-neutral-400">
-              Sep, 2023 - May, 2024
-            </p>
+            <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
+              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+                Beacon Technologies, Inc.
+              </p>
+              <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
+                Programmer Analyst IV
+              </p>
+            </div>
+
+            <ul className="!mt-4">
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Enhanced Efficiency:
+                </span>{" "}
+                Developed code for Collibra ingestion, reduced upload time by
+                30% using Postman scripts, and increased BO extraction
+                efficiency by 25%.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  {" "}
+                  Workflow Optimization:
+                </span>{" "}
+                Implemented 10+ workflows within the Collibra platform,
+                translating business processes and streamlining asset
+                management, resulting in a 50% reduction in manual effort.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Issue Resolution:
+                </span>{" "}
+                Addressed and resolved 90% of production issues within a couple
+                weeks time, ensuring uninterrupted operation, and resolved 60%
+                of existing issues during comprehensive BO extractor runs on 50+
+                files.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Process Improvement:
+                </span>{" "}
+                Reviewed and improved 20 existing diagrams, implementing best
+                practices for visualizing relationships. Conducted preliminary
+                testing on 10+ sample files, ensuring 99% accuracy for import
+                readiness.
+              </li>
+            </ul>
+
+            <div className="flex gap-2 flex-wrap mt-4">
+              <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  C#
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Python
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Java
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Collibra
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  .NET
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  REST
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  GraphQL
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  Postman
+                </p>
+              </div>
+            </div>
+          </>
+
+          {/* Smart solutions */}
+          <div className="mt-8">
+            <div className="flex items-center relative mb-2">
+              <p className="text-sm !mb-0">Sep, 2023 - May, 2024</p>
+              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
+              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+                Smart Solutions, Inc.
+              </p>
+              <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
+                Programmer Analyst IV
+              </p>
+            </div>
+
+            <ul className="!mt-4">
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Platform Administration:
+                </span>{" "}
+                Administered and customized the Collibra platform, leveraging
+                Python for task automation, enhancing platform functionalities,
+                and increasing user interface customization by 20%.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300"> Implementation:</span>{" "}
+                Implemented 10+ efficient workflows and governance flows,
+                translating business processes into the Collibra platform,
+                leading to a 15% improvement in business process efficiency.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  API and Process Streamlining:
+                </span>{" "}
+                Utilized Java and configured APIs to support platform
+                administration, and streamlined asset management processes,
+                achieving a 50% reduction in manual effort.
+              </li>
+            </ul>
+
+            <div className="flex gap-2 flex-wrap mt-4">
+              <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Collibra
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Workflow
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Java
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  Python
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  REST
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  Eclipse
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  Flowable BPMN
+                </p>
+              </div>
+            </div>
           </div>
-          <ul>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Administered and customized the Collibra platform to meet user and
-              agency requirements; utilized Python for automating tasks,
-              contributing to improved functionalities.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Implemented workflows and governance flows, translating business
-              processes into 10+ efficient workflows within the Collibra
-              platform.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Worked extensively with Collibra platform, utilizing Java and
-              configuring APIs to support administration.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Contributed to a 20% increase in user interface customization and
-              optimization; mapped and optimized workflows, resulting in a 15%
-              improvement in business process efficiency.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Streamlined asset management processes, resulting in 50% reduction
-              in manual effort.
-            </li>
-          </ul>
 
-          <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+          {/* Wave */}
+          <div className="mt-8">
+            <div className="flex items-center relative mb-2">
+              <p className="text-sm !mb-0">May, 2022 - Sep, 2023</p>
+              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+            </div>
 
-          <h2 className="newsreader-400-tall !mb-0">
-            Wave Drowning Prevention Systems
-          </h2>
-          <div className="flex flex-col md:flex-row justify-between">
-            <p className="my-0 text-sm !text-neutral-500 !dark:text-neutral-400">
-              UI/UX Designer and Developer
-            </p>
-            <p className="hidden md:block my-0 text-xs !text-neutral-500 !dark:text-neutral-400">
-              May, 2022 - Sep, 2023
-            </p>
+            <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
+              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+                Wave DDS
+              </p>
+              <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
+                UI/UX Designer
+              </p>
+            </div>
+
+            <ul className="!mt-4">
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Comprehensive UI/UX Development:
+                </span>{" "}
+                Demonstrated all stages of UI/UX development, creating personas,
+                experience maps, sitemaps, wireframes, and prototypes using
+                Figma.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Agile Collaboration:
+                </span>{" "}
+                Worked seamlessly in an Agile environment, collaborating with
+                senior developers to design and document interaction design
+                specifications, including detailed design rationale.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Effective UX Practices:
+                </span>{" "}
+                Followed best UX design practices to build compelling
+                single-page applications (SPA) using React for WAVE
+                applications, while collaborating with marketing and development
+                teams to achieve quarterly KPIs.
+              </li>
+            </ul>
+
+            <div className="flex gap-2 flex-wrap mt-4">
+              <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  React.js
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Javascript
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Material UI
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  Figma
+                </p>
+              </div>
+            </div>
           </div>
-          <ul>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Demonstrated all stages of the UI/UX development process; created
-              hypothetical personas, experience maps, sitemaps and utilized
-              Figma to develop wireframes and prototypes taking user and design
-              specifications into consideration.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Worked seamlessly in an Agile environment; collaborated with
-              senior developers to represent information architectures,
-              workflows, UI concepts and documented interaction design
-              specifications including detailed design rationale.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Followed the current best practices and conventions in UX design
-              and applied them to build effective and compelling screen-based
-              single-page applications (SPA) for WAVE applications using React,
-              while assisting the development team.
-            </li>
-            <li className="!text-neutral-500 dark:!text-neutral-400">
-              Collaborated effectively with the marketing, development teams and
-              senior engineers to achieve quarterly KPIs.
-            </li>
-          </ul>
+
+          {/* Slotly */}
+          <div className="mt-8">
+            <div className="flex items-center relative mb-2">
+              <p className="text-sm !mb-0">Jan, 2021 - Aug, 2021</p>
+              <hr className="flex-grow ml-2 mt-1 border-t border-neutral-200 dark:border-neutral-800 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
+              <p className="font-semibold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+                Slotly
+              </p>
+              <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
+                Software Developer Intern
+              </p>
+            </div>
+
+            <ul className="!mt-4">
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Enhanced Web Application:
+                </span>{" "}
+                Built type-safe components with Next.js and TypeScript,
+                improving average user time on page by 2 minutes.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Optimized Scheduling Platform:
+                </span>{" "}
+                Led the redesign and migration of an end-to-end scheduling
+                platform to Next.js, improving server-side rendering and core
+                web vitals, resulting in better FID and LCP metrics.
+              </li>
+              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
+                <span className="dark:!text-neutral-300">
+                  Improved Development Processes:
+                </span>{" "}
+                Overhauled the CI/CD pipeline, increasing code delivery speed by
+                5%, and implemented REST APIs using Nest.js, reducing time to
+                ship new features by 6%.
+              </li>
+            </ul>
+
+            <div className="flex gap-2 flex-wrap mt-4">
+              <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Next.js
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  AWS
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  Typescript
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  NestJS
+                </p>
+                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
+                  {" "}
+                  Styled components
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

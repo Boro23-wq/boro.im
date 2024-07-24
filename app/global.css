@@ -520,7 +520,7 @@ mark[data-highlighted-chars] {
 }
 
 .prose p {
-  @apply mt-0 mb-5 text-neutral-600 dark:text-neutral-300;
+  @apply mt-0 mb-5 text-neutral-600 dark:text-neutral-400;
 }
 
 .prose u {
@@ -556,7 +556,7 @@ mark[data-highlighted-chars] {
 }
 
 .prose li {
-  @apply my-2 text-neutral-800 dark:text-neutral-300;
+  @apply my-2 text-neutral-800 dark:text-neutral-400;
 }
 
 .prose ol {
@@ -615,10 +615,6 @@ input[type="email"] {
 
 input[type="checkbox"]:checked {
   @apply mr-2;
-}
-
-input[type="checkbox"] {
-  @apply mr-2 bg-black;
 }
 
 table {
