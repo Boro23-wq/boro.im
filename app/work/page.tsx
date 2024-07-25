@@ -1,6 +1,7 @@
 import { DownloadIcon } from "lucide-react";
 import { Sidebar } from "../components/sidebar";
 import Link from "next/link";
+import { InternAccordion } from "../components/int-accordion";
 
 export const metadata = {
   title: "Work",
@@ -29,11 +30,11 @@ export default function Page() {
             rel="noopener noreferrer"
             className="flex items-center mt-3 mb-5 sm:mb-0 sm:mt-1.5 border border-neutral-200 dark:border-neutral-700 bg-neutral-100 text-neutral-500 hover:text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 px-2.5 py-1 rounded-md transition-all"
           >
-            <button className="flex text-nowrap text-sm">Read my CV</button>
+            <button className="flex text-nowrap text-sm">Resume</button>
             <DownloadIcon className="flex w-3.5 h-3.5 ml-2" />
           </Link>
         </div>
-        <div className="my-4">
+        <div className="mt-5 mb-6">
           <p className="newsreader-400-tall">Experience</p>
         </div>
         <div className="prose prose-neutral dark:prose-invert mt-4">
@@ -45,7 +46,7 @@ export default function Page() {
             </div>
 
             <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+              <p className="text-md !mb-1.5 md:!mb-2 !text-neutral-800 dark:!text-neutral-300">
                 Beacon Technologies, Inc.
               </p>
               <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
@@ -91,7 +92,7 @@ export default function Page() {
               </li>
             </ul>
 
-            <div className="flex gap-2 flex-wrap mt-4">
+            <div className="flex gap-2 flex-wrap mt-5">
               <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
                 <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
                   C#
@@ -126,14 +127,14 @@ export default function Page() {
           </>
 
           {/* Smart solutions */}
-          <div className="mt-10">
+          <div className="mt-12">
             <div className="flex items-center relative !m-0 !mb-1">
               <p className="text-xs uppercase !mb-0">Sep, 2023 - May, 2024</p>
               <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
             </div>
 
             <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+              <p className="text-md !mb-1.5 md:!mb-2 !text-neutral-800 dark:!text-neutral-300">
                 Smart Solutions, Inc.
               </p>
               <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
@@ -169,7 +170,7 @@ export default function Page() {
               </li>
             </ul>
 
-            <div className="flex gap-2 flex-wrap mt-4">
+            <div className="flex gap-2 flex-wrap mt-5">
               <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
                 <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
                   Collibra
@@ -201,14 +202,14 @@ export default function Page() {
           </div>
 
           {/* Wave */}
-          <div className="mt-10">
+          <div className="mt-12">
             <div className="flex items-center relative !m-0 !mb-1">
               <p className="text-xs uppercase !mb-0">May, 2022 - Sep, 2023</p>
               <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
             </div>
 
             <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
+              <p className="text-md !mb-1.5 md:!mb-2 !text-neutral-800 dark:!text-neutral-300">
                 Wave DDS
               </p>
               <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
@@ -244,7 +245,7 @@ export default function Page() {
               </li>
             </ul>
 
-            <div className="flex gap-2 flex-wrap mt-4">
+            <div className="flex gap-2 flex-wrap mt-5">
               <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
                 <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
                   React.js
@@ -263,70 +264,21 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Slotly */}
-          <div className="mt-10">
-            <div className="flex items-center relative !m-0 !mb-1">
-              <p className="text-xs uppercase !mb-0">Jan, 2021 - Aug, 2021</p>
-              <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-700 transition-colors duration-300" />
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-              <p className="font-bold text-md !mb-0.5 md:!mb-0 !text-neutral-600 dark:!text-neutral-300">
-                Slotly
-              </p>
-              <p className="text-sm !mb-0 !text-neutral-500 dark:!text-neutral-400">
-                Software Developer Intern
-              </p>
-            </div>
-
-            <ul className="!mt-4">
-              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="!text-neutral-700 dark:!text-neutral-300">
-                  Enhanced Web Application:
-                </span>{" "}
-                Built type-safe components with Next.js and TypeScript,
-                improving average user time on page by 2 minutes.
-              </li>
-              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="!text-neutral-700 dark:!text-neutral-300">
-                  Optimized Scheduling Platform:
-                </span>{" "}
-                Led the redesign and migration of an end-to-end scheduling
-                platform to Next.js, improving server-side rendering and core
-                web vitals, resulting in better FID and LCP metrics.
-              </li>
-              <li className="!text-neutral-500 dark:!text-neutral-400 list-[upper-roman]">
-                <span className="!text-neutral-700 dark:!text-neutral-300">
-                  Improved Development Processes:
-                </span>{" "}
-                Overhauled the CI/CD pipeline, increasing code delivery speed by
-                5%, and implemented REST APIs using Nest.js, reducing time to
-                ship new features by 6%.
-              </li>
-            </ul>
-
-            <div className="flex gap-2 flex-wrap mt-4">
-              <div className="flex flex-wrap items-center text-sm gap-1.5 !ml-5 sm:!ml-0">
-                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
-                  Next.js
-                </p>
-                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
-                  AWS
-                </p>
-                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
-                  Typescript
-                </p>
-                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
-                  {" "}
-                  NestJS
-                </p>
-                <p className="!mb-0 border dark:border-neutral-700 dark:bg-neutral-800 dark:text-white px-2 py-1 rounded-lg">
-                  {" "}
-                  Styled components
-                </p>
-              </div>
-            </div>
+          {/* internship  */}
+          <div className="mt-10 mb-4">
+            <p className="newsreader-400-tall !text-neutral-800 dark:!text-neutral-300">
+              Internship
+            </p>
           </div>
+
+          <p>
+            I have experience from internships working with aspects of
+            development, from design and implementation to deployment.
+          </p>
+
+          <InternAccordion />
+
+          {/* Slotly */}
         </div>
       </section>
     </>

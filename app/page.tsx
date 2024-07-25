@@ -152,10 +152,10 @@ export default function Page() {
               {social.map((social, index) => (
                 <li
                   key={index}
-                  className="bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 rounded-2xl mr-2 mb-2"
+                  className="bg-neutral-100 text-neutral-500 hover:bg-neutral-800 hover:text-neutral-50 dark:hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-neutral-900 dark:bg-neutral-800 px-2.5 py-1 rounded-2xl mr-2 mb-2"
                 >
                   <a
-                    className="flex items-center text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-100 transition-all"
+                    className="flex items-center"
                     rel="noopener noreferrer"
                     target="_blank"
                     href={social.url}

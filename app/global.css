@@ -352,6 +352,22 @@ main.footer {
   }
 }
 
+/* accordion styles */
+.bg-content1 {
+  /* Your styles here */
+  @apply !shadow-sm bg-neutral-50 border border-neutral-100 dark:border-neutral-700 dark:!bg-neutral-800;
+}
+
+.bg-content1 > h2 {
+  /* Your styles here */
+  @apply !my-0;
+}
+
+div[data-orientation="vertical"] {
+  /* Your styles here */
+  @apply !px-0;
+}
+
 .search-hidden {
   max-height: 0;
   opacity: 0;
