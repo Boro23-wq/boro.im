@@ -146,7 +146,7 @@ export default function Page() {
           <div
             style={{ "--stagger": 11 } as React.CSSProperties}
             data-animate
-            className="animate-enter delay-1400 my-6"
+            className="animate-enter my-6"
           >
             <ul className="flex flex-wrap">
               {social.map((social, index) => (

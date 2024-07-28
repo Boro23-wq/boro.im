@@ -159,6 +159,10 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+.main-container {
+  overflow-x: hidden;
+}
+
 .main-blur {
   position: fixed;
   pointer-events: none;
@@ -453,6 +457,28 @@ div[data-orientation="vertical"] {
 .rounded-img {
   margin-left: calc(-1 * var(--body-margin-left));
   margin-right: calc(-1 * var(--body-margin-right));
+}
+
+@media (max-width: 640px) {
+  .carousel,
+  .bento {
+    margin-left: calc(-1 * var(--body-margin-left));
+    margin-right: calc(-1 * var(--body-margin-right));
+  }
+}
+
+.carousel-b-blur {
+  background: linear-gradient(
+    rgba(244, 244, 246, 0) 0%,
+    rgb(244, 244, 246) 100%
+  );
+  bottom: 0px;
+  height: 150px;
+  flex: 0 0 auto;
+  left: 0px;
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
 }
 
 .prose .anchor {

@@ -24,7 +24,7 @@ const Modal = ({ src, alt, onClose, isModalOpen }) => {
     >
       <div className="flex">
         <button
-          className="cursor-pointer rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white absolute top-0 left-0 m-8 z-10"
+          className="cursor-pointer rounded-full bg-neutral-900/75 text-neutral-50/75 p-2 backdrop-blur-lg transition hover:bg-black/75 hover:text-white absolute top-0 left-0 m-8 z-10"
           onClick={(e) => {
             e.stopPropagation(); // Prevent closing when clicking the button
             handleClose();

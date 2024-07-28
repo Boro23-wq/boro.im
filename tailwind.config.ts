@@ -37,7 +37,44 @@ const config: Config = {
       },
     },
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui(),
+    function ({ addUtilities }) {
+      addUtilities(
+        {
+          ".glow-border-dark": {
+            position: "relative",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              bottom: "-2px",
+              left: 0,
+              right: 0,
+              height: "2px",
+              background:
+                "linear-gradient(90deg, transparent 0%, rgb(82 82 82) 30%, rgb(163 163 163) 50%, rgb(82 82 82) 70%, transparent 100%)",
+              filter: "blur(1px)",
+            },
+          },
+          ".glow-border-light": {
+            position: "relative",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              bottom: "-2px",
+              left: 0,
+              right: 0,
+              height: "2px",
+              background:
+                "linear-gradient(90deg, transparent 0%, rgb(229 229 229) 30%, rgb(170 170 170) 50%, rgb(229 229 229) 70%, transparent 100%)",
+              filter: "blur(1px)",
+            },
+          },
+        },
+        ["responsive", "hover"]
+      );
+    },
+  ],
   darkMode: "class",
 };
 
