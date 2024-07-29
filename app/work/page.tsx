@@ -182,13 +182,13 @@ export default function Page() {
 
         {/* more screens */}
         <div className="flex items-center mt-8">
-          <h4 className="newsreader-400">More screens</h4>
+          <h4 className="newsreader-400">Components</h4>
         </div>
 
         <p className="mt-4 mb-10 text-base font-normal text-neutral-500 dark:text-neutral-400">
           These components were created based on requirements for re-developing
-          the Blackx web analytics screen. Below are some of the components and
-          design styles that I mocked.
+          the Blackx web analytics screen. Below are some of the mock components
+          I designed.
         </p>
 
         <BentoGridWork imgs={blackxImages} />
@@ -205,9 +205,9 @@ export default function Page() {
                 className="flex items-center"
                 rel="noopener noreferrer"
                 target="_blank"
-                href="/resume.pdf"
+                href="/resume/resume.pdf"
               >
-                <p className="mr-2 text-sm">Download CV</p>
+                <p className="mr-2 text-sm">Read CV</p>
                 <DownloadIcon className="w-3 h-3" />
               </Link>
             </li>
