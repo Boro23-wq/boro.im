@@ -28,7 +28,7 @@ export const Carousel = ({ imgs, subtitle }) => {
   };
 
   return (
-    <div>
+    <>
       <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
         <div className="relative w-full max-w-[640px] flex items-center">
           {/* Left/right controls */}
@@ -86,11 +86,12 @@ export const Carousel = ({ imgs, subtitle }) => {
                 key={idx}
                 src={image}
                 alt={`Image ${idx + 1}`}
-                // animate={{ opacity: idx === current ? 1 : 0.2 }}
-                className="aspect-[16/9] object-cover"
+                // animate={{ opacity: idx === current ? 1 : 0.8 }}
+                className="aspect-[16/9] object-cover !my-0"
               />
             ))}
           </motion.div>
+
           <div className="carousel-b-blur"></div>
 
           {/* Control pill */}
@@ -109,9 +110,10 @@ export const Carousel = ({ imgs, subtitle }) => {
           </div>
         </div>
       </MotionConfig>
-      <p className="mt-4 text-center text-xs text-neutral-400 dark:text-neutral-500">
+
+      <p className="!mt-4 text-center text-xs text-neutral-400 dark:text-neutral-500">
         {subtitle}
       </p>
-    </div>
+    </>
   );
 };

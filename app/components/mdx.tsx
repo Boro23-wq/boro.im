@@ -5,6 +5,8 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import Pre from "./pre";
 import RoundedImage from "./rounded-image";
+import { BentoGrid } from "./bento-grid";
+import { Carousel } from "./carousel";
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
@@ -154,7 +156,9 @@ let components = {
   li: CustomListItem,
   Callout,
   Table,
+  BentoGrid,
   pre: Pre,
+  Carousel,
 };
 
 export function CustomMDX(props) {
