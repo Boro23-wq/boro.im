@@ -43,9 +43,9 @@ function Table({ data }) {
   return (
     <table className="table-blur">
       <thead>
-        <tr className="">{headers}</tr>
+        <tr>{headers}</tr>
       </thead>
-      <tbody className="">{rows}</tbody>
+      <tbody>{rows}</tbody>
     </table>
   );
 }
