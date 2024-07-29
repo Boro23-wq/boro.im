@@ -16,9 +16,6 @@
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^9.6.0",
-    "@nextui-org/accordion": "^2.0.38",
-    "@nextui-org/system": "^2.2.5",
-    "@nextui-org/theme": "^2.2.9",
     "@upstash/redis": "^1.33.0",
     "@vercel/analytics": "^1.3.1",
     "@vercel/speed-insights": "^1.0.12",
