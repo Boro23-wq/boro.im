@@ -327,46 +327,6 @@ main.footer {
   }
 }
 
-/* blog/project table blur */
-.table-blur {
-  position: relative;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-  z-index: 1;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gradient-size-start),
-    #000 calc(100% - var(--gradient-size-end)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gradient-size-start),
-    #000 calc(100% - var(--gradient-size-end)),
-    transparent 100%
-  );
-}
-
-@media (max-width: 640px) {
-  .table-blur {
-    --gradient-size-start: 2px;
-    --gradient-size-end: 10%;
-  }
-}
-
-/* accordion styles */
-.bg-content1 {
-  /* Your styles here */
-  @apply !shadow-sm bg-neutral-50 border border-neutral-100 dark:border-neutral-700 dark:!bg-neutral-800;
-}
-
-.bg-content1 > h2 {
-  /* Your styles here */
-  @apply !my-0;
-}
-
 div[data-orientation="vertical"] {
   /* Your styles here */
   @apply !px-0;
@@ -606,7 +566,7 @@ mark[data-highlighted-chars] {
 }
 
 .prose th {
-  @apply text-left font-normal py-2 border-b dark:border-neutral-700;
+  @apply newsreader-400 text-left font-normal py-2 border-b dark:border-neutral-700;
 }
 
 .prose td {
@@ -664,6 +624,31 @@ table {
   max-width: fit-content;
   overflow-x: auto;
   white-space: nowrap;
+  position: relative;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gradient-size-start),
+    #000 calc(100% - var(--gradient-size-end)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gradient-size-start),
+    #000 calc(100% - var(--gradient-size-end)),
+    transparent 100%
+  );
+}
+
+@media (max-width: 640px) {
+  table {
+    --gradient-size-start: 2px;
+    --gradient-size-end: 10%;
+  }
 }
 
 blockquote {

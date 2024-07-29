@@ -42,40 +42,15 @@ A solution that drives the optimization of every facet of documenting components
 
 ## Key stakeholders
 
-<Table
-  data={{
-    headers: ["#", "Stakeholder", "Use case"],
-    rows: [
-      [
-        "1.",
-        "Patients",
-        "Retrieve case information, monitor case health, and access self-service.",
-      ],
-      [
-        "2.",
-        "Medical practitioners",
-        "Access patient information to build personalized case plan, and perform risk evaluation.",
-      ],
-      ["3.", "Insurance providers", "Provide services to fit patient needs."],
-      ["4.", "Care-givers", "Access health information, and review cases."],
-      [
-        "5.",
-        "Case managers",
-        "Maintains external data, determines plan objectives and suggests health recommendations.",
-      ],
-      [
-        "6.",
-        "PM/BA's",
-        "Responsible for gathering and prioritizing requirements of the case notes system.",
-      ],
-      [
-        "7.",
-        "Development team",
-        "Responsible for design and implementation of the case notes backend and frontend system.",
-      ],
-    ],
-  }}
-/>
+| #   | Stakeholder           | Use case                                                                                 |
+| --- | --------------------- | ---------------------------------------------------------------------------------------- |
+| 1.  | Patients              | Retrieve case information, monitor case health, and access self-service.                 |
+| 2.  | Medical practitioners | Access patient information to build personalized case plan, and perform risk evaluation. |
+| 3.  | Insurance providers   | Provide services to fit patient needs.                                                   |
+| 4.  | Care-givers           | Access health information, and review cases.                                             |
+| 5.  | Case managers         | Maintains external data, determines plan objectives and suggests health recommendations. |
+| 6.  | PM/BA's               | Responsible for gathering and prioritizing requirements of the case notes system.        |
+| 7.  | Development team      | Responsible for design and implementation of the case notes backend and frontend system. |
 
 ## Basic requirements for persona description
 
@@ -183,12 +158,21 @@ The frontend of Carely is written in Next.js, Typescript, and TailwindCSS.
   bundling, route pre-fetching, and more. No config needed.
 </Callout>
 
-<Image
-  src="/projects/carely/carely.gif"
-  alt="frontend-demo"
-  unoptimized
-  width={800}
-  height={800}
-/>
+<div className="mt-12 mb-8">
+  <Carousel
+    imgs={[
+      "/projects/carely/carousel/1.png",
+      "/projects/carely/carousel/2.png",
+      "/projects/carely/carousel/3.png",
+      "/projects/carely/carousel/4.png",
+      "/projects/carely/carousel/5.png",
+      "/projects/carely/carousel/6.png",
+      "/projects/carely/carousel/7.png",
+      "/projects/carely/carousel/8.png",
+      "/projects/carely/carousel/9.png",
+    ]}
+    subtitle="Carely screens"
+  />
+</div>
 
 All the frontend related files can be found [here](https://github.com/Boro23-wq/cs-673-frontend).

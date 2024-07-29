@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Sidebar } from "../components/sidebar";
 import { BriefcaseIcon, DownloadIcon } from "lucide-react";
-import { BentoGridWork } from "../components/bento-grid-work";
 import { Carousel } from "../components/carousel";
+import Image from "next/image";
 
 export const metadata = {
   title: "Work",
@@ -125,13 +125,14 @@ export default function Page() {
             </li>
           </ol>
 
-          {/* carousel */}
+          {/* carousel start */}
           <div className="mb-10">
             <Carousel
               imgs={waveImages}
               subtitle="Few mockup screens I designed for WAVE app."
             />
           </div>
+          {/* carousel end */}
 
           <ol className="relative border-s border-neutral-200 dark:border-neutral-700">
             <li className="mb-10 ms-6">
@@ -180,7 +181,6 @@ export default function Page() {
           </ol>
         </div>
 
-        {/* more screens */}
         <div className="flex items-center mt-8">
           <h4 className="newsreader-400">Components</h4>
         </div>
@@ -191,7 +191,29 @@ export default function Page() {
           I designed.
         </p>
 
-        <BentoGridWork imgs={blackxImages} />
+        {/* bento grid start */}
+        <div className="bento grid auto-rows-[192px] gap-2 grid-cols-2 sm:grid-cols-3">
+          {blackxImages.map((img, i) => (
+            <div
+              key={i}
+              className={`relative ${img} max-h-[192px] overflow-hidden bg-[#e9eaec] dark:bg-neutral-800 ${
+                i === 6 ? "col-span-2 sm:col-span-3" : ""
+              }`}
+            >
+              <Image
+                src={img}
+                alt={img}
+                layout="fill"
+                objectFit="contain"
+                className="rounded-lg px-3 py-4 sm:py-0"
+              />
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-center text-xs text-neutral-400 dark:text-neutral-500">
+          BlackX web analytics components
+        </p>
+        {/* bento grid end */}
 
         {/* read more */}
         <div className="flex items-center mt-8">
