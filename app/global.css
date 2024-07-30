@@ -415,8 +415,8 @@ div[data-orientation="vertical"] {
 }
 
 .rounded-img {
-  margin-left: calc(-1 * var(--body-margin-left));
-  margin-right: calc(-1 * var(--body-margin-right));
+  margin-left: calc(-1 * var(--body-margin-left)) !important;
+  margin-right: calc(-1 * var(--body-margin-right)) !important;
 }
 
 @media (max-width: 640px) {
@@ -427,7 +427,8 @@ div[data-orientation="vertical"] {
   }
 }
 
-.carousel-b-blur {
+/* might use this */
+/* .rounded-img-blur {
   background: linear-gradient(
     rgba(244, 244, 246, 0) 0%,
     rgb(244, 244, 246) 100%
@@ -439,7 +440,7 @@ div[data-orientation="vertical"] {
   overflow: hidden;
   position: absolute;
   right: 0px;
-}
+} */
 
 .prose .anchor {
   @apply absolute invisible no-underline;
@@ -530,19 +531,19 @@ mark[data-highlighted-chars] {
 }
 
 .prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-5;
+  @apply text-4xl font-medium tracking-tight mt-8 mb-6;
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-5;
+  @apply text-xl font-medium tracking-tight mt-8 mb-6;
 }
 
 .prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-5;
+  @apply text-xl font-medium tracking-tight mt-8 mb-6;
 }
 
 .prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-5;
+  @apply text-lg font-medium tracking-tight mt-8 mb-6;
 }
 
 .prose strong {
@@ -564,6 +565,10 @@ mark[data-highlighted-chars] {
 .prose ol {
   @apply list-decimal pl-6;
 }
+
+/* .prose ol > img {
+  @apply !pl-0 !important;
+} */
 
 .prose th {
   @apply newsreader-400 text-left font-normal py-2 border-b dark:border-neutral-700;

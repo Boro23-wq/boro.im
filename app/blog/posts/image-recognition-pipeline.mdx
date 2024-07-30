@@ -153,45 +153,45 @@ Once we SSH to the two EC2 instances we will have something like this:
 
 1. Once you run the AWSObjectDetection.jar on EC2-A instance the images that satisfies the condition will be pushed to the SQS (Queue).
 
-   <Image
-     src="/blog/image-rec-pipeline/msgs-push-to-sqs-3.png"
-     alt="Item 5 pushed to queue"
-     width={800}
-     height={800}
-   />
+<Image
+  src="/blog/image-rec-pipeline/msgs-push-to-sqs-3.png"
+  alt="Item 5 pushed to queue"
+  width={800}
+  height={800}
+/>
 
-   <Image
-     src="/blog/image-rec-pipeline/msgs-push-to-sqs-2.png"
-     alt="Item 6 pushed to queue"
-     width={800}
-     height={800}
-   />
+<Image
+  src="/blog/image-rec-pipeline/msgs-push-to-sqs-2.png"
+  alt="Item 6 pushed to queue"
+  width={800}
+  height={800}
+/>
 
-   <Image
-     src="/blog/image-rec-pipeline/msgs-push-to-sqs-1.png"
-     alt="Item 7 pushed to queue"
-     width={800}
-     height={800}
-   />
+<Image
+  src="/blog/image-rec-pipeline/msgs-push-to-sqs-1.png"
+  alt="Item 7 pushed to queue"
+  width={800}
+  height={800}
+/>
 
 2. We have 6 items that are pushed to the queue, since only 6 items satisfies the condition ( Label = "Car" and Confidence > 90).
 3. The queue is created like so:
 
-   <Image
-     src="/blog/image-rec-pipeline/queue-creation.png"
-     alt="queue creation"
-     width={800}
-     height={800}
-   />
+<Image
+  src="/blog/image-rec-pipeline/queue-creation.png"
+  alt="queue creation"
+  width={800}
+  height={800}
+/>
 
 4. And the contents of the queues can be obtained by long polling:
 
-   <Image
-     src="/blog/image-rec-pipeline/content-inside-queue.png"
-     alt="content inside queue"
-     width={800}
-     height={800}
-   />
+<Image
+  src="/blog/image-rec-pipeline/content-inside-queue.png"
+  alt="content inside queue"
+  width={800}
+  height={800}
+/>
 
 Once we populate the queues we can see how does it look when we run the AWSTextRekognition program on EC2-B instance.
 
@@ -199,19 +199,19 @@ Once we populate the queues we can see how does it look when we run the AWSTextR
 
 1. We run the AWSTextRekognition.jar on EC2-B instance like so:
 
-   <Image
-     src="/blog/image-rec-pipeline/cmd-to-run-program-ec2-b.png"
-     alt="Snapshot of pogram running on EC2-B instance"
-     width={800}
-     height={800}
-   />
+<Image
+  src="/blog/image-rec-pipeline/cmd-to-run-program-ec2-b.png"
+  alt="Snapshot of pogram running on EC2-B instance"
+  width={800}
+  height={800}
+/>
 
 2. When instance B finishes, it prints to a file (output.txt), the indexes of the images that have both cars and text, and also prints the actual text in each image next to its index.
 3. The final output stored in output.txt looks like this:
 
-   <Image
-     src="/blog/image-rec-pipeline/final-output.png"
-     alt="Final output"
-     width={800}
-     height={800}
-   />
+<Image
+  src="/blog/image-rec-pipeline/final-output.png"
+  alt="Final output"
+  width={800}
+  height={800}
+/>

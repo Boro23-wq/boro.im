@@ -86,16 +86,14 @@ export const Carousel = ({ imgs, subtitle }) => {
                 key={idx}
                 src={image}
                 alt={`Image ${idx + 1}`}
-                // animate={{ opacity: idx === current ? 1 : 0.8 }}
+                animate={{ opacity: idx === current ? 1 : 0.45 }}
                 className="aspect-[16/9] object-cover !my-0"
               />
             ))}
           </motion.div>
 
-          <div className="carousel-b-blur"></div>
-
           {/* Control pill */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
             <div className="flex gap-3 px-3 py-2 bg-neutral-800 rounded-full opacity-90">
               {[...imgs].map((_, idx) => (
                 <button key={idx} onClick={() => setCurrent(idx)}>
