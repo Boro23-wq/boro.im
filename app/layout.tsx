@@ -20,9 +20,28 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Sintu Boro",
-    template: "%s",
+    template: "%s | Sintu Boro",
   },
   description: "Software designer, developer, and blogger.",
+  openGraph: {
+    title: "Sintu Boro",
+    description: "Software designer, developer, and blogger.",
+    url: baseUrl,
+    siteName: "Sintu Boro",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     apple: [
       {
@@ -56,25 +75,6 @@ export const metadata: Metadata = {
         fetchPriority: "high",
       },
     ],
-  },
-  openGraph: {
-    title: "Sintu Boro",
-    description: "Software designer, developer, and blogger.",
-    url: baseUrl,
-    siteName: "Sintu Boro",
-    locale: "en_US",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
