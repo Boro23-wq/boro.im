@@ -3,10 +3,13 @@
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useSwipeable } from "react-swipeable";
+import Modal from "./modal";
 
 export const Carousel = ({ imgs, subtitle }) => {
   const [current, setCurrent] = useState(0);
   const [isFocus, setIsFocus] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Calculate the middle image index
   const middleIndex = Math.floor(imgs.length / 2);
@@ -27,10 +30,27 @@ export const Carousel = ({ imgs, subtitle }) => {
     }
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => onNextClick(),
+    onSwipedRight: () => onPrevClick(),
+    trackMouse: true,
+  });
+
+  const handleImageClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
-        <div className="relative w-full max-w-[640px] flex items-center">
+        <div
+          className="relative w-full max-w-[640px] flex items-center"
+          {...handlers}
+        >
           {/* Left/right controls */}
           <AnimatePresence>
             {isFocus && (
@@ -86,8 +106,9 @@ export const Carousel = ({ imgs, subtitle }) => {
                 key={idx}
                 src={image}
                 alt={`Image ${idx + 1}`}
-                animate={{ opacity: idx === current ? 1 : 0.45 }}
-                className="aspect-[16/9] object-cover !my-0"
+                animate={{ opacity: idx === current ? 1 : 0.35 }}
+                className="aspect-[16/9] object-cover !my-0 cursor-pointer"
+                onClick={handleImageClick} // Open modal on click
               />
             ))}
           </motion.div>
@@ -112,6 +133,16 @@ export const Carousel = ({ imgs, subtitle }) => {
       <p className="!mt-4 text-center text-xs text-neutral-400 dark:text-neutral-500">
         {subtitle}
       </p>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <Modal
+          src={imgs[current]}
+          alt={`Image ${current + 1}`}
+          onClose={handleCloseModal}
+          isModalOpen={isModalOpen}
+        />
+      )}
     </>
   );
 };
