@@ -134,7 +134,7 @@ export default function Project({ params }) {
               {allTags.map((tag, index) => (
                 <p
                   key={index}
-                  className="text-xs mr-2 px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-zinc-400 dark:text-zinc-400"
+                  className="text-xs mr-2 px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
                 >
                   {tag}
                 </p>

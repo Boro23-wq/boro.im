@@ -120,7 +120,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
                 return (
                   <li
                     key={index}
-                    className="my-3 text-neutral-400 hover:text-neutral-500 dark:text-neutral-500 dark:hover:text-neutral-400 transition-all text-sm"
+                    className="my-3 text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-400 transition-all text-sm"
                   >
                     <Link
                       href={`/${
