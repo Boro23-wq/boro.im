@@ -15,7 +15,7 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center">
-                <Clock title="Madison" datediff={0} />
+                {/* <Clock title="Madison" datediff={0} /> */}
                 <ThemeChanger />
               </div>
             </div>

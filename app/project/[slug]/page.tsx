@@ -1,3 +1,4 @@
+import React from "react";
 import { notFound } from "next/navigation";
 import { BookOpenTextIcon } from "lucide-react";
 import Link from "next/link";
@@ -8,6 +9,24 @@ import { Sidebar } from "@/app/components/sidebar";
 import { CustomMDX } from "@/app/components/mdx";
 import { CopyLink } from "@/app/components/copy-link";
 
+import { serialize } from "next-mdx-remote/serialize";
+import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
+
+/** @type {import('rehype-pretty-code').Options} */
+const options = {
+  theme: {
+    dark: "github-dark-dimmed",
+    light: "github-light",
+  },
+  defaultColor: "dark",
+  cssVariablePrefix: "--shiki-",
+  defaultLang: {
+    block: "js",
+    inline: "plaintext",
+  },
+};
+
 export async function generateStaticParams() {
   let projects = getProjects();
 
@@ -16,8 +35,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }) {
-  let project = getProjects().find((project) => project.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  let project = getProjects().find((project) => project.slug === slug);
   if (!project) {
     return;
   }
@@ -56,13 +76,11 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Project({ params }) {
+export default async function Project({ params }) {
   let projects = getProjects();
-  // let project = getProjects().find((project) => project.slug === params.slug);
+  const { slug } = await params;
 
-  let projectIndex = projects.findIndex(
-    (project) => project.slug === params.slug
-  );
+  let projectIndex = projects.findIndex((project) => project.slug === slug);
 
   let project = projects[projectIndex];
   let previousProject = projects[projectIndex - 1] || null;
@@ -71,6 +89,14 @@ export default function Project({ params }) {
   if (!project) {
     notFound();
   }
+
+  // Serialize the raw MDX content before rendering
+  const mdxSource = await serialize(project.content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [[rehypePrettyCode, options]],
+    },
+  });
 
   const readingTime = estimateReadingTime(project.content);
   const {
@@ -146,7 +172,7 @@ export default function Project({ params }) {
         <hr className="h-0.5 mx-auto !mt-0 mb-4 bg-neutral-200 border-0 md:my-6 dark:bg-neutral-700" />
 
         <article className="prose">
-          <CustomMDX source={project.content} />
+          <CustomMDX source={mdxSource} />
         </article>
 
         <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-lg md:my-10 dark:bg-neutral-700" />

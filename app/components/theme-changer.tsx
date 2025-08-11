@@ -51,9 +51,9 @@ export const ThemeChanger = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="py-1 px-2 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-neutral-200 bg-white text-neutral-400 shadow-sm hover:bg-neutral-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-500 dark:hover:bg-neutral-800"
       >
-        {theme === "system" && <SunMoonIcon className="w-4 h-4" />}
-        {theme === "light" && <SunIcon className="w-4 h-4" />}
-        {theme === "dark" && <MoonIcon className="w-4 h-4" />}
+        {theme === "system" && <SunMoonIcon className="w-3.5 h-3.5" />}
+        {theme === "light" && <SunIcon className="w-3.5 h-3.5" />}
+        {theme === "dark" && <MoonIcon className="w-3.5 h-3.5" />}
 
         {capitalizeFirstLetter(theme)}
         <svg

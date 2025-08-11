@@ -1,40 +1,25 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
+import { MDXRemote } from "next-mdx-remote";
 import Pre from "./pre";
 import RoundedImage from "./rounded-image";
 import { BentoGrid } from "./bento-grid";
 import { Carousel } from "./carousel";
 
-/** @type {import('rehype-pretty-code').Options} */
-const options = {
-  theme: {
-    dark: "github-dark-dimmed",
-    light: "github-light",
-  },
-  defaultColor: "dark",
-  cssVariablePrefix: "--shiki-",
-  defaultLang: {
-    block: "js",
-    inline: "plaintext",
-  },
-};
-
-// callout types
 interface CalloutProps {
   emoji: string;
   children: React.ReactNode;
 }
 
-function Table({ data }) {
-  let headers = data.headers.map((header, index) => (
+function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
+  const headers = data.headers.map((header, index) => (
     <th className="newsreader-400" key={index}>
       {header}
     </th>
   ));
-  let rows = data.rows.map((row, index) => (
+  const rows = data.rows.map((row, index) => (
     <tr key={index}>
       {row.map((cell, cellIndex) => (
         <td key={cellIndex}>{cell}</td>
@@ -52,8 +37,8 @@ function Table({ data }) {
   );
 }
 
-function CustomLink(props) {
-  let href = props.href;
+function CustomLink(props: React.ComponentPropsWithoutRef<"a">) {
+  const href = props.href || "";
 
   if (href.startsWith("/")) {
     return (
@@ -62,17 +47,18 @@ function CustomLink(props) {
       </Link>
     );
   }
-
   if (href.startsWith("#")) {
     return <a {...props} />;
   }
-
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a target="_blank" rel="noopener noreferrer" {...props}>
+      {props.children}
+    </a>
+  );
 }
 
-function slugify(str) {
-  return str
-    .toString()
+function slugify(str: React.ReactNode) {
+  return String(str)
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "-")
@@ -81,9 +67,9 @@ function slugify(str) {
     .replace(/\-\-+/g, "-");
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
-    let slug = slugify(children);
+function createHeading(level: number) {
+  const Heading: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const slug = slugify(children);
     return React.createElement(
       `h${level}`,
       {
@@ -96,8 +82,8 @@ function createHeading(level) {
           key: `link-${slug}`,
           className: "anchor",
         }),
-      ],
-      children
+        children,
+      ]
     );
   };
 
@@ -106,7 +92,13 @@ function createHeading(level) {
   return Heading;
 }
 
-function CustomCheckbox({ checked, children }) {
+function CustomCheckbox({
+  checked,
+  children,
+}: {
+  checked: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex items-center">
       <input
@@ -144,7 +136,7 @@ function Callout({ children, emoji }: CalloutProps) {
   );
 }
 
-let components = {
+const components = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -161,17 +153,14 @@ let components = {
   Carousel,
 };
 
-export function CustomMDX(props) {
+export function CustomMDX({
+  source,
+  components: extraComponents,
+}: {
+  source: Parameters<typeof MDXRemote>[0];
+  components?: Record<string, React.ComponentType<any>>;
+}) {
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-      options={{
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [[rehypePrettyCode, options]],
-        },
-      }}
-    />
+    <MDXRemote {...source} components={{ ...components, ...extraComponents }} />
   );
 }

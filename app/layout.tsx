@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Sintu Boro",
-    template: "%s | Sintu Boro",
+    template: "%s",
   },
   description: "Software designer, developer, and blogger.",
   openGraph: {

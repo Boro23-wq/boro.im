@@ -15,48 +15,63 @@ const Clock: React.FC<ClockProps> = ({ title, datediff }) => {
   const [time, setTime] = useState({ hours: "", minutes: "", seconds: "" });
 
   useEffect(() => {
-    const handleDate = () => {
+    let frameId: number;
+
+    const updateClock = () => {
       const date = new Date();
-      const dateTime = new Date();
-
       date.setHours(date.getHours() + datediff);
-      const hours = formatTime(date.getHours()).toString();
-      const minutes = formatTime(date.getMinutes()).toString();
-      const seconds = formatTime(date.getSeconds()).toString();
-      setTime({ hours, minutes, seconds });
 
-      const timezoneAbbreviation = dateTime
-        .toLocaleTimeString("en-US", { timeZoneName: "short" })
-        .split(" ")[2]; // Get short timezone abbreviation
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      const millis = date.getMilliseconds();
 
-      setTimeText(`${hours}:${minutes}:${seconds} ${timezoneAbbreviation}`);
+      // Fractions for smooth motion
+      const smoothSeconds = seconds + millis / 1000;
+      const smoothMinutes = minutes + smoothSeconds / 60;
+      const smoothHours = (hours % 12) + smoothMinutes / 60;
+
+      setTime({
+        hours: formatTime(hours),
+        minutes: formatTime(minutes),
+        seconds: formatTime(seconds),
+      });
+
+      // Set CSS variables for smooth rotation
+      document.documentElement.style.setProperty(
+        "--now-s",
+        smoothSeconds.toString()
+      );
+      document.documentElement.style.setProperty(
+        "--now-m",
+        smoothMinutes.toString()
+      );
+      document.documentElement.style.setProperty(
+        "--now-h",
+        smoothHours.toString()
+      );
+
+      frameId = requestAnimationFrame(updateClock);
     };
 
-    const setTimeText = (timeString: string) => {
-      if (timeRef.current) {
-        timeRef.current.textContent = timeString;
-      }
-    };
+    const formatTime = (t: number) => (t < 10 ? `0${t}` : t.toString());
 
-    const clockInterval = setInterval(handleDate, 1000);
-    return () => clearInterval(clockInterval);
+    updateClock();
+
+    return () => cancelAnimationFrame(frameId);
   }, [datediff]);
 
-  const formatTime = (time: number) => (time < 10 ? `0${time}` : time);
+  const handleMouseEnter = () => setIsTooltipVisible(true);
+  const handleMouseLeave = () => setIsTooltipVisible(false);
 
-  const { hours, minutes, seconds } = time;
-
-  const secondsDeg = `${parseInt(seconds) * 6})`;
-  const minutesDeg = `${parseInt(minutes) * 6})`;
-  const hoursDeg = `${parseInt(hours) * 30})`;
-
-  const handleMouseEnter = () => {
-    setIsTooltipVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsTooltipVisible(false);
-  };
+  useEffect(() => {
+    if (timeRef.current) {
+      const timezoneAbbreviation = new Date()
+        .toLocaleTimeString("en-US", { timeZoneName: "short" })
+        .split(" ")[2];
+      timeRef.current.textContent = `${time.hours}:${time.minutes}:${time.seconds} ${timezoneAbbreviation}`;
+    }
+  }, [time]);
 
   return (
     <div
@@ -64,19 +79,7 @@ const Clock: React.FC<ClockProps> = ({ title, datediff }) => {
       onMouseLeave={handleMouseLeave}
       className="mr-4 clock relative cursor-pointer"
     >
-      <div
-        className="footer-clock border text-neutral-300 dark:border-neutral-700"
-        style={
-          {
-            "--now-s": seconds,
-            "--now-m": minutes,
-            "--now-h": hours,
-            "--seconds-deg": secondsDeg,
-            "--minutes-deg": minutesDeg,
-            "--hours-deg": hoursDeg,
-          } as React.CSSProperties
-        }
-      >
+      <div className="footer-clock border text-neutral-300 dark:border-neutral-700">
         <div className="footer-second bg-neutral-200 dark:bg-neutral-600"></div>
         <div className="footer-minute bg-neutral-300 dark:bg-neutral-700"></div>
         <div className="footer-hour bg-neutral-300 dark:bg-neutral-700"></div>

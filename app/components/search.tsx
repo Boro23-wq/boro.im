@@ -112,10 +112,10 @@ export default function Search({
       </div>
       <div className="relative" ref={searchRef}>
         <input
-          className="pl-10 pr-8 border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800 hover:border hover:border-neutral-200 hover:dark:border-neutral-700 transition-all rounded-md p-2 w-full text-base focus:outline-none focus:ring-0"
+          className="pl-10 pr-8 border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800 hover:border hover:border-neutral-200 hover:dark:border-neutral-700 transition-all rounded-md p-2 w-full text-sm focus:outline-none focus:ring-0 dark:placeholder-neutral-500 placeholder:text-sm"
           onChange={onChange}
           onFocus={onFocus}
-          placeholder="Search blog posts..."
+          // placeholder="Search blog posts..."
           type="text"
           value={query}
         />

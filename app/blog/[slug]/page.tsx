@@ -1,14 +1,20 @@
+import React from "react";
 import { notFound } from "next/navigation";
-import { BookOpenTextIcon, Eye } from "lucide-react";
 import Link from "next/link";
-import { ReportView } from "./view";
+import { BookOpenTextIcon, Eye } from "lucide-react";
 import { Redis } from "@upstash/redis";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
+
 import { baseUrl } from "@/app/sitemap";
 import { estimateReadingTime } from "@/lib/reading-time";
 import { Sidebar } from "@/app/components/sidebar";
-import { CustomMDX } from "@/app/components/mdx";
+import { CustomMDX } from "@/app/components/mdx"; // renamed to *Client to differentiate from RSC
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
 import { CopyLink } from "@/app/components/copy-link";
+import { ReportView } from "./view";
 
 type Props = {
   params: {
@@ -20,6 +26,20 @@ const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 
+/** @type {import('rehype-pretty-code').Options} */
+const options = {
+  theme: {
+    dark: "github-dark-dimmed",
+    light: "github-light",
+  },
+  defaultColor: "dark",
+  cssVariablePrefix: "--shiki-",
+  defaultLang: {
+    block: "js",
+    inline: "plaintext",
+  },
+};
+
 export async function generateStaticParams() {
   let posts = getBlogPosts();
 
@@ -28,8 +48,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  let post = getBlogPosts().find((post) => post.slug === slug);
 
   if (!post) {
     return;
@@ -41,6 +62,7 @@ export function generateMetadata({ params }) {
     summary: description,
     image,
   } = post.metadata;
+
   let ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
@@ -71,19 +93,17 @@ export function generateMetadata({ params }) {
 
 export default async function Blog({ params }: Props) {
   let posts = getBlogPosts();
+  const { slug } = await params;
   const views =
-    (await redis.get<number>(
-      ["pageviews", "projects", params.slug].join(":")
-    )) ?? 0;
+    (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
 
-  const sortedPosts = posts.sort((a, b) => {
-    return (
+  const sortedPosts = posts.sort(
+    (a, b) =>
       new Date(b.metadata.publishedAt).getTime() -
       new Date(a.metadata.publishedAt).getTime()
-    );
-  });
+  );
 
-  let postIndex = sortedPosts.findIndex((post) => post.slug === params.slug);
+  let postIndex = sortedPosts.findIndex((post) => post.slug === slug);
 
   if (postIndex === -1) {
     notFound();
@@ -95,7 +115,15 @@ export default async function Blog({ params }: Props) {
 
   const readingTime = estimateReadingTime(post.content);
 
-  const { headings } = post;
+  const { headings, content } = post;
+
+  // Serialize MDX content here (important!)
+  const mdxSource: MDXRemoteSerializeResult = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [[rehypePrettyCode, options]],
+    },
+  });
 
   return (
     <>
@@ -118,17 +146,18 @@ export default async function Blog({ params }: Props) {
                 : `/og?title=${encodeURIComponent(post.metadata.title)}`,
               url: `${baseUrl}/blog/${post.slug}`,
               author: {
-                "@type": "Sintu Boro",
-                name: "Blog | Sintu Boro",
+                "@type": "Person",
+                name: "Sintu Boro",
               },
             }),
           }}
         />
-        <ReportView slug={params.slug} />
+
+        <ReportView slug={slug} />
         <h1 className="title font-semibold text-2xl tracking-tighter">
           {post.metadata.title}
         </h1>
-        <div className="flex  gap-4 sm:gap-0 flex-wrap justify-between items-center mt-2 mb-6 text-sm">
+        <div className="flex gap-4 sm:gap-0 flex-wrap justify-between items-center mt-2 mb-6 text-sm">
           <div className="flex flex-wrap gap-4">
             <p className="flex text-sm text-neutral-600 dark:text-neutral-400">
               {formatDate(post.metadata.publishedAt)}
@@ -154,8 +183,9 @@ export default async function Blog({ params }: Props) {
 
         <hr className="h-0.5 mx-auto my-4 bg-neutral-200 border-0 md:my-6 dark:bg-neutral-700" />
 
-        <article className="mb-10 text-base prose">
-          <CustomMDX source={post.content} />
+        <article className="mb-10 prose">
+          {/* Use the serialized MDX source */}
+          <CustomMDX source={mdxSource} />
         </article>
 
         <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-lg md:my-10 dark:bg-neutral-700" />
@@ -166,7 +196,7 @@ export default async function Blog({ params }: Props) {
               <Link
                 aria-label={`Go to next page: ${previousPost.metadata.title}`}
                 className="flex flex-col justify-between text-md"
-                href={`/blog/${previousPost?.slug}`}
+                href={`/blog/${previousPost.slug}`}
               >
                 <span className="transition-all text-sm mb-1 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300">
                   Previous
@@ -184,7 +214,7 @@ export default async function Blog({ params }: Props) {
               <Link
                 aria-label={`Go to next page: ${nextPost.metadata.title}`}
                 className="flex flex-col justify-between text-md"
-                href={`/blog/${nextPost?.slug}`}
+                href={`/blog/${nextPost.slug}`}
               >
                 <span className="text-right transition-all text-sm mb-1 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300">
                   Next
