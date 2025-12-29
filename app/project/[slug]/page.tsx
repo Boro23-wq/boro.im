@@ -6,12 +6,13 @@ import { formatDate, getProjects } from "../utils";
 import { baseUrl } from "@/app/sitemap";
 import { estimateReadingTime } from "@/lib/reading-time";
 import { Sidebar } from "@/app/components/sidebar";
-import { CustomMDX } from "@/app/components/mdx";
 import { CopyLink } from "@/app/components/copy-link";
 
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
+import ClientMDXWrapper from "@/app/components/mdx-wrapper";
+import { CustomMDX } from "@/app/components/mdx";
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
@@ -36,8 +37,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  let project = getProjects().find((project) => project.slug === slug);
+  let project = getProjects().find((project) => project.slug === params.slug);
   if (!project) {
     return;
   }
@@ -78,9 +78,10 @@ export async function generateMetadata({ params }) {
 
 export default async function Project({ params }) {
   let projects = getProjects();
-  const { slug } = await params;
 
-  let projectIndex = projects.findIndex((project) => project.slug === slug);
+  let projectIndex = projects.findIndex(
+    (project) => project.slug === params.slug
+  );
 
   let project = projects[projectIndex];
   let previousProject = projects[projectIndex - 1] || null;

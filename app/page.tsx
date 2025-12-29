@@ -48,11 +48,11 @@ export default function Page() {
         >
           Currently working alongside the{" "}
           <Link
-            href="https://www.beacontechinc.com/"
+            href="https://www.ilinksolutions.com/"
             target="_blank"
             className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
           >
-            Beacon Tech
+            i-Link
           </Link>{" "}
           team to build and deliver robust software solutions.
         </p>
@@ -91,16 +91,16 @@ export default function Page() {
         >
           <div className="pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
             <p>
-              I'm currently working as a Programmer Analyst IV with the
-              Enterprise and Data Architecture team at the{" "}
+              I currently work as a Software Developer building swimmer safety
+              systems on the{" "}
               <Link
                 className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
-                href="https://dcf.wisconsin.gov/"
+                href="https://wavedds.com/"
                 target="_blank"
               >
-                Wisconsin Department of Children and Families
+                Wave DDS
               </Link>{" "}
-              (DCF).
+              team.
             </p>
           </div>
 
@@ -110,10 +110,12 @@ export default function Page() {
             className="animate-enter pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
           >
             <p>
-              My day-to-day activities include administering and customizing the
-              Collibra DGC platform to meet user requirements, translating
-              business processes into workflows; support platform administration
-              and data organization.
+              My day-to-day activities include building and maintaining scalable
+              frontend applications with React and Next.js, delivering
+              accessible, high-performance interfaces. I lead refactors and
+              component standardization to improve maintainability and
+              performance, while collaborating closely with cross-functional
+              teams to deliver features aligned with product goals.
             </p>
           </div>
 

@@ -17,9 +17,7 @@ import { CopyLink } from "@/app/components/copy-link";
 import { ReportView } from "./view";
 
 type Props = {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>; // match the Promise type
 };
 
 const redis = Redis.fromEnv();
@@ -92,8 +90,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Blog({ params }: Props) {
-  let posts = getBlogPosts();
   const { slug } = await params;
+  let posts = getBlogPosts();
   const views =
     (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
 
