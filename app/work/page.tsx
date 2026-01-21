@@ -49,6 +49,35 @@ export default function Page() {
 
         <div className="mt-8">
           <ol className="relative border-s border-neutral-200 dark:border-neutral-700">
+            {/* Wave DDS section */}
+
+            <li className="mb-10 ms-6">
+              <span className="absolute flex items-center justify-center w-6 h-6 border dark:border-neutral-600 bg-neutral-100 rounded-full -start-3 ring-4 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
+                <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
+              </span>
+              <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
+                Wave DDS{" "}
+                <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
+                  Oct, 2025 - Current
+                </span>
+              </h3>
+              <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
+                Software Developer
+              </p>
+              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
+                Working on a customer portal for Wave using Next.js, building
+                scalable, accessible, and high-performance interfaces that let
+                customers monitor swimmer-safety hubs in real time. I’m
+                developing and wiring up backend APIs with Express and SQL to
+                support end-to-end features like hub status, activity tracking,
+                alerts, and reporting. On a day-to-day basis, I’m refactoring
+                and standardizing components, improving data flow, and overall
+                performance, while collaborating closely with designers, backend
+                engineers, and product stakeholders to align architecture,
+                troubleshoot issues, and continuously improve the platform.
+              </p>
+            </li>
+
             <li className="mb-10 ms-6">
               <span className="absolute flex items-center justify-center w-6 h-6 bg-neutral-100 rounded-full border dark:border-neutral-600 -start-3 ring-4 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
                 <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
@@ -56,13 +85,13 @@ export default function Page() {
               <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
                 Beacon Technologies, Inc.{" "}
                 <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
-                  May, 2024 - Current
+                  May, 2024 - Aug, 2025
                 </span>
               </h3>
               <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
                 Programmer Analyst IV
               </p>
-              <p className="mt-4 mb-4 text-base font-normal text-neutral-500 dark:text-neutral-400">
+              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
                 Developed code for Collibra ingestion, reduced upload time by
                 30%, and increased BO extraction efficiency by 25%. Implemented
                 workflows within the Collibra platform, streamlining asset
@@ -92,7 +121,7 @@ export default function Page() {
                   <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
                     Programmer Analyst IV
                   </p>
-                  <p className="mt-4 text-base font-normal text-neutral-500 dark:text-neutral-400">
+                  <p className="mt-4 prose font-normal text-neutral-500 dark:text-neutral-400">
                     Administered and customized Collibra, enhancing
                     functionalities and increasing UI customization by 20%.
                     Implemented efficient workflows, improving business process
@@ -116,7 +145,7 @@ export default function Page() {
               <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
                 UI/UX Developer
               </p>
-              <p className="mt-4 text-base font-normal text-neutral-500 dark:text-neutral-400">
+              <p className="mt-4 prose font-normal text-neutral-500 dark:text-neutral-400">
                 Demonstrated all stages of UI/UX development including
                 experience maps, wireframes using Figma. Collaborated with
                 senior developers to design interaction specifications. Followed
@@ -148,7 +177,7 @@ export default function Page() {
               <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
                 Software Developer
               </p>
-              <p className="mt-4 mb-4 text-base font-normal text-neutral-500 dark:text-neutral-400">
+              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
                 Elevated customer-facing apps, boosting user time by 2 minutes.
                 Led scheduling platform redesign, improving server-side
                 rendering and core web vitals. Streamlined CI/CD pipeline and
@@ -170,7 +199,7 @@ export default function Page() {
               <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
                 Frontend Developer
               </p>
-              <p className="mt-4 mb-4 text-base font-normal text-neutral-500 dark:text-neutral-400">
+              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
                 Collaborated with close group of developers and translated
                 wireframes into code. Built reusable components, improving load
                 time by 10%. Integrated APIs, optimized components, handled
@@ -185,7 +214,7 @@ export default function Page() {
           <h4 className="newsreader-400">Components</h4>
         </div>
 
-        <p className="mt-4 mb-10 text-base font-normal text-neutral-500 dark:text-neutral-400">
+        <p className="mt-4 mb-10 prose font-normal text-neutral-500 dark:text-neutral-400">
           These components were created based on requirements for re-developing
           the Blackx web analytics screen. Below are some of the mock components
           I designed.

@@ -1,60 +1,58 @@
-"use client";
-
-import React from "react";
+import * as React from "react";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
+
 import Pre from "./pre";
 import RoundedImage from "./rounded-image";
 import { BentoGrid } from "./bento-grid";
 import { Carousel } from "./carousel";
 
-interface CalloutProps {
-  emoji: string;
-  children: React.ReactNode;
-}
+/** @type {import('rehype-pretty-code').Options} */
+const prettyCodeOptions = {
+  theme: {
+    dark: "github-dark-dimmed",
+    light: "github-light",
+  },
+  defaultColor: "dark",
+  cssVariablePrefix: "--shiki-",
+  defaultLang: {
+    block: "js",
+    inline: "plaintext",
+  },
+};
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
-  const headers = data.headers.map((header, index) => (
-    <th className="newsreader-400" key={index}>
-      {header}
-    </th>
-  ));
-  const rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
-
   return (
     <table className="table-blur">
       <thead>
-        <tr>{headers}</tr>
+        <tr>
+          {data.headers.map((header, index) => (
+            <th className="newsreader-400" key={index}>
+              {header}
+            </th>
+          ))}
+        </tr>
       </thead>
-      <tbody>{rows}</tbody>
+      <tbody>
+        {data.rows.map((row, index) => (
+          <tr key={index}>
+            {row.map((cell, cellIndex) => (
+              <td key={cellIndex}>{cell}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
 
 function CustomLink(props: React.ComponentPropsWithoutRef<"a">) {
   const href = props.href || "";
-
-  if (href.startsWith("/")) {
-    return (
-      <Link href={href} {...props}>
-        {props.children}
-      </Link>
-    );
-  }
-  if (href.startsWith("#")) {
-    return <a {...props} />;
-  }
-  return (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
-      {props.children}
-    </a>
-  );
+  if (href.startsWith("/")) return <Link href={href} {...props} />;
+  if (href.startsWith("#")) return <a {...props} />;
+  return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
 function slugify(str: React.ReactNode) {
@@ -72,10 +70,7 @@ function createHeading(level: number) {
     const slug = slugify(children);
     return React.createElement(
       `h${level}`,
-      {
-        id: slug,
-        className: "newsreader-600-tall dark:text-white text-black",
-      },
+      { id: slug, className: "newsreader-600-tall dark:text-white text-black" },
       [
         React.createElement("a", {
           href: `#${slug}`,
@@ -83,12 +78,10 @@ function createHeading(level: number) {
           className: "anchor",
         }),
         children,
-      ]
+      ],
     );
   };
-
   Heading.displayName = `Heading${level}`;
-
   return Heading;
 }
 
@@ -112,24 +105,28 @@ function CustomCheckbox({
   );
 }
 
-function CustomListItem({ children }) {
+function CustomListItem({ children }: { children: any }) {
   if (children && children[0]?.type === "input") {
-    const checked = children[0]?.props.checked || false;
+    const checked = children[0]?.props?.checked ?? false;
     const checkboxLabel = children[2];
-
     return (
       <li className="task-list-item">
         <CustomCheckbox checked={checked}>{checkboxLabel}</CustomCheckbox>
       </li>
     );
   }
-
   return <li className="task-list-item">{children}</li>;
 }
 
-function Callout({ children, emoji }: CalloutProps) {
+function Callout({
+  children,
+  emoji,
+}: {
+  emoji: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="my-8 px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-gradient-to-r from-neutral-100 via-neutral-100 to-neutral-200 dark:bg-gradient-to-r dark:from-neutral-800 dark:via-neutral-800 dark:to-neutral-900 rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 ">
+    <div className="my-8 px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-gradient-to-r from-neutral-100 via-neutral-100 to-neutral-200 dark:from-neutral-800 dark:via-neutral-800 dark:to-neutral-900 rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100">
       <div className="flex items-center w-4 mr-6 text-xl">{emoji}</div>
       <div className="w-full callout">{children}</div>
     </div>
@@ -157,10 +154,19 @@ export function CustomMDX({
   source,
   components: extraComponents,
 }: {
-  source: Parameters<typeof MDXRemote>[0];
+  source: string;
   components?: Record<string, React.ComponentType<any>>;
 }) {
   return (
-    <MDXRemote {...source} components={{ ...components, ...extraComponents }} />
+    <MDXRemote
+      source={source}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+        },
+      }}
+      components={{ ...components, ...extraComponents }}
+    />
   );
 }

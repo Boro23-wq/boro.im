@@ -59,7 +59,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
         setIsScrollable(container.scrollHeight > container.clientHeight);
         setShowBlurTop(container.scrollTop > 0);
         setShowBlurBottom(
-          container.scrollTop + container.clientHeight < container.scrollHeight
+          container.scrollTop + container.clientHeight < container.scrollHeight,
         );
       }
     };
@@ -69,7 +69,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
         const container = containerRef.current;
         setShowBlurTop(container.scrollTop > 0);
         setShowBlurBottom(
-          container.scrollTop + container.clientHeight < container.scrollHeight
+          container.scrollTop + container.clientHeight < container.scrollHeight,
         );
       }
     };

@@ -3,10 +3,10 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BookOpenTextIcon, Eye } from "lucide-react";
 import { Redis } from "@upstash/redis";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
+// import { serialize } from "next-mdx-remote/serialize";
+// import { MDXRemoteSerializeResult } from "next-mdx-remote";
+// import remarkGfm from "remark-gfm";
+// import rehypePrettyCode from "rehype-pretty-code";
 
 import { baseUrl } from "@/app/sitemap";
 import { estimateReadingTime } from "@/lib/reading-time";
@@ -98,7 +98,7 @@ export default async function Blog({ params }: Props) {
   const sortedPosts = posts.sort(
     (a, b) =>
       new Date(b.metadata.publishedAt).getTime() -
-      new Date(a.metadata.publishedAt).getTime()
+      new Date(a.metadata.publishedAt).getTime(),
   );
 
   let postIndex = sortedPosts.findIndex((post) => post.slug === slug);
@@ -116,12 +116,12 @@ export default async function Blog({ params }: Props) {
   const { headings, content } = post;
 
   // Serialize MDX content here (important!)
-  const mdxSource: MDXRemoteSerializeResult = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [[rehypePrettyCode, options]],
-    },
-  });
+  // const mdxSource: MDXRemoteSerializeResult = await serialize(content, {
+  //   mdxOptions: {
+  //     remarkPlugins: [remarkGfm],
+  //     rehypePlugins: [[rehypePrettyCode, options]],
+  //   },
+  // });
 
   return (
     <>
@@ -170,7 +170,7 @@ export default async function Blog({ params }: Props) {
             >
               <Eye className="w-5 h-5" />
               {Intl.NumberFormat("en-US", { notation: "compact" }).format(
-                views
+                views,
               )}
             </span>
           </div>
@@ -183,7 +183,8 @@ export default async function Blog({ params }: Props) {
 
         <article className="mb-10 prose">
           {/* Use the serialized MDX source */}
-          <CustomMDX source={mdxSource} />
+          {/* <CustomMDX source={mdxSource} /> */}
+          <CustomMDX source={content} />
         </article>
 
         <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-lg md:my-10 dark:bg-neutral-700" />

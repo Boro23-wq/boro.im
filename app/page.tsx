@@ -35,9 +35,10 @@ export default function Page() {
           data-animate
           className="animate-enter mb-5"
         >
-          <span className="newsreader-400">Developing experiences.</span> I have
-          transformed complex business processes into efficient and
-          user-friendly interfaces.
+          <span className="newsreader-400">Developing experiences.</span> I
+          transform complex business processes into efficient and user-friendly
+          interfaces — delivering solutions that are intuitive, scalable, and
+          easy to use.
         </p>
 
         {/* work highlight */}
@@ -46,15 +47,15 @@ export default function Page() {
           data-animate
           className="animate-enter text-md"
         >
-          Currently working alongside the{" "}
+          Currently teamed up with{" "}
           <Link
             href="https://www.ilinksolutions.com/"
             target="_blank"
             className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
           >
-            i-Link
+            i-Link Solutions
           </Link>{" "}
-          team to build and deliver robust software solutions.
+          to develop and deliver robust software solutions.
         </p>
 
         {/* main blog/project highlight */}
@@ -91,8 +92,7 @@ export default function Page() {
         >
           <div className="pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
             <p>
-              I currently work as a Software Developer building swimmer safety
-              systems on the{" "}
+              I am currently contracted with the{" "}
               <Link
                 className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
                 href="https://wavedds.com/"
@@ -100,7 +100,7 @@ export default function Page() {
               >
                 Wave DDS
               </Link>{" "}
-              team.
+              team, to build swimmer safety software solutions.
             </p>
           </div>
 
@@ -110,12 +110,13 @@ export default function Page() {
             className="animate-enter pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
           >
             <p>
-              My day-to-day activities include building and maintaining scalable
-              frontend applications with React and Next.js, delivering
-              accessible, high-performance interfaces. I lead refactors and
-              component standardization to improve maintainability and
-              performance, while collaborating closely with cross-functional
-              teams to deliver features aligned with product goals.
+              I build and maintain scalable React and Next.js applications,
+              delivering accessible, high-performance interfaces. I lead
+              refactors and component standardization initiatives, collaborate
+              cross-functionally, and contribute full-stack through
+              Express-based APIs and SQL databases. My current project involves
+              developing a customer portal for Wave customers to monitor hub
+              activity for improved management and reporting.
             </p>
           </div>
 
