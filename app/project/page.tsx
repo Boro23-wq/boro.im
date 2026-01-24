@@ -11,7 +11,7 @@ export default function Page() {
     <>
       <Sidebar path="/project" />
 
-      <section className="leading-7">
+      <section className="leading-6">
         <p className="newsreader-400-tall font-medium mb-8 mt-1 dark:text-[#d4d4d4]">
           / project
         </p>

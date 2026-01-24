@@ -22,7 +22,7 @@ export function Projects() {
             className="relative flex flex-col dark:text-[#d4d4d4] px-4 py-2 mb-8 rounded-lg cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800 group"
           >
             <Link href={`/project/${project.slug}`} className="">
-              <div className="flex items-center relative mb-2">
+              <div className="flex items-center relative mb-4">
                 <p className="newsreader-400-tall">{project.metadata.title}</p>
                 <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-600 transition-colors duration-300" />
               </div>

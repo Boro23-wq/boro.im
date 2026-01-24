@@ -8,7 +8,6 @@ import { estimateReadingTime } from "@/lib/reading-time";
 import { Sidebar } from "@/app/components/sidebar";
 import { CopyLink } from "@/app/components/copy-link";
 
-// import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import { CustomMDX } from "@/app/components/mdx";
@@ -29,7 +28,6 @@ const options = {
 
 type Params = { slug: string };
 type Props = { params: Promise<Params> };
-// type Props = { params: Params };
 
 export async function generateStaticParams() {
   const projects = getProjects();
@@ -38,7 +36,6 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  // const { slug } = params;
   const project = getProjects().find((p) => p.slug === slug);
   if (!project) return;
 
@@ -160,7 +157,7 @@ export default async function Project({ params }: Props) {
               {allTags.map((tag, index) => (
                 <p
                   key={`${tag}-${index}`}
-                  className="text-xs mr-2 px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
+                  className="text-sm mr-2 px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
                 >
                   {tag}
                 </p>

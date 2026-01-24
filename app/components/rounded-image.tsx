@@ -18,7 +18,7 @@ const RoundedImage = (props) => {
   return (
     <>
       <div className="rounded-img md:-mx-0 md:bg-neutral-50 md:border-neutral-200 md:dark:bg-neutral-800 md:border md:dark:border-neutral-700 md:pt-4 md:pb-4 md:px-5 md:rounded-lg my-8">
-        <p className="text-[10px] font-medium uppercase !text-neutral-400 !dark:text-neutral-800 hidden md:block">
+        <p className="text-xs tracking-wide font-medium uppercase !text-neutral-400 !dark:text-neutral-800 hidden md:block">
           {props.alt}
         </p>
         <Image
