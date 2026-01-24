@@ -1,12 +1,19 @@
+// app/layout.tsx
 import "./global.css";
 import { ThemeProvider } from "next-themes";
-import { Newsreader } from "next/font/google";
+import { Newsreader, Geist } from "next/font/google";
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
+
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  adjustFontFallback: true,
+});
 
 const newsreader = Newsreader({
   style: ["italic"],
@@ -14,6 +21,7 @@ const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-newsreader",
   display: "swap",
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -78,7 +86,8 @@ export const metadata: Metadata = {
   },
 };
 
-const cx = (...classes) => classes.filter(Boolean).join(" ");
+const cx = (...classes: Array<string | undefined | false>) =>
+  classes.filter(Boolean).join(" ");
 
 export default function RootLayout({
   children,
@@ -89,19 +98,12 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={cx(GeistSans.className, newsreader.variable)}
+      className={cx(geist.variable, newsreader.variable)}
     >
       <body className="antialiased">
-        <ThemeProvider
-          attribute="class"
-          enableColorScheme={false}
-          enableSystem={true}
-        >
+        <ThemeProvider attribute="class" enableColorScheme={false} enableSystem>
           <div className="main-container">
-            <div
-              className="main-blur relative h-[100px]"
-              aria-hidden="true"
-            ></div>
+            <div className="main-blur relative h-[100px]" aria-hidden="true" />
             <main className="main py-16 sm:py-28">
               <div className="main-grid">
                 {children}

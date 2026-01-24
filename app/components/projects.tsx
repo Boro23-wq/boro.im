@@ -27,7 +27,7 @@ export function Projects() {
                 <hr className="flex-grow ml-2 border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-600 transition-colors duration-300" />
               </div>
 
-              <p className="text-sm mt-0.5 text-neutral-500 dark:text-neutral-400">
+              <p className="mt-0.5 text-neutral-500 dark:text-neutral-400">
                 {project.metadata.summary}
               </p>
 
@@ -37,7 +37,7 @@ export function Projects() {
                     {JSON.parse(project.metadata.tags).map((tag, index) => (
                       <p
                         key={index}
-                        className="text-xs px-2 py-1 rounded-md bg-neutral-100 group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-hover:bg-neutral-700 text-neutral-500 dark:text-neutral-400"
+                        className="text-sm px-2 py-1 rounded-md bg-neutral-100 group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-hover:bg-neutral-700 text-neutral-500 dark:text-neutral-400"
                       >
                         {tag}
                       </p>

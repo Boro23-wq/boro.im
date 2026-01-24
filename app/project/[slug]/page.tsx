@@ -75,7 +75,6 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function Project({ params }: Props) {
   const { slug } = await params;
-  // const { slug } = params;
 
   const projects = getProjects();
   const projectIndex = projects.findIndex((p) => p.slug === slug);
@@ -85,13 +84,6 @@ export default async function Project({ params }: Props) {
 
   const previousProject = projects[projectIndex - 1] || null;
   const nextProject = projects[projectIndex + 1] || null;
-
-  // const mdxSource = await serialize(project.content, {
-  //   mdxOptions: {
-  //     remarkPlugins: [remarkGfm],
-  //     rehypePlugins: [[rehypePrettyCode, options]],
-  //   },
-  // });
 
   const readingTime = estimateReadingTime(project.content);
 
@@ -179,8 +171,7 @@ export default async function Project({ params }: Props) {
 
         <hr className="h-0.5 mx-auto !mt-0 mb-4 bg-neutral-200 border-0 md:my-6 dark:bg-neutral-700" />
 
-        <article className="prose">
-          {/* <CustomMDX source={mdxSource} /> */}
+        <article className="prose leading-7">
           <CustomMDX source={project.content} />
         </article>
 

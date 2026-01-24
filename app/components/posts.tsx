@@ -39,7 +39,7 @@ export function BlogPosts({ page }: BlogPostsProps) {
     }, {});
 
     return Object.entries(grouped).sort(
-      ([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA)
+      ([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA),
     );
   };
 

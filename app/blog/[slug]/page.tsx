@@ -3,10 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BookOpenTextIcon, Eye } from "lucide-react";
 import { Redis } from "@upstash/redis";
-// import { serialize } from "next-mdx-remote/serialize";
-// import { MDXRemoteSerializeResult } from "next-mdx-remote";
-// import remarkGfm from "remark-gfm";
-// import rehypePrettyCode from "rehype-pretty-code";
 
 import { baseUrl } from "@/app/sitemap";
 import { estimateReadingTime } from "@/lib/reading-time";
@@ -115,14 +111,6 @@ export default async function Blog({ params }: Props) {
 
   const { headings, content } = post;
 
-  // Serialize MDX content here (important!)
-  // const mdxSource: MDXRemoteSerializeResult = await serialize(content, {
-  //   mdxOptions: {
-  //     remarkPlugins: [remarkGfm],
-  //     rehypePlugins: [[rehypePrettyCode, options]],
-  //   },
-  // });
-
   return (
     <>
       <Sidebar slug={post.slug} headings={headings} path={`/blog-post`} />
@@ -181,9 +169,7 @@ export default async function Blog({ params }: Props) {
 
         <hr className="h-0.5 mx-auto my-4 bg-neutral-200 border-0 md:my-6 dark:bg-neutral-700" />
 
-        <article className="mb-10 prose">
-          {/* Use the serialized MDX source */}
-          {/* <CustomMDX source={mdxSource} /> */}
+        <article className="mb-10 prose leading-7">
           <CustomMDX source={content} />
         </article>
 

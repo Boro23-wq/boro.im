@@ -31,7 +31,7 @@ export default function Page() {
     <>
       <Sidebar path="/work" />
 
-      <section className="leading-relaxed dark:text-[#d4d4d4]">
+      <section className="leading-7 dark:text-[#d4d4d4]">
         <p className="newsreader-400-tall font-medium mt-1">{`/ work`}</p>
         <div className="mt-8 flex justify-start items-start flex-col sm:flex-row">
           <div className="flex mb-2">

@@ -149,6 +149,14 @@ html {
 body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  font-size: 16;
+  font-family:
+    var(--font-sans),
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial;
 }
 
 .main-container,
@@ -473,7 +481,7 @@ mark[data-highlighted-chars] {
 }
 
 .prose p {
-  @apply mt-0 mb-5 text-[15px] text-neutral-600 dark:text-neutral-400;
+  @apply mt-0 mb-5 text-neutral-600 dark:text-neutral-400;
 }
 
 .prose u {
@@ -525,7 +533,7 @@ mark[data-highlighted-chars] {
 }
 
 .prose td {
-  @apply text-sm text-neutral-600 dark:text-neutral-400 text-start align-text-top py-2 sm:py-2.5 pr-4 text-balance;
+  @apply text-neutral-600 dark:text-neutral-400 text-start align-text-top py-2 sm:py-2.5 pr-4 text-balance;
 }
 
 @media (max-width: 640px) {

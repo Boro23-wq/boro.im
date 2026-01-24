@@ -16,7 +16,7 @@ export default function Page() {
     <div>
       <section
         data-animation-controller="true"
-        className="leading-relaxed dark:text-[#d4d4d4]"
+        className="leading-7 dark:text-[#d4d4d4]"
       >
         {/* intro */}
         <div
@@ -24,7 +24,7 @@ export default function Page() {
           data-animate
           className="animate-enter flex items-center mb-4"
         >
-          <h4 className="font-medium text-lg mb-5 tracking-normal">
+          <h4 className="font-medium text-lg mb-8 tracking-normal">
             Sintu Boro
           </h4>
         </div>
@@ -33,7 +33,7 @@ export default function Page() {
         <p
           style={{ "--stagger": 2 } as React.CSSProperties}
           data-animate
-          className="animate-enter mb-5"
+          className="animate-enter mb-8"
         >
           <span className="newsreader-400">Developing experiences.</span> I
           transform complex business processes into efficient and user-friendly
@@ -90,7 +90,7 @@ export default function Page() {
           data-animate
           className="animate-enter"
         >
-          <div className="pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+          <div className="pt-4 mb-4 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
             <p>
               I am currently contracted with the{" "}
               <Link
@@ -100,23 +100,21 @@ export default function Page() {
               >
                 Wave DDS
               </Link>{" "}
-              team, to build swimmer safety software solutions.
+              team, to build swimmer safety software solutions. I build and
+              maintain scalable React and Next.js applications, delivering
+              accessible, high-performance interfaces.
             </p>
           </div>
 
           <div
             style={{ "--stagger": 8 } as React.CSSProperties}
             data-animate
-            className="animate-enter pt-4 mb-2.5 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
+            className="animate-enter pt-4 mb-4 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
           >
             <p>
-              I build and maintain scalable React and Next.js applications,
-              delivering accessible, high-performance interfaces. I lead
-              refactors and component standardization initiatives, collaborate
-              cross-functionally, and contribute full-stack through
-              Express-based APIs and SQL databases. My current project involves
-              developing a customer portal for Wave customers to monitor hub
-              activity for improved management and reporting.
+              I lead refactors and component standardization initiatives,
+              collaborate cross-functionally, and contribute full-stack through
+              Express-based APIs and SQL databases.
             </p>
           </div>
 
@@ -126,12 +124,15 @@ export default function Page() {
             className="animate-enter pt-4 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
           >
             <p>
-              Discover more about my current projects, past and present work{" "}
+              My current project involves developing a customer portal for Wave
+              customers to monitor hub activity for improved management and
+              reporting. Discover more about my current projects, past and
+              present work{" "}
               <Link
                 className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
                 href="/work"
               >
-                here
+                <span className="newsreader-400">here</span>
               </Link>
               .
             </p>
