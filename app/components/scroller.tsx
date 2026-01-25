@@ -62,14 +62,14 @@ const Scroller = () => {
           <div className="mb-8 content">
             <div className="mb-2">
               <Link
-                href="/blog/module-federation"
+                href="/blog/aws-cognito-for-user-auth"
                 className="text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
               >
-                Module federation
+                AWS Cognito setup
               </Link>
             </div>
             <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
-              Architecture using reusable components.
+              AWS Cognito for user authentication.
             </p>
           </div>
           <div>

@@ -1,3 +1,5 @@
+import { ThemeChanger } from "./theme-changer";
+
 export default function Footer() {
   return (
     <footer className="bg-white text-[#161616] dark:text-[#d4d4d4] dark:bg-[#161616] pt-3 border-t border-neutral-200 dark:border-neutral-700">
@@ -9,6 +11,9 @@ export default function Footer() {
                 <p className="text-neutral-400 dark:text-neutral-500 text-sm">
                   © {new Date().getFullYear()} Sintu Boro
                 </p>
+              </div>
+              <div>
+                <ThemeChanger />
               </div>
             </div>
           </div>

@@ -31,8 +31,8 @@ There are couple of terms that we need to define before we can move further ahe
 - <u>Remote</u>: A remote is another build that consumes some part of the host.
   They can also be referred to as consumers.
 
-<u>Note:</u> All applications can be both remote and host, providers, and consumers
-of any other federated module in the system.
+<u>Note:</u> All applications can be both remote and host, providers, and
+consumers of any other federated module in the system.
 
 Furthermore, we need to know another concept of overriding modules. For example, if you're importing a React component that ships along with the entire React code, the local build won't download the React code again, instead it will overwrite the React code and only import the essential component code. This helps the local build to avoid downloading the already existing dependencies.
 
@@ -75,7 +75,7 @@ yarn add @module-federation/nextjs-mf
 
 And within the `package.json` include the following resolution to use a specific version of the webpack.
 
-```json title='package.json'
+```json title="package.json"
 "resolutions": {
     "webpack": "5.1.3"
   },
