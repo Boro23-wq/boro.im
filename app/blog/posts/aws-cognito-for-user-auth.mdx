@@ -44,7 +44,7 @@ In AWS Console:
 4. Enable:
    - Email verification
    - Password policy (strong)
-5. Add an App Clieny
+5. Add an App Client
    - Disable client secret (important for frontend apps)
 6. Save these values as you'll use this to talk to AWS Cognito service:
    - User Pool ID
@@ -230,7 +230,7 @@ export function proxy(req: NextRequest) {
 
 ## Final Thoughts
 
-As you might have realized now that AWS Cognito isn't really a 'plug-and-play' solution, but once you successfully wire it up, it’s rock solid. The secret is to respect the — Cognito manages the identity, the frontend handles the UX, and the backend only trusts verified tokens. Sticking to such separation of concerns, helps establish a secure, scalable, and the best possible—auth system.
+As you might have already realized that AWS Cognito isn't really a 'plug-and-play' solution, but once you successfully wire it up, it’s rock solid. The secret is to respect the fact that — Cognito manages the identity, frontend handles the UX, and the backend only trusts verified tokens. Sticking to such separation, helps establish a secure, scalable, and the best possible auth system.
 
 ## References
 
