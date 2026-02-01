@@ -28,7 +28,7 @@ const Modal = ({ src, alt, onClose, isModalOpen }) => {
         <button
           className="cursor-pointer rounded-full bg-neutral-800/75 text-neutral-50/75 p-2 backdrop-blur-lg transition hover:bg-black/75 hover:text-white absolute top-0 left-0 m-8 z-10"
           onClick={(e) => {
-            e.stopPropagation(); // Prevent closing when clicking the button
+            e.stopPropagation();
             handleClose();
           }}
         >
@@ -39,8 +39,8 @@ const Modal = ({ src, alt, onClose, isModalOpen }) => {
         <img
           src={src}
           alt={alt}
-          className="max-w-screen max-h-screen rounded-lg"
-          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image
+          className="max-w-screen max-h-screen rounded-sm"
+          onClick={(e) => e.stopPropagation()}
         />
       </div>
     </div>

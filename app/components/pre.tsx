@@ -63,7 +63,7 @@ const Pre = (props) => {
   return (
     <div ref={containerRef} className="relative my-6">
       {/* {lang} */}
-      <div className="flex overflow-x-auto justify-between items-center rounded-t-lg px-4 py-3 bg-gradient-to-r from-neutral-100 to-neutral-200 dark:bg-gradient-to-r dark:from-neutral-800 dark:to-neutral-900 border-neutral-100 dark:border-neutral-500 border-y border-x border-y-neutral-200 border-x-neutral-200 dark:border-y-neutral-700 dark:border-x-neutral-700">
+      <div className="flex overflow-x-auto justify-between items-center rounded-t-sm px-4 py-3 bg-gradient-to-r from-neutral-100 to-neutral-200 dark:bg-gradient-to-r dark:from-neutral-800 dark:to-neutral-900 border-neutral-100 dark:border-neutral-500 border-y border-x border-y-neutral-200 border-x-neutral-200 dark:border-y-neutral-700 dark:border-x-neutral-700">
         <div className="flex items-center mr-4 sm:mr-0">
           <span className="text-sm">{icon}</span>
           {title && (

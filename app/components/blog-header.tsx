@@ -1,66 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import Search from "./search";
-import { KeyboardIcon, LinkIcon } from "lucide-react";
+import { Keyboard, KeyboardOff } from "lucide-react";
 
-interface SearchResult {
-  id: string;
-  title: string;
-}
+type BlogHeaderProps = {
+  onToggleSearch: () => void;
+  isSearchVisible: boolean;
+};
 
-export default function BlogHeaderWSearch() {
-  const [query, setQuery] = useState<string>("");
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [displayedResults, setDisplayedResults] = useState<SearchResult[]>([]);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  const toggleSearch = () => {
-    setIsSearchOpen((prev) => !prev);
-    setQuery("");
-    setResults([]);
-    setDisplayedResults([]);
-  };
-
+export function BlogHeader({ onToggleSearch, isSearchVisible }: BlogHeaderProps) {
   return (
-    <div className="dark:text-[#d4d4d4]">
-      <div className="relative flex justify-between mt-1 !mb-8 items-center">
-        <p className="newsreader-400-tall font-medium text-xs mt-1">{`/ blog`}</p>
-        <div className="flex items-center">
-          <button
-            onClick={toggleSearch}
-            className="border-0 text-neutral-400 hover:text-neutral-500 dark:text-neutral-500 dark:hover:text-neutral-400 text-sm py-1 px-2 rounded transition-all cursor-pointer"
-          >
-            <KeyboardIcon className="w-5 h-5" />
-          </button>
-        </div>
-      </div>
-
-      {isSearchOpen && (
-        <div
-          onClick={toggleSearch}
-          className="fixed inset-0 bg-opacity-100 backdrop-blur-xl z-40"
-        ></div>
-      )}
-
-      <div
-        className={`relative transition-all duration-300 ease-in ${
-          isSearchOpen ? "block" : "hidden"
-        }`}
+    <div className="mb-6 flex items-center justify-between gap-4">
+      <p className="newsreader-400-tall font-medium dark:text-[#d4d4d4]">/ blog</p>
+      <button
+        onClick={onToggleSearch}
+        className="flex items-center justify-center w-8 h-8 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors border border-neutral-200 dark:border-neutral-800 rounded-sm hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
       >
-        {/* Search component */}
-        <div className="relative z-50">
-          <Search
-            toggleSearch={toggleSearch}
-            query={query}
-            results={results}
-            displayedResults={displayedResults}
-            setQuery={setQuery}
-            setResults={setResults}
-            setDisplayedResults={setDisplayedResults}
-          />
-        </div>
-      </div>
+        {isSearchVisible ? <Keyboard className="w-4 h-4" /> : <KeyboardOff className="w-4 h-4" />}
+      </button>
     </div>
   );
 }

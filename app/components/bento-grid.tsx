@@ -6,14 +6,14 @@ export const BentoGrid = ({ imgs }) => {
       {imgs.map((img, i) => (
         <div
           key={i}
-          className={`relative row-span-1 rounded-xl border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-neutral-900 overflow-hidden`}
+          className={`relative row-span-1 rounded-sm border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-neutral-900 overflow-hidden`}
         >
           <Image
             src={img}
             alt={img}
             layout="fill"
             objectFit="cover"
-            className="absolute rounded-lg px-3 py-4 sm:py-0"
+            className="absolute rounded-sm px-3 py-4 sm:py-0"
           />
         </div>
       ))}

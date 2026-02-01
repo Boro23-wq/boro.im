@@ -26,12 +26,22 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-8px)" },
         },
+        "slide-up": {
+          "0%": { transform: "translateY(100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        "slide-down": {
+          "0%": { transform: "translateY(0)", opacity: "1" },
+          "100%": { transform: "translateY(100%)", opacity: "0" },
+        },
       },
       animation: {
         "bounce-x": "bounce-x 1s ease-in-out infinite",
         "left-translate": "left-translate 0.5s forwards",
         "border-spin": "border-spin 7s linear infinite",
         enter: "enter 0.6s both",
+        "slide-up": "slide-up 0.5s ease-out forwards",
+        "slide-down": "slide-down 0.5s ease-out forwards",
       },
     },
   },
@@ -68,7 +78,7 @@ const config: Config = {
             },
           },
         },
-        ["responsive", "hover"]
+        ["responsive", "hover"],
       );
     },
   ],

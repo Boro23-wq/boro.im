@@ -32,237 +32,246 @@ export default function Page() {
       <Sidebar path="/work" />
 
       <section className="leading-7 dark:text-[#d4d4d4]">
-        <p className="newsreader-400-tall font-medium mt-1">{`/ work`}</p>
-        <div className="mt-8 flex justify-start items-start flex-col sm:flex-row">
-          <div className="flex mb-2">
-            <p className="text-pretty text-neutral-800 dark:text-neutral-300">
-              Experienced software developer with a knack for enhancing web
-              applications, and streamlining development processes through
-              innovative solutions.
+        {/* Header */}
+        <div className="mb-8">
+          <p className="newsreader-400-tall font-medium mt-1 text-xl tracking-tight">{`/ work`}</p>
+          <p className="mt-8 text-base text-neutral-600 dark:text-neutral-300 max-w-2xl">
+            Experienced software developer with a knack for enhancing web applications, and
+            streamlining development processes through innovative solutions.
+          </p>
+        </div>
+
+        {/* Experience Grid */}
+        <div className="space-y-4">
+          {/* Wave DDS - Current */}
+          <div className="group border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all p-6 rounded-sm bg-white dark:bg-neutral-900/50">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start gap-4 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 dark:from-blue-950/20 dark:via-neutral-900/50 dark:to-purple-950/20">
+                <div className="w-10 h-10 bg-neutral-800 dark:bg-neutral-200 flex items-center justify-center rounded-sm">
+                  <BriefcaseIcon className="w-4 h-4 text-neutral-200 dark:text-neutral-800" />
+                </div>
+                <div>
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-200 tracking-tight">
+                    Wave DDS
+                  </h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                    Software Developer
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-neutral-900 text-neutral-100 dark:bg-neutral-100 dark:text-neutral-900 rounded-sm">
+                  Current
+                </span>
+                <span className="text-xs text-neutral-400 dark:text-neutral-500 hidden sm:block">
+                  Oct 2025 - Present
+                </span>
+              </div>
+            </div>
+
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Building a customer portal with Next.js for real-time swimmer-safety hub monitoring.
+              Developing backend APIs with Express and SQL for hub status, activity tracking,
+              alerts, and reporting. Refactoring components, improving data flow and performance
+              while collaborating with designers and engineers.
+            </p>
+          </div>
+
+          {/* Beacon Technologies */}
+          <div className="group border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all p-6 rounded-sm bg-white dark:bg-neutral-900/50">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-sm border border-neutral-200 dark:border-neutral-700">
+                  <BriefcaseIcon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                </div>
+                <div>
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-200 tracking-tight">
+                    Beacon Technologies, Inc.
+                  </h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                    Programmer Analyst IV
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs text-neutral-400 dark:text-neutral-500 flex-shrink-0">
+                May 2024 - Aug 2025
+              </span>
+            </div>
+
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+              Developed Collibra ingestion code, reducing upload time by 30% and increasing BO
+              extraction efficiency by 25%. Implemented workflows streamlining asset management and
+              reducing manual effort by 50%. Addressed 90% of production issues.
+            </p>
+
+            <div className="inline-flex items-center gap-2 px-2.5 py-1.5 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-sm">
+              <div className="w-1 h-1 bg-neutral-400 dark:bg-neutral-600 rounded-full"></div>
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 font-medium">
+                Joined via merger with Smart Solutions
+              </p>
+            </div>
+
+            {/* Smart Solutions - nested */}
+            <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h4 className="text-sm font-semibold text-neutral-800 dark:text-neutral-200 tracking-tight">
+                    Smart Solutions, Inc.
+                  </h4>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+                    Programmer Analyst IV
+                  </p>
+                </div>
+                <span className="text-xs text-neutral-400 dark:text-neutral-500">
+                  Sep 2023 - May 2024
+                </span>
+              </div>
+
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Administered and customized Collibra, increasing UI customization by 20%.
+                Implemented efficient workflows, improving business process efficiency by 15%.
+                Utilized Java and configured APIs, reducing manual effort by 50%.
+              </p>
+            </div>
+          </div>
+
+          {/* Wave DDS - Previous */}
+          <div className="group border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all p-6 rounded-sm bg-white dark:bg-neutral-900/50">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-sm border border-neutral-200 dark:border-neutral-700">
+                  <BriefcaseIcon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                </div>
+                <div>
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-200 tracking-tight">
+                    Wave DDS
+                  </h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                    UI/UX Developer
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs text-neutral-400 dark:text-neutral-500 flex-shrink-0">
+                May 2022 - Sep 2023
+              </span>
+            </div>
+
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Led UI/UX development including experience maps and wireframes using Figma.
+              Collaborated with senior developers on interaction specifications. Built SPAs with
+              React following UX best practices.
+            </p>
+          </div>
+
+          {/* Wave carousel */}
+          <div className="my-16">
+            <Carousel imgs={waveImages} subtitle="Few mockup screens I designed for WAVE app." />
+          </div>
+
+          {/* Slotly */}
+          <div className="group border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all p-6 rounded-sm bg-white dark:bg-neutral-900/50">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-sm border border-neutral-200 dark:border-neutral-700">
+                  <BriefcaseIcon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                </div>
+                <div>
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-200 tracking-tight">
+                    Slotly
+                  </h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                    Software Developer
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs text-neutral-400 dark:text-neutral-500 flex-shrink-0">
+                Jan 2021 - Aug 2021
+              </span>
+            </div>
+
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Elevated customer-facing apps, boosting user engagement by 2 minutes. Led scheduling
+              platform redesign improving server-side rendering and core web vitals. Streamlined
+              CI/CD pipeline and API implementation, enhancing code delivery by 5% and feature
+              shipping by 6%.
+            </p>
+          </div>
+
+          {/* BlackX */}
+          <div className="group border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all p-6 rounded-sm bg-white dark:bg-neutral-900/50">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center rounded-sm border border-neutral-200 dark:border-neutral-700">
+                  <BriefcaseIcon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                </div>
+                <div>
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-200 tracking-tight">
+                    BlackX
+                  </h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
+                    Frontend Developer
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs text-neutral-400 dark:text-neutral-500 flex-shrink-0">
+                Feb 2020 - Jan 2021
+              </span>
+            </div>
+
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Translated wireframes into code and built reusable components, improving load time by
+              10%. Integrated APIs, optimized components, handled authentication, and debugged with
+              25+ test cases while analyzing user requirements for performance needs.
             </p>
           </div>
         </div>
 
-        <div className="mt-5">
-          <p className="newsreader-400-tall">Experience</p>
-        </div>
-
-        <div className="mt-8">
-          <ol className="relative border-s border-neutral-200 dark:border-neutral-700">
-            {/* Wave DDS section */}
-
-            <li className="mb-10 ms-6">
-              <span className="absolute flex items-center justify-center w-6 h-6 border dark:border-neutral-600 bg-neutral-100 rounded-full -start-3 ring-4 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
-                <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
-              </span>
-              <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
-                Wave DDS{" "}
-                <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
-                  Oct, 2025 - Current
-                </span>
-              </h3>
-              <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
-                Software Developer
-              </p>
-              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
-                Working on a customer portal for Wave using Next.js, building
-                scalable, accessible, and high-performance interfaces that let
-                customers monitor swimmer-safety hubs in real time. I’m
-                developing and wiring up backend APIs with Express and SQL to
-                support end-to-end features like hub status, activity tracking,
-                alerts, and reporting. On a day-to-day basis, I’m refactoring
-                and standardizing components, improving data flow, and overall
-                performance, while collaborating closely with designers, backend
-                engineers, and product stakeholders to align architecture,
-                troubleshoot issues, and continuously improve the platform.
-              </p>
-            </li>
-
-            <li className="mb-10 ms-6">
-              <span className="absolute flex items-center justify-center w-6 h-6 bg-neutral-100 rounded-full border dark:border-neutral-600 -start-3 ring-4 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
-                <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
-              </span>
-              <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
-                Beacon Technologies, Inc.{" "}
-                <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
-                  May, 2024 - Aug, 2025
-                </span>
-              </h3>
-              <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
-                Programmer Analyst IV
-              </p>
-              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
-                Developed code for Collibra ingestion, reduced upload time by
-                30%, and increased BO extraction efficiency by 25%. Implemented
-                workflows within the Collibra platform, streamlining asset
-                management and reducing manual effort by 50%. Addressed 90% of
-                production issues and reviewed diagrams to implement best
-                practices.
-              </p>
-
-              <div className="relative p-3 max-w-fit border border-neutral-200 rounded-lg bg-neutral-50 dark:bg-neutral-800 dark:border-neutral-700 glow-border-light dark:glow-border-dark">
-                <p className="text-xs font-normal text-neutral-500 dark:text-neutral-400">
-                  I joined Beacon as part of its merger with Smart.
-                </p>
-              </div>
-
-              {/* sub timeline */}
-              <ol className="relative border-s border-neutral-200 dark:border-neutral-700 mt-6 ml-8">
-                <li className="ms-6">
-                  <span className="absolute flex items-center justify-center w-6 h-6 border dark:border-neutral-600 bg-neutral-100 rounded-full -start-3 ring-8 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
-                    <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
-                  </span>
-                  <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
-                    Smart Solutions, Inc.{" "}
-                    <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
-                      Sep, 2023 - May, 2024
-                    </span>
-                  </h3>
-                  <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
-                    Programmer Analyst IV
-                  </p>
-                  <p className="mt-4 prose font-normal text-neutral-500 dark:text-neutral-400">
-                    Administered and customized Collibra, enhancing
-                    functionalities and increasing UI customization by 20%.
-                    Implemented efficient workflows, improving business process
-                    efficiency by 15%. Utilized Java and configured APIs,
-                    reducing manual effort by 50%.
-                  </p>
-                </li>
-              </ol>
-            </li>
-
-            <li className="mb-10 ms-6">
-              <span className="absolute flex items-center justify-center w-6 h-6 border dark:border-neutral-600 bg-neutral-100 rounded-full -start-3 ring-8 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
-                <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
-              </span>
-              <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
-                Wave DDS{" "}
-                <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
-                  May, 2022 - Sep, 2023
-                </span>
-              </h3>
-              <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
-                UI/UX Developer
-              </p>
-              <p className="mt-4 prose font-normal text-neutral-500 dark:text-neutral-400">
-                Demonstrated all stages of UI/UX development including
-                experience maps, wireframes using Figma. Collaborated with
-                senior developers to design interaction specifications. Followed
-                best UX practices to build SPAs with React.
-              </p>
-            </li>
-          </ol>
-
-          {/* carousel start */}
-          <div className="mb-10">
-            <Carousel
-              imgs={waveImages}
-              subtitle="Few mockup screens I designed for WAVE app."
-            />
+        {/* Components Section */}
+        <div className="mt-6">
+          <div className="mb-8">
+            <h4 className="newsreader-400-tall tracking-tight mb-2">Components</h4>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              These components were created based on requirements for re-developing the Blackx web
+              analytics screen. Below are some of the mock components I designed.
+            </p>
           </div>
-          {/* carousel end */}
 
-          <ol className="relative border-s border-neutral-200 dark:border-neutral-700">
-            <li className="mb-10 ms-6">
-              <span className="absolute flex items-center justify-center w-6 h-6 border dark:border-neutral-600 bg-neutral-100 rounded-full -start-3 ring-4 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
-                <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
-              </span>
-              <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
-                Slotly{" "}
-                <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
-                  Jan, 2021 - Aug, 2021
-                </span>
-              </h3>
-              <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
-                Software Developer
-              </p>
-              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
-                Elevated customer-facing apps, boosting user time by 2 minutes.
-                Led scheduling platform redesign, improving server-side
-                rendering and core web vitals. Streamlined CI/CD pipeline and
-                API implementation, enhancing code delivery by 5% and feature
-                shipping by 6%.
-              </p>
-            </li>
-
-            <li className="mb-10 ms-6">
-              <span className="absolute flex items-center justify-center w-6 h-6 border dark:border-neutral-600 bg-neutral-100 rounded-full -start-3 ring-4 ring-white dark:ring-neutral-900 dark:bg-neutral-800">
-                <BriefcaseIcon className="w-3 h-3 text-neutral-400 dark:text-neutral-400" />
-              </span>
-              <h3 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center mb-1 text-md font-normal text-neutral-600 dark:text-neutral-200">
-                BlackX{" "}
-                <span className="text-neutral-500 text-xs font-normal me-2 rounded dark:text-neutral-500 ms-0 sm:mt-0 sm:mb-0 mt-0.5 mb-2">
-                  Feb, 2020 - Jan, 2021
-                </span>
-              </h3>
-              <p className="block mb-2 text-sm font-normal leading-none text-neutral-400 dark:text-neutral-500">
-                Frontend Developer
-              </p>
-              <p className="mt-4 mb-4 prose font-normal text-neutral-500 dark:text-neutral-400">
-                Collaborated with close group of developers and translated
-                wireframes into code. Built reusable components, improving load
-                time by 10%. Integrated APIs, optimized components, handled
-                authentication, and debugged with 25+ test cases, analyzing user
-                requirements for performance needs.
-              </p>
-            </li>
-          </ol>
-        </div>
-
-        <div className="flex items-center mt-8">
-          <h4 className="newsreader-400">Components</h4>
-        </div>
-
-        <p className="mt-4 mb-10 prose font-normal text-neutral-500 dark:text-neutral-400">
-          These components were created based on requirements for re-developing
-          the Blackx web analytics screen. Below are some of the mock components
-          I designed.
-        </p>
-
-        {/* bento grid start */}
-        <div className="bento grid auto-rows-[192px] gap-2 grid-cols-2 sm:grid-cols-3">
-          {blackxImages.map((img, i) => (
-            <div
-              key={i}
-              className={`relative ${img} max-h-[192px] overflow-hidden bg-[#e9eaec] dark:bg-neutral-800 ${
-                i === 6 ? "col-span-2 sm:col-span-3" : ""
-              }`}
-            >
-              <Image
-                src={img}
-                alt={img}
-                layout="fill"
-                objectFit="contain"
-                className="rounded-lg px-3 py-4 sm:py-0"
-              />
-            </div>
-          ))}
-        </div>
-        <p className="mt-4 text-center text-xs text-neutral-400 dark:text-neutral-500">
-          BlackX web analytics components
-        </p>
-        {/* bento grid end */}
-
-        {/* read more */}
-        <div className="flex items-center mt-8">
-          <h4 className="newsreader-400">Read more?</h4>
-        </div>
-
-        <div className="mt-4 mb-6">
-          <ul className="flex flex-wrap">
-            <li className="bg-neutral-100 text-neutral-500 hover:bg-neutral-800 hover:text-neutral-50 dark:hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-neutral-900 dark:bg-neutral-800 px-2.5 py-1 rounded-2xl mr-2 mb-2">
-              <Link
-                className="flex items-center"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="/resume/resume.pdf"
+          {/* bento grid */}
+          <div className="bento grid auto-rows-[192px] gap-1 grid-cols-2 sm:grid-cols-3">
+            {blackxImages.map((img, i) => (
+              <div
+                key={i}
+                className={`relative ${img} max-h-[192px] overflow-hidden bg-[#e9eaec] dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-sm ${
+                  i === 6 ? "col-span-2 sm:col-span-3" : ""
+                }`}
               >
-                <p className="mr-2 text-sm">Read CV</p>
-                <DownloadIcon className="w-3 h-3" />
-              </Link>
-            </li>
-          </ul>
+                <Image
+                  src={img}
+                  alt={img}
+                  layout="fill"
+                  objectFit="contain"
+                  className="px-3 py-4 sm:py-0"
+                />
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-xs text-neutral-400 dark:text-neutral-500 font-medium uppercase tracking-wider">
+            BlackX web analytics components
+          </p>
+        </div>
+
+        {/* Read more */}
+        <div className="mt-8 border-t border-neutral-200 dark:border-neutral-800 pt-8">
+          <h4 className="newsreader-400 text-xl tracking-tight mb-4">Read more?</h4>
+          <Link
+            className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-800 text-neutral-200 dark:bg-neutral-200 dark:text-neutral-800 hover:bg-neutral-700 dark:hover:bg-neutral-300 transition-colors rounded-sm text-sm font-medium"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="/resume/resume.pdf"
+          >
+            <span>Read CV</span>
+            <DownloadIcon className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </section>
     </>

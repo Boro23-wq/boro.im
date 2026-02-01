@@ -161,7 +161,7 @@ export default async function Project({ params }: Props) {
           <CustomMDX source={project.content} />
         </article>
 
-        <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-lg md:my-10 dark:bg-neutral-700" />
+        <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-sm md:my-10 dark:bg-neutral-700" />
 
         <div className="flex justify-between mt-8">
           {previousProject ? (

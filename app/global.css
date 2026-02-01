@@ -329,7 +329,7 @@ div[data-orientation="vertical"] {
 }
 
 .card-wrapper {
-  @apply relative overflow-hidden rounded-xl bg-gradient-to-b from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900;
+  @apply relative overflow-hidden rounded-sm bg-gradient-to-b from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900;
 }
 
 /* Gradient */
@@ -345,7 +345,7 @@ div[data-orientation="vertical"] {
 
 /* Body */
 .card-content {
-  @apply absolute left-[1px] top-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)] rounded-xl bg-gradient-to-b from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900;
+  @apply absolute left-[1px] top-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)] rounded-sm bg-gradient-to-b from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900;
 }
 
 .rounded-img {
@@ -404,12 +404,12 @@ div[data-orientation="vertical"] {
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-800 rounded-b-lg overflow-x-auto py-4 text-sm border-neutral-200 dark:border-neutral-500 border-b border-x border-t-neutral-200 border-x-neutral-200 dark:border-b-neutral-700 dark:border-x-neutral-700;
+  @apply bg-neutral-50 dark:bg-neutral-800 rounded-b-sm overflow-x-auto py-4 text-sm border-neutral-200 dark:border-neutral-500 border-b border-x border-t-neutral-200 border-x-neutral-200 dark:border-b-neutral-700 dark:border-x-neutral-700;
   counter-reset: line;
 }
 
 .prose code {
-  @apply bg-neutral-50 dark:bg-neutral-800 rounded-md text-[12.5px] p-1 font-normal;
+  @apply bg-neutral-50 dark:bg-neutral-800 rounded-sm text-[12.5px] p-1 font-normal;
 }
 
 .prose pre code > [data-line]::before {

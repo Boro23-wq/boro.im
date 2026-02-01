@@ -1,6 +1,6 @@
-import BlogHeaderWSearch from "../components/blog-header";
-import { BlogPosts } from "../components/posts";
+import { BlogPostsWithSearch } from "../components/posts-with-search";
 import { Sidebar } from "../components/sidebar";
+import { getBlogPosts } from "../blog/utils";
 
 export const metadata = {
   title: "Blog",
@@ -8,14 +8,14 @@ export const metadata = {
 };
 
 export default function Page() {
+  const allBlogs = getBlogPosts();
+
   return (
     <>
       <Sidebar path="/blog" />
 
-      <BlogHeaderWSearch />
-
       <section className="mb-8 mt-4 leading-7">
-        <BlogPosts page="blog" />
+        <BlogPostsWithSearch posts={allBlogs} />
       </section>
     </>
   );

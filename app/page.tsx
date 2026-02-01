@@ -65,13 +65,11 @@ export default function Page() {
                   <h3 className="text-xl font-semibold newsreader-400">Bite — AI Recipe Saver</h3>
                 </div>
 
-                {/* Arrow now inside same div */}
                 <div className="mt-[-28] text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
                   <ArrowRightTopIcon />
                 </div>
               </div>
 
-              {/* Description */}
               <p className="text-neutral-600 dark:text-neutral-400 mb-6">
                 Save recipes from anywhere on the web using AI. Building an MVP that lets you
                 organize and manage your recipe collection effortlessly.
@@ -79,7 +77,7 @@ export default function Page() {
 
               {/* Footer Row */}
               <div className="flex items-center justify-between text-xs">
-                <span className="px-2 py-1 rounded-md bg-green-100/80 dark:bg-green-900/40 text-green-700 dark:text-green-400 backdrop-blur-sm">
+                <span className="px-2 py-1 rounded-sm bg-green-100/80 dark:bg-green-900/40 text-green-700 dark:text-green-400 backdrop-blur-sm">
                   In Progress
                 </span>
 

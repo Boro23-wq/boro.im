@@ -112,7 +112,7 @@ export default async function BitePost({ params }: Props) {
           <CustomMDX source={post.content} />
         </article>
 
-        <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-lg md:my-10 dark:bg-neutral-700" />
+        <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-sm md:my-10 dark:bg-neutral-700" />
 
         <div className="flex justify-between mt-8">
           {previousPost ? (

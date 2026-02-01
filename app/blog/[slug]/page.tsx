@@ -50,16 +50,9 @@ export async function generateMetadata({ params }: Props) {
     return;
   }
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = post.metadata;
+  let { title, publishedAt: publishedTime, summary: description, image } = post.metadata;
 
-  let ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+  let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -88,13 +81,11 @@ export async function generateMetadata({ params }: Props) {
 export default async function Blog({ params }: Props) {
   const { slug } = await params;
   let posts = getBlogPosts();
-  const views =
-    (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
+  const views = (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
 
   const sortedPosts = posts.sort(
     (a, b) =>
-      new Date(b.metadata.publishedAt).getTime() -
-      new Date(a.metadata.publishedAt).getTime(),
+      new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime(),
   );
 
   let postIndex = sortedPosts.findIndex((post) => post.slug === slug);
@@ -140,9 +131,7 @@ export default async function Blog({ params }: Props) {
         />
 
         <ReportView slug={slug} />
-        <h1 className="title font-semibold text-2xl tracking-tighter">
-          {post.metadata.title}
-        </h1>
+        <h1 className="title font-semibold text-2xl tracking-tighter">{post.metadata.title}</h1>
         <div className="flex gap-4 sm:gap-0 flex-wrap justify-between items-center mt-2 mb-6 text-sm">
           <div className="flex flex-wrap gap-4">
             <p className="flex text-sm text-neutral-600 dark:text-neutral-400">
@@ -157,9 +146,7 @@ export default async function Blog({ params }: Props) {
               className="flex items-center gap-1 text-neutral-600 dark:text-neutral-400"
             >
               <Eye className="w-5 h-5" />
-              {Intl.NumberFormat("en-US", { notation: "compact" }).format(
-                views,
-              )}
+              {Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
             </span>
           </div>
           <div className="flex">
@@ -173,7 +160,7 @@ export default async function Blog({ params }: Props) {
           <CustomMDX source={content} />
         </article>
 
-        <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-lg md:my-10 dark:bg-neutral-700" />
+        <hr className="w-60 h-0.5 mx-auto my-4 bg-neutral-200 border-0 rounded-sm md:my-10 dark:bg-neutral-700" />
 
         <div className="flex justify-between mt-8">
           {previousPost ? (
