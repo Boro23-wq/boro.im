@@ -20,10 +20,7 @@ export function BlogPosts({ page }: BlogPostsProps) {
   const isHomePage = page === "home";
 
   const sortedBlogs = allBlogs.sort((a, b) => {
-    return (
-      new Date(b.metadata.publishedAt).getTime() -
-      new Date(a.metadata.publishedAt).getTime()
-    );
+    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
   });
 
   const blogsToDisplay = isHomePage ? sortedBlogs.slice(0, 5) : sortedBlogs;
@@ -38,79 +35,55 @@ export function BlogPosts({ page }: BlogPostsProps) {
       return acc;
     }, {});
 
-    return Object.entries(grouped).sort(
-      ([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA),
-    );
+    return Object.entries(grouped).sort(([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA));
   };
 
   const groupedBlogs = groupBlogsByYear(blogsToDisplay);
 
   return isHomePage ? (
     <div>
-      {blogsToDisplay
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
-        .map((post) => (
-          <Link
-            key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
-            href={`/blog/${post.slug}`}
-          >
-            <div className="w-full flex flex-col items-center md:flex-row space-x-0 md:space-x-2">
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
-                {formatDate(post.metadata.publishedAt, false)}
-              </p>
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                {post.metadata.title}
-              </p>
-            </div>
-          </Link>
-        ))}
+      {blogsToDisplay.map((post) => (
+        <Link key={post.slug} className="flex flex-col space-y-1 mb-4" href={`/blog/${post.slug}`}>
+          <div className="w-full flex flex-col items-center md:flex-row space-x-0 md:space-x-2">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
+              {formatDate(post.metadata.publishedAt, false)}
+            </p>
+            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+              {post.metadata.title}
+            </p>
+          </div>
+        </Link>
+      ))}
     </div>
   ) : (
-    <div className="blog-section">
+    <div className="space-y-4">
       {groupedBlogs.map(([year, posts]) => (
         <div key={year}>
-          <div className="flex relative">
-            <p className="text-sm text-neutral-400 dark:text-neutral-600 w-[100px] tabular-nums relative">
+          <div className="bg-neutral-100/75 dark:bg-neutral-800/40 px-4 py-2 mb-1">
+            <span className="text-xs tracking-wide font-semibold text-neutral-900 dark:text-neutral-400">
               {year}
-            </p>
-            <hr className="ml-4 absolute left-10 right-0 top-1/2 transform -translate-y-1/2 border-t border-neutral-200 dark:border-neutral-700" />
+            </span>
           </div>
-
-          {posts.map((post, index) => {
-            const publishedDate = new Date(post.metadata.publishedAt);
-            const month = String(publishedDate.getMonth() + 1).padStart(2, "0"); // Get the month and pad with leading zero if needed
-            const date = String(publishedDate.getDate()).padStart(2, "0"); // Get the date and pad with leading zero if needed
-
-            return (
-              <div key={index}>
-                <Link
-                  key={post.slug}
-                  className="flex flex-col"
-                  href={`/blog/${post.slug}`}
-                >
-                  <div className="ml-0 sm:ml-12 my-1.5">
-                    <div className="items-start w-full flex justify-between space-x-0 md:space-x-2">
-                      <p className="ml-14 mb-2.5 title transition-all text-[#161616] dark:text-[#d4d4d4] tracking-tight">
-                        {post.metadata.title}
-                      </p>
-
-                      <p className="text-sm text-neutral-400 dark:text-neutral-600">
-                        {month}/{date}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+          {posts.map((post, index) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="flex items-center px-4 py-3 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 border-b border-neutral-100 dark:border-neutral-800/60 last:border-0"
+            >
+              <span className="w-12 text-xs text-neutral-400 font-mono">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="flex-1 text-neutral-700 dark:text-neutral-300">
+                {post.metadata.title}
+              </span>
+              <time className="text-sm text-neutral-500 font-mono">
+                {new Date(post.metadata.publishedAt).toLocaleDateString("en-US", {
+                  month: "2-digit",
+                  day: "2-digit",
+                })}
+              </time>
+            </Link>
+          ))}
         </div>
       ))}
     </div>

@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="flex flex-wrap gap-2 justify-between">
               <div className="flex items-center">
                 <p className="text-neutral-400 dark:text-neutral-500 text-sm">
-                  © {new Date().getFullYear()} Sintu Boro
+                  © {new Date().getFullYear()}
                 </p>
               </div>
               <div>

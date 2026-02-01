@@ -85,13 +85,7 @@ function createHeading(level: number) {
   return Heading;
 }
 
-function CustomCheckbox({
-  checked,
-  children,
-}: {
-  checked: boolean;
-  children: React.ReactNode;
-}) {
+function CustomCheckbox({ checked, children }: { checked: boolean; children: React.ReactNode }) {
   return (
     <div className="flex items-center">
       <input
@@ -118,15 +112,9 @@ function CustomListItem({ children }: { children: any }) {
   return <li className="task-list-item">{children}</li>;
 }
 
-function Callout({
-  children,
-  emoji,
-}: {
-  emoji: string;
-  children: React.ReactNode;
-}) {
+function Callout({ children, emoji }: { emoji: string; children: React.ReactNode }) {
   return (
-    <div className="my-8 px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-gradient-to-r from-neutral-100 via-neutral-100 to-neutral-200 dark:from-neutral-800 dark:via-neutral-800 dark:to-neutral-900 rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100">
+    <div className="my-8 px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-gradient-to-r from-neutral-100 via-neutral-100 to-neutral-200 dark:from-neutral-800 dark:via-neutral-800 dark:to-neutral-900 rounded-sm p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100">
       <div className="flex items-center w-4 mr-6 text-xl">{emoji}</div>
       <div className="w-full callout">{children}</div>
     </div>

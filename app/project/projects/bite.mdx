@@ -1,0 +1,86 @@
+---
+title: Bite — Road to MVP
+summary: Building an AI recipe management app. Documenting weekly progress, and challenges as I build.
+publishedAt: "2025-01-25"
+# image: /projects/cover/bite.png
+tags: ["MVP", "Development", "Building in Public"]
+---
+
+## About Bite
+
+Bite is a recipe management app that solves a simple problem: losing recipes across Instagram saved posts, TikTok bookmarks, screenshots, and random websites. Instead of scattered recipes everywhere, Bite gives you one organized place for all your cooking inspirations.
+
+## The Problem
+
+As someone who cooks everyday and love trying new recipes online, I found myself constantly:
+
+- Saving recipes to Instagram save posts only to scroll endlessly trying to find them
+- Taking screenshots that get lost in my camera roll
+- Bookmarking recipe sites I forget about
+- Copying recipe URLs into random notes apps
+
+There had to be a better way.
+
+## The Solution
+
+Bite lets you save recipes from anywhere using multiple methods:
+
+1. **Screenshot/Photo import** - Upload recipe photos, AI extracts the content
+2. **URL import** - Paste any recipe link from blogs or social media
+3. **Text paste** - Copy/paste recipe text, AI structures it
+4. **Manual entry** - Traditional recipe creation for family recipes
+
+The AI automatically extracts:
+
+- Recipe title and description
+- Ingredient lists with quantities
+- Step-by-step instructions
+- Cooking times and servings
+
+## v1 Features (Shipped)
+
+### Core Features
+
+- **<u>User authentication</u>**: Email and Google sign-in
+- **<u>Recipe creation</u>**: Manual entry with ingredients and instructions
+- **<u>Recipe collection</u>**: View all your saved recipes
+- **<u>Recipe details</u>**: Full ingredient and instruction display
+- **<u>Protected routes</u>**: Secure, user-specific data
+
+### What's Coming Next
+
+- Recipe editing and deletion
+- Image uploads (Cloudinary)
+- AI recipe parsing from Instagram/blog links
+- Recipe tagging and search
+- Meal planning calendar
+- Grocery list generation
+- Nutrition tracking (macros)
+
+### What's NOT in v1
+
+- Mobile native apps
+- Social features / recipe sharing
+- Recipe ratings/reviews
+- Multiple user accounts/family sharing
+
+## Tech Stack
+
+<Image
+  width={400}
+  height={400}
+  src="/projects/bite/tech-stack.svg"
+  alt="Bite tech stack"
+  style={{ margin: "0 auto", display: "block" }}
+/>
+
+## Why I'm Building This
+
+This is my personal project to:
+
+1. Solve my own problem (I genuinely need this as a calorie-conscious eater who likes rotating recipes)
+2. Learn the complete development cycle from building to deployment
+3. Master modern tech stack (Next.js 15, Drizzle, Clerk, etc.)
+4. Ship a complete product end-to-end
+
+I'm documenting the entire journey in my blog - the wins, the challenges, the technical decisions.

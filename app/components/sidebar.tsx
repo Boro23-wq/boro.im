@@ -30,6 +30,11 @@ const navItems = {
     url: "/project",
     pattern: /^\/project\/.+$/,
   },
+  "/project/bite": {
+    name: "bite",
+    url: "/project/bite",
+    pattern: /^\/project\/bite\/.+$/,
+  },
   "/work": {
     name: "home",
     url: "/",
@@ -58,9 +63,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
         const container = containerRef.current;
         setIsScrollable(container.scrollHeight > container.clientHeight);
         setShowBlurTop(container.scrollTop > 0);
-        setShowBlurBottom(
-          container.scrollTop + container.clientHeight < container.scrollHeight,
-        );
+        setShowBlurBottom(container.scrollTop + container.clientHeight < container.scrollHeight);
       }
     };
 
@@ -68,9 +71,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
       if (containerRef.current) {
         const container = containerRef.current;
         setShowBlurTop(container.scrollTop > 0);
-        setShowBlurBottom(
-          container.scrollTop + container.clientHeight < container.scrollHeight,
-        );
+        setShowBlurBottom(container.scrollTop + container.clientHeight < container.scrollHeight);
       }
     };
 
@@ -98,9 +99,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
           <CornerUpLeftIcon className="bg-neutral-50 text-neutral-400 hover:text-neutral-600 dark:bg-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-400 mr-2 h-8 w-8 rounded-full p-2" />
         </Link>
 
-        <span className="mt-0.5 newsreader-400-tall hidden sm:block">
-          {navItem.name}
-        </span>
+        <span className="mt-0.5 newsreader-400-tall hidden sm:block">{navItem.name}</span>
       </div>
 
       {headings && headings.length > 0 && (
@@ -113,9 +112,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
               {headings.map((heading, index) => {
                 const formattedId = formatHeadingToId(heading);
                 const isNumbered = /^\d+\./.test(heading);
-                const headingText = isNumbered
-                  ? heading.replace(/^\d+\.\s*/, "")
-                  : heading;
+                const headingText = isNumbered ? heading.replace(/^\d+\.\s*/, "") : heading;
 
                 return (
                   <li
@@ -123,9 +120,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
                     className="my-3 text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-400 transition-all text-[15px]"
                   >
                     <Link
-                      href={`/${
-                        path === "/blog-post" ? "blog" : "project"
-                      }/${slug}#${formattedId}`}
+                      href={`/${path === "/blog-post" ? "blog" : "project"}/${slug}#${formattedId}`}
                     >
                       {headingText}
                     </Link>
@@ -135,9 +130,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
             </ul>
           </div>
           {showBlurTop && <div className="absolute scroll-blur-top"></div>}{" "}
-          {showBlurBottom && (
-            <div className="absolute scroll-blur-bottom"></div>
-          )}{" "}
+          {showBlurBottom && <div className="absolute scroll-blur-bottom"></div>}{" "}
         </div>
       )}
     </div>

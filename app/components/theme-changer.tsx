@@ -49,7 +49,7 @@ export const ThemeChanger = () => {
         id="hs-dropdown-default"
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="py-1 px-2 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-neutral-200 bg-white text-neutral-400 shadow-sm hover:bg-neutral-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-500 dark:hover:bg-neutral-800"
+        className="py-1 px-2 inline-flex items-center gap-x-2 text-xs font-medium rounded-sm border border-neutral-200 bg-white text-neutral-400 shadow-sm hover:bg-neutral-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-500 dark:hover:bg-neutral-800"
       >
         {theme === "system" && <SunMoonIcon className="w-3.5 h-3.5" />}
         {theme === "light" && <SunIcon className="w-3.5 h-3.5" />}
@@ -57,9 +57,7 @@ export const ThemeChanger = () => {
 
         {capitalizeFirstLetter(theme)}
         <svg
-          className={`size-4 transform transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`size-4 transform transition-transform ${isOpen ? "rotate-180" : ""}`}
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -75,26 +73,26 @@ export const ThemeChanger = () => {
       </button>
 
       <div
-        className={`absolute min-w-full left-0 transform -translate-y-full -mt-1 bg-white shadow-md rounded-lg p-2 dark:bg-neutral-900 dark:border dark:border-neutral-700 dark:divide-neutral-700 transition-opacity duration-200 ${
+        className={`absolute min-w-full left-0 transform -translate-y-full -mt-1 bg-white shadow-md rounded-sm p-2 dark:bg-neutral-900 dark:border dark:border-neutral-700 dark:divide-neutral-700 transition-opacity duration-200 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
         <button
-          className="flex justify-between min-w-full items-center gap-x-3.5 py-1 px-2 rounded-lg text-xs text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 dark:focus:bg-neutral-800"
+          className="flex justify-between min-w-full items-center gap-x-3.5 py-1 px-2 rounded-sm text-xs text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 dark:focus:bg-neutral-800"
           onClick={() => handleChange("system")}
         >
           System
           {theme === "system" && <ThemeIndicator />}
         </button>
         <button
-          className="flex justify-between min-w-full items-center gap-x-3.5 py-1 px-2 rounded-lg text-xs text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 dark:focus:bg-neutral-800"
+          className="flex justify-between min-w-full items-center gap-x-3.5 py-1 px-2 rounded-sm text-xs text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 dark:focus:bg-neutral-800"
           onClick={() => handleChange("light")}
         >
           Light
           {theme === "light" && <ThemeIndicator />}
         </button>
         <button
-          className="flex justify-between min-w-full items-center gap-x-3.5 py-1 px-2 rounded-lg text-xs text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 dark:focus:bg-neutral-800"
+          className="flex justify-between min-w-full items-center gap-x-3.5 py-1 px-2 rounded-sm text-xs text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 dark:focus:bg-neutral-800"
           onClick={() => handleChange("dark")}
         >
           Dark

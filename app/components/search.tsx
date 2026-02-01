@@ -72,7 +72,7 @@ export default function Search({
         setActive(false); // Close results window when query is empty
       }
     },
-    [fetchResults]
+    [fetchResults],
   );
 
   const onFocus = useCallback(() => {
@@ -81,10 +81,7 @@ export default function Search({
   }, []);
 
   const onClick = useCallback((event: MouseEvent) => {
-    if (
-      searchRef.current &&
-      !searchRef.current.contains(event.target as Node)
-    ) {
+    if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
       setActive(false);
       window.removeEventListener("click", onClick as EventListener);
     }
@@ -112,7 +109,7 @@ export default function Search({
       </div>
       <div className="relative" ref={searchRef}>
         <input
-          className="pl-10 pr-8 border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800 hover:border hover:border-neutral-200 hover:dark:border-neutral-700 transition-all rounded-md p-2 w-full text-sm focus:outline-none focus:ring-0 dark:placeholder-neutral-500 placeholder:text-sm"
+          className="pl-10 pr-8 border border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800 hover:border hover:border-neutral-200 hover:dark:border-neutral-700 transition-all rounded-sm p-2 w-full text-sm focus:outline-none focus:ring-0 dark:placeholder-neutral-500 placeholder:text-sm"
           onChange={onChange}
           onFocus={onFocus}
           // placeholder="Search blog posts..."
@@ -138,7 +135,7 @@ export default function Search({
 
         {(active || displayedResults.length > 0) && (
           <div className="relative">
-            <ul className="border border-neutral-100 dark:border-neutral-800 rounded-md list-none overflow-hidden my-2 py-1 px-2 absolute top-full left-0 right-0 z-50 backdrop-filter backdrop-blur-2xl max-h-80 overflow-y-auto">
+            <ul className="border border-neutral-100 dark:border-neutral-800 rounded-sm list-none overflow-hidden my-2 py-1 px-2 absolute top-full left-0 right-0 z-50 backdrop-filter backdrop-blur-2xl max-h-80 overflow-y-auto">
               {loading ? (
                 <div className="flex justify-center m-0 px-6 py-2">
                   <LoaderIcon className="h-5 w-5 animate-spin" />
@@ -147,13 +144,11 @@ export default function Search({
                 displayedResults.map(({ id, title }) => (
                   <li className="text-white m-0 py-0.5" key={id}>
                     <Link href="/blog/[id]" as={`/blog/${id}`}>
-                      <div className="flex items-center hover:bg-neutral-100 dark:hover:bg-neutral-800 w-full p-2 rounded-md">
+                      <div className="flex items-center hover:bg-neutral-100 dark:hover:bg-neutral-800 w-full p-2 rounded-sm">
                         <div className="flex-shrink-0">
                           <FileTextIcon className="h-5 w-5 text-neutral-400" />
                         </div>
-                        <p className="text-neutral-800 dark:text-white ml-4 ">
-                          {title}
-                        </p>
+                        <p className="text-neutral-800 dark:text-neutral-200 ml-4 ">{title}</p>
                       </div>
                     </Link>
                   </li>
@@ -166,10 +161,7 @@ export default function Search({
 
               {hasMoreResults && !loading ? (
                 <div className="flex justify-center mt-2 cursor-pointer">
-                  <ChevronDownIcon
-                    onClick={loadMoreResults}
-                    className="animate-bounce w-6 h-6"
-                  />
+                  <ChevronDownIcon onClick={loadMoreResults} className="animate-bounce w-6 h-6" />
                 </div>
               ) : (
                 displayedResults.length > 0 &&

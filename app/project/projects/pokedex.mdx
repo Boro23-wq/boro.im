@@ -2,7 +2,7 @@
 title: Pokedex
 summary: Next.js's ability to render an application on the client-side (in the browser), on the server-side as well as the ability to statically generate pages during build time.
 publishedAt: "2021-08-06"
-image: /projects/cover/pokedex.png
+# image: /projects/cover/pokedex.png
 tags: ["Next.js", "Data fetching", "Rendering"]
 # slug: pokedex
 ---
@@ -25,12 +25,7 @@ Static-site generation generates the pages during build time. Basically, a site 
 
 ## How CSR works?
 
-<Image
-  src="/blog/csr-ssr-ssg/csr-steps.png"
-  alt="csr-steps"
-  width={800}
-  height={800}
-/>
+<Image src="/blog/csr-ssr-ssg/csr-steps.png" alt="csr-steps" width={800} height={800} />
 
 - When a client sends a request to the server for a webpage, the server sends a blank HTML page (without any dynamic data) to the client.
 - The client immediately serves the blank HTML page with the loading state. (We would notice loading animations most of the time). That is when the client is making those API requests to fetch the dynamic data.
@@ -39,12 +34,7 @@ Static-site generation generates the pages during build time. Basically, a site 
 ## How SSR works?
 
 <div>
-  <Image
-    src="/blog/csr-ssr-ssg/ssr-steps.png"
-    alt="ssr-steps"
-    width={800}
-    height={800}
-  />
+  <Image src="/blog/csr-ssr-ssg/ssr-steps.png" alt="ssr-steps" width={800} height={800} />
 </div>
 
 - When a client sends a request to the server for a webpage, the server essentially pre-renders and prepares the HTML page with all the dynamic data.
@@ -54,12 +44,7 @@ Static-site generation generates the pages during build time. Basically, a site 
 ## How SSG works?
 
 <div>
-  <Image
-    src="/blog/csr-ssr-ssg/ssg-steps.png"
-    alt="ssg-steps"
-    width={800}
-    height={800}
-  />
+  <Image src="/blog/csr-ssr-ssg/ssg-steps.png" alt="ssg-steps" width={800} height={800} />
 </div>
 
 - The basic static-site generation involves pre-generating or generating the pages (with/without dynamic data) during the build time even before any user requests.

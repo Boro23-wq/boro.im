@@ -47,10 +47,7 @@ export const Carousel = ({ imgs, subtitle }) => {
   return (
     <>
       <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
-        <div
-          className="relative w-full max-w-[640px] flex items-center"
-          {...handlers}
-        >
+        <div className="relative w-full max-w-[640px] flex items-center" {...handlers}>
           {/* Left/right controls */}
           <AnimatePresence>
             {isFocus && (
@@ -130,7 +127,7 @@ export const Carousel = ({ imgs, subtitle }) => {
         </div>
       </MotionConfig>
 
-      <p className="!mt-4 text-center text-xs text-neutral-400 dark:text-neutral-500">
+      <p className="!mt-4 text-center uppercase font-semibold text-xs text-neutral-400 dark:text-neutral-500">
         {subtitle}
       </p>
 

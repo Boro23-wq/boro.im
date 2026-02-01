@@ -39,16 +39,9 @@ export async function generateMetadata({ params }: Props) {
   const project = getProjects().find((p) => p.slug === slug);
   if (!project) return;
 
-  const {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = project.metadata;
+  const { title, publishedAt: publishedTime, summary: description, image } = project.metadata;
 
-  const ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -118,9 +111,7 @@ export default async function Project({ params }: Props) {
               description: project.metadata.summary,
               image: project.metadata.image
                 ? `${baseUrl}${project.metadata.image}`
-                : `${baseUrl}/og?title=${encodeURIComponent(
-                    project.metadata.title,
-                  )}`,
+                : `${baseUrl}/og?title=${encodeURIComponent(project.metadata.title)}`,
               url: `${baseUrl}/project/${project.slug}`,
               author: {
                 "@type": "Person",
@@ -130,9 +121,7 @@ export default async function Project({ params }: Props) {
           }}
         />
 
-        <h1 className="title font-semibold text-2xl tracking-tighter">
-          {project.metadata.title}
-        </h1>
+        <h1 className="title font-semibold text-2xl tracking-tighter">{project.metadata.title}</h1>
 
         <div className="flex flex-col">
           <div className="flex flex-wrap gap-4 sm:gap-0 justify-between items-left sm:items-center mt-2 text-sm">
@@ -153,11 +142,11 @@ export default async function Project({ params }: Props) {
           </div>
 
           {allTags.length > 0 && (
-            <div className="flex mt-6 mb-8">
+            <div className="flex mt-4 mb-6">
               {allTags.map((tag, index) => (
                 <p
                   key={`${tag}-${index}`}
-                  className="text-sm mr-2 px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
+                  className="text-sm mr-2 px-2 py-1 rounded-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
                 >
                   {tag}
                 </p>
