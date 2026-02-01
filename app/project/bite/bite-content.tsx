@@ -99,7 +99,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
       </div>
 
       {/* Cards row - below timeline */}
-      <div className="relative overflow-hidden border-t border-neutral-200 dark:border-neutral-800">
+      <div className="relative overflow-hidden border-neutral-200 dark:border-neutral-800">
         {/* Left blur gradient */}
         {canScrollLeft && (
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white dark:from-[#161616] via-white/50 dark:via-[#161616]/50 to-transparent z-10 pointer-events-none" />
@@ -124,7 +124,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
             }
           }}
         >
-          <div className="relative inline-flex min-w-full">
+          <div className="relative inline-flex">
             {/* Posts */}
             {displayedPosts.map((post, index) => (
               <Link
@@ -132,7 +132,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
                 href={`/project/bite/${post.slug}`}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative flex flex-col flex-shrink-0 w-[320px] border-b border-r border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ${
+                className={`group relative flex flex-col flex-shrink-0 w-[320px] border-t border-b border-r border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ${
                   index === 0 ? "border-l" : ""
                 }`}
               >
@@ -158,7 +158,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
 
             {/* Load more button inline */}
             {hasMore && (
-              <div className="flex-shrink-0 w-[200px] flex items-center justify-center border-b border-r border-neutral-200 dark:border-neutral-800">
+              <div className="flex-shrink-0 w-[200px] flex items-center justify-center border-t border-b border-r border-neutral-200 dark:border-neutral-800">
                 <button
                   onClick={loadMore}
                   className="px-6 py-3 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-300 text-sm font-medium whitespace-nowrap"

@@ -42,15 +42,40 @@ A solution that drives the optimization of every facet of documenting components
 
 ## Key stakeholders
 
-| #   | Stakeholder           | Use case                                                                                 |
-| --- | --------------------- | ---------------------------------------------------------------------------------------- |
-| 1.  | Patients              | Retrieve case information, monitor case health, and access self-service.                 |
-| 2.  | Medical practitioners | Access patient information to build personalized case plan, and perform risk evaluation. |
-| 3.  | Insurance providers   | Provide services to fit patient needs.                                                   |
-| 4.  | Care-givers           | Access health information, and review cases.                                             |
-| 5.  | Case managers         | Maintains external data, determines plan objectives and suggests health recommendations. |
-| 6.  | PM/BA's               | Responsible for gathering and prioritizing requirements of the case notes system.        |
-| 7.  | Development team      | Responsible for design and implementation of the case notes backend and frontend system. |
+<Table
+  data={{
+    headers: ["#", "Stakeholder", "Use case"],
+    rows: [
+      [
+        "1.",
+        "Patients",
+        "Retrieve case information, monitor case health, and access self-service.",
+      ],
+      [
+        "2.",
+        "Medical practitioners",
+        "Access patient information to build personalized case plan, and perform risk evaluation.",
+      ],
+      ["3.", "Insurance providers", "Provide services to fit patient needs."],
+      ["4.", "Care-givers", "Access health information, and review cases."],
+      [
+        "5.",
+        "Case managers",
+        "Maintains external data, determines plan objectives and suggests health recommendations.",
+      ],
+      [
+        "6.",
+        "PM/BA's",
+        "Responsible for gathering and prioritizing requirements of the case notes system.",
+      ],
+      [
+        "7.",
+        "Development team",
+        "Responsible for design and implementation of the case notes backend and frontend system.",
+      ],
+    ],
+  }}
+/>
 
 ## Basic requirements for persona description
 
@@ -82,15 +107,16 @@ A solution that drives the optimization of every facet of documenting components
 
 ## User stories considered
 
-1. <u>As an admin:</u>
-   - I should be able to create, and manage case managers, so that I can assure appropriate medical care for the patients.
+1. <u>As an admin:</u>- I should be able to create, and manage case managers, so that I can assure
+   appropriate medical care for the patients.
 
-2. <u>As a case manager:</u>
-   - I should be able to create, and manage a case, so that I can retrieve a clients’ case information and case history on demand.
-   - I should be able to attach top-level categories to a case, so that it is easier to retrieve cases based on the category.
-   - I should be able to attach severity definitions to the case, so that volatile cases can be monitored closely.
-   - I should be able to implement a dedicated client plan, so that the efficacy of a plan can be closely monitored.
-   - I should be able to create a case note, on any of my cases, so that I can retrieve notes in the future while dealing with a case.
+2. <u>As a case manager:</u>- I should be able to create, and manage a case, so that I can retrieve
+   a clients’ case information and case history on demand. - I should be able to attach top-level
+   categories to a case, so that it is easier to retrieve cases based on the category. - I should be
+   able to attach severity definitions to the case, so that volatile cases can be monitored closely.
+   - I should be able to implement a dedicated client plan, so that the efficacy of a plan can be
+   closely monitored. - I should be able to create a case note, on any of my cases, so that I can
+   retrieve notes in the future while dealing with a case.
 
 In addition, we have formulated specific acceptance criteria for each user story. For example:
 
@@ -110,21 +136,21 @@ As a case manager, I should be able to upload my profile picture, so that I can 
 
 ## Tech Stack (Frontend)
 
-- `Next.js` - Production ready applications and scales.2.
-- `Typescript` - For type-safety.
-- `Tailwind CSS` - Next generation Typescript and Node ORM.
-- `Iron-session` - Node.js stateless session utility.
-- `Vercel` - Seamless deployment and scaling.
+- **<u>Next.js</u>** - Production ready applications and scales.
+- **<u>Typescript</u>** - For type-safety.
+- **<u>Tailwind CSS</u>** - Next generation Typescript and Node ORM.
+- **<u>Iron-session</u>** - Node.js stateless session utility.
+- **<u>Vercel</u>** - Seamless deployment and scaling.
 
 ## Tech Stack (Backend)
 
-- `Postman` - Design and test API.
-- `Jest + Supertest` - E2E testing.
-- `Nest.js` - Progressive Node.js framework.
-- `Typescript` - For type-safety
-- `Prisma` - Next generation Typescript and Node ORM.
-- `Planetscale` - Scalable MYSQL platform.
-- `Vercel` - Serverless, event-driven compute service.
+- **<u>Postman</u>** - Design and test API.
+- **<u>Jest + Supertest</u>** - E2E testing.
+- **<u>Nest.js</u>** - Progressive Node.js framework.
+- **<u>Typescript</u>** - For type-safety
+- **<u>Prisma</u>** - Next generation Typescript and Node ORM.
+- **<u>Planetscale</u>** - Scalable MYSQL platform.
+- **<u>Vercel</u>** - Serverless, event-driven compute service.
 
 ## Resources
 

@@ -122,6 +122,34 @@ export function BlogPostsWithSearch({ posts }: BlogPostsWithSearchProps) {
           </div>
         )}
 
+        {/* Blur gradient backdrop above search bar */}
+        <div
+          className={`fixed left-0 right-0 bottom-0 h-64 z-40 pointer-events-none transition-opacity duration-700 ${
+            isSearchVisible ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {/* Light mode gradient */}
+          <div
+            className="absolute inset-0 dark:hidden"
+            style={{
+              background: "linear-gradient(to top, white, transparent)",
+              backdropFilter: "blur(2px)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent, white 75%)",
+              maskImage: "linear-gradient(to bottom, transparent, white 75%)",
+            }}
+          />
+          {/* Dark mode gradient */}
+          <div
+            className="absolute inset-0 hidden dark:block"
+            style={{
+              background: "linear-gradient(to top, #161616, transparent)",
+              backdropFilter: "blur(2px)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent, #161616 75%)",
+              maskImage: "linear-gradient(to bottom, transparent, #161616 75%)",
+            }}
+          />
+        </div>
+
         {/* Floating Search Bar with smooth slide + fade animation */}
         <div
           className={`fixed left-1/2 -translate-x-1/2 w-full max-w-lg px-4 z-50 transition-all duration-700 ease-out ${

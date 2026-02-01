@@ -23,6 +23,14 @@ By the end of Week 1, Bite is live, actually deployed and working. We can sign u
 
 Protected routes, type-safe queries, the whole flow from auth to database just works. It's very minimal at its core, but it's real. The best part? Runs entirely free. The only cost I had to incur is a few bucks for getting the domain. Honestly, since I started coding 10 years ago, the barrier to shipping real products has never been this lower.
 
+<Image
+  width={800}
+  height={800}
+  src="/projects/bite/bite-erd-light.png"
+  darkSrc="/projects/bite/bite-erd-dark.png"
+  alt="Bite database schema"
+/>
+
 ## Technical Decisions
 
 **<u>Production database</u>**: Could've used JSON fields for ingredients/instructions, but built proper relational tables (recipes → ingredients, instructions, tags). More work now, zero regret later.

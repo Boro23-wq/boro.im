@@ -25,26 +25,45 @@ const prettyCodeOptions = {
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   return (
-    <table className="table-blur">
-      <thead>
-        <tr>
-          {data.headers.map((header, index) => (
-            <th className="newsreader-400" key={index}>
-              {header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.rows.map((row, index) => (
-          <tr key={index}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
+    <div className="my-8 overflow-x-auto">
+      <div className="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden inline-block">
+        <table>
+          <thead>
+            <tr className="bg-neutral-100 dark:bg-neutral-900/20">
+              {data.headers.map((header, index) => (
+                <th
+                  key={index}
+                  className="newsreader-400 text-left text-sm text-neutral-900 dark:text-neutral-100 px-4 py-3"
+                >
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.rows.map((row, index) => (
+              <tr
+                key={index}
+                className={
+                  index % 2 === 0
+                    ? "bg-white dark:bg-neutral-800/35"
+                    : "bg-neutral-100/50 dark:bg-neutral-900/50"
+                }
+              >
+                {row.map((cell, cellIndex) => (
+                  <td
+                    key={cellIndex}
+                    className="px-4 py-3 text-sm text-neutral-700 dark:text-neutral-300"
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
             ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 

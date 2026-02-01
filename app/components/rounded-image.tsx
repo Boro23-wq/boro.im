@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Modal from "./modal";
 
 const RoundedImage = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleImageClick = () => {
     setIsModalOpen(true);
@@ -14,6 +21,8 @@ const RoundedImage = (props) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const imageSrc = mounted && props.darkSrc && theme === "dark" ? props.darkSrc : props.src;
 
   return (
     <>
@@ -25,12 +34,13 @@ const RoundedImage = (props) => {
           alt={props.alt}
           className="drop-shadow-md rounded-none md:rounded-sm cursor-zoom-in"
           {...props}
+          src={imageSrc}
           onClick={handleImageClick}
         />
 
         {isModalOpen && (
           <Modal
-            src={props.src}
+            src={imageSrc}
             alt={props.alt}
             onClose={handleCloseModal}
             isModalOpen={isModalOpen}

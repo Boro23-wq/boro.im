@@ -95,13 +95,7 @@ _This text will be italic_
 Format: ![Alt Text](url)
 ```
 
-<Image
-  src="/blog/markdown/GitHub-Mark.png"
-  alt="Github Logo"
-  priority
-  width={800}
-  height={800}
-/>
+<Image src="/blog/markdown/GitHub-Mark.png" alt="Github Logo" priority width={800} height={800} />
 
 ## Links
 
@@ -177,19 +171,12 @@ function fancyAlert(arg) {
 
 You can create tables by assembling a list of words and dividing them with hyphens `-` (for the first row), and then separating each column with a pipe `|`:
 
-```md
-| First Header                | Second Header                |
-| --------------------------- | ---------------------------- |
-| Content from cell 1         | Content from cell 2          |
-| Content in the first column | Content in the second column |
-```
-
 <Table
   data={{
-    headers: ["First Header", "Second Header"],
+    headers: ["#", "First Header", "Second Header"],
     rows: [
-      ["Content from cell 1.", "Content from cell 2."],
-      ["Content in the first column.", "PContent in the second column."],
+      ["1.", "Content from cell 1.", "Content from cell 2."],
+      ["2.", "Content in the first column.", "Content in the second column."],
     ],
   }}
 />

@@ -13,7 +13,7 @@ const Scroller = () => {
             <div className="flex items-center mb-2">
               <Link
                 href="https://overreacted.io/before-you-memo/"
-                className="mr-1 text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className="mr-1 text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
                 passHref
                 target="_blank"
               >
@@ -29,7 +29,7 @@ const Scroller = () => {
             <div className="flex items-center mb-2">
               <Link
                 href="https://kentcdodds.com/blog/inversion-of-control"
-                className="mr-1  text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className="mr-1  text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
                 passHref
                 target="_blank"
               >
@@ -50,7 +50,7 @@ const Scroller = () => {
             <div className="mb-2">
               <Link
                 href="/blog/netflix-architecture"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
               >
                 Netflix streaming
               </Link>
@@ -63,7 +63,7 @@ const Scroller = () => {
             <div className="mb-2">
               <Link
                 href="/blog/aws-cognito-for-user-auth"
-                className="text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className="text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
               >
                 AWS Cognito setup
               </Link>
@@ -76,7 +76,7 @@ const Scroller = () => {
             <div className="flex items-center mb-2">
               <Link
                 href="/blog"
-                className="text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className="text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
               >
                 All blogs
               </Link>
@@ -94,7 +94,7 @@ const Scroller = () => {
             <div className="flex items-center mb-2">
               <Link
                 href="/project/carely"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
               >
                 Carely
               </Link>
@@ -107,7 +107,7 @@ const Scroller = () => {
             <div className="flex items-center mb-2">
               <Link
                 href="/project/ui-ux-design"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
               >
                 UI/UX Design
               </Link>
@@ -120,7 +120,7 @@ const Scroller = () => {
             <div className="flex items-center mb-2">
               <Link
                 href="/project"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
               >
                 All projects
               </Link>
