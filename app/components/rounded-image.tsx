@@ -32,7 +32,7 @@ const RoundedImage = (props) => {
         </p>
         <Image
           alt={props.alt}
-          className="drop-shadow-md rounded-none md:rounded-sm cursor-zoom-in"
+          className="rounded-none md:rounded-sm cursor-zoom-in"
           {...props}
           src={imageSrc}
           onClick={handleImageClick}

@@ -1,6 +1,6 @@
 "use client";
 
-import { CornerUpLeftIcon } from "lucide-react";
+import { MoveUpLeft } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -96,7 +96,7 @@ export function Sidebar({ slug, headings, path }: SidebarProps) {
     <div className="sidebar md:sticky dark:text-[#d4d4d4] transition-all">
       <div className="flex mb-10">
         <Link className="hover:animate-left-translate" href={navItem.url}>
-          <CornerUpLeftIcon className="bg-neutral-50 text-neutral-400 hover:text-neutral-600 dark:bg-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-400 mr-2 h-8 w-8 rounded-full p-2" />
+          <MoveUpLeft className="bg-neutral-50 text-neutral-400 hover:text-neutral-600 dark:bg-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-400 mr-2 h-8 w-8 rounded-sm p-2" />
         </Link>
 
         <span className="mt-0.5 newsreader-400-tall hidden sm:block">{navItem.name}</span>
