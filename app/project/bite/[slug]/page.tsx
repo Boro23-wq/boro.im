@@ -120,7 +120,7 @@ export default async function BitePost({ params }: Props) {
               <Link
                 aria-label={`Go to previous page: ${previousPost.metadata.title}`}
                 className="flex flex-col justify-between text-md"
-                href={`/project/${previousPost.slug}`}
+                href={`/project/bite/${previousPost.slug}`}
               >
                 <span className="transition-all text-sm mb-1 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300">
                   Previous
@@ -139,7 +139,7 @@ export default async function BitePost({ params }: Props) {
               <Link
                 aria-label={`Go to next page: ${nextPost.metadata.title}`}
                 className="flex flex-col justify-between text-md"
-                href={`/project/${nextPost.slug}`}
+                href={`/project/bite/${nextPost.slug}`}
               >
                 <span className="text-right transition-all text-sm mb-1 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300">
                   Next

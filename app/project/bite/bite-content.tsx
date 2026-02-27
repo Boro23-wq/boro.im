@@ -1,9 +1,8 @@
-// app/project/bite/bite-content.tsx
 "use client";
 
 import Link from "next/link";
 import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 type Post = {
   metadata: {
@@ -24,9 +23,18 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const displayedPosts = bitePosts.slice(0, displayCount);
-  const hasMore = displayCount < bitePosts.length;
-  const remainingCount = bitePosts.length - displayCount;
+  const sortedPosts = useMemo(
+    () =>
+      [...bitePosts].sort(
+        (a, b) =>
+          new Date(a.metadata.publishedAt).getTime() - new Date(b.metadata.publishedAt).getTime(),
+      ),
+    [bitePosts],
+  );
+
+  const displayedPosts = sortedPosts.slice(0, displayCount);
+  const hasMore = displayCount < sortedPosts.length;
+  const remainingCount = sortedPosts.length - displayCount;
 
   const checkScroll = () => {
     if (cardsScrollRef.current) {
@@ -56,7 +64,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
   };
 
   const loadMore = () => {
-    setDisplayCount((prev) => Math.min(prev + POSTS_PER_PAGE, bitePosts.length));
+    setDisplayCount((prev) => Math.min(prev + POSTS_PER_PAGE, sortedPosts.length));
     setTimeout(() => {
       if (cardsScrollRef.current) {
         cardsScrollRef.current.scrollTo({
@@ -75,7 +83,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
         </h2>
         <div className="flex items-center gap-2">
           <span className="text-sm text-neutral-400 dark:text-neutral-500">
-            {bitePosts.length} {bitePosts.length === 1 ? "update" : "updates"}
+            {sortedPosts.length} {sortedPosts.length === 1 ? "update" : "updates"}
           </span>
           <div className="flex gap-1 ml-2">
             <button

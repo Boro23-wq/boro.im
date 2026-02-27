@@ -1,0 +1,50 @@
+---
+title: Week 3 - Meal Planning & Polish
+publishedAt: "2025-02-10"
+summary: Built a drag-and-drop meal planning calendar, enhanced recipe imports with macros, and gave the UI a glassmorphism glow-up
+tags: ["building-bite", "meal-planning", "design", "week-3"]
+---
+
+## The Pillar
+
+Before building anything this week I went and read what real people complain about in meal planning apps. Spent time on r/MealPrepSunday and the pattern was obvious — people hate being locked into an app's recipe database, they hate paying $8/month for a grocery list, and they just want their own recipes on a calendar. Bite already has the "your own recipes" part. So I built the calendar.
+
+## Meal Planning Calendar
+
+Weekly view with breakfast, lunch, dinner, and snack slots for each day. Your recipes show up in a sidebar and you drag them onto whatever slot you want. Navigate between weeks. That's it.
+
+Used @dnd-kit for drag-and-drop because react-beautiful-dnd is deprecated and FullCalendar felt like overkill. @dnd-kit gives you the pieces and you put them together however you want.
+
+For the calendar itself I just used date-fns and Tailwind. No calendar library. The UI is specific enough that any off-the-shelf option would've been more work to customize than building from scratch. Two new tables in the database (meal_plans and meal_plan_recipes) and Drizzle migrations picked them up without touching existing tables.
+
+<Image
+  width={800}
+  height={800}
+  src="/projects/bite/week-3/meal-plan.png"
+  darkSrc="/projects/bite/week-3/meal-plan.png"
+  alt="Meal planning"
+/>
+
+## Recipe Import Enhancements
+
+The URL importer now pulls in servings, yield, cook notes, and macros — calories, fat, carbs, protein. Both per-serving and total where available. The schema.org data usually has this stuff, I just wasn't grabbing it before.
+
+Also tightened up the image proxy. When you're fetching arbitrary URLs from user input, you want to be careful.
+
+## Technical Decisions
+
+**<u>@dnd-kit over alternatives</u>**: react-beautiful-dnd is deprecated. FullCalendar is too heavy for what I need. @dnd-kit gives you primitives — sensors, collision detection, sortable contexts — and lets you compose them.
+
+**<u>Custom calendar over a library</u>**: date-fns + Tailwind. The meal plan layout is specific enough that a generic calendar library would need more customization than building it myself.
+
+**<u>View modes via URL params</u>**: Calendar view and list view, switched through search params. Server component reads the param, client handles interaction. URL stays the source of truth.
+
+**<u>Glassmorphism with purpose</u>**: The frosted sidebar actually helps with the drag-and-drop. When something looks like it's on a separate layer, dragging things between layers feels more natural.
+
+## Thoughts
+
+This was the week Bite became something I'd actually use. Having your recipes in a sidebar, dragging them onto a calendar, with no friction — that's what the Reddit users were asking for.
+
+The Reddit research was worth it. Real users telling you what they want is way better than guessing.
+
+Week 4 is grocery lists — the reason you plan meals in the first place.

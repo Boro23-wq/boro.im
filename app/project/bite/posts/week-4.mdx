@@ -1,0 +1,60 @@
+---
+title: Week 4 - Grocery Lists & Responsiveness
+publishedAt: "2025-02-17"
+summary: Auto-generated grocery lists from meal plans, Phase 2 enhancements with drag-and-drop, and making every screen work on mobile
+tags: ["building-bite", "grocery-list", "responsive", "week-4"]
+---
+
+## The Pillar
+
+Week 4 is where everything connects. You save recipes, plan meals, and now Bite generates your grocery list from all of it. Every decision from Week 1 about relational tables and structured ingredient data leads here. This is the feature that makes the whole system actually useful.
+
+## Grocery List Generation
+
+Click "Generate List" on your meal plan and Bite pulls every ingredient from your planned recipes and combines them. Two recipes with chicken breast? One line with the combined amount. Fractions work too — "1/2 cup" plus "3/4 cup" gives you "1 1/4 cups."
+
+Items auto-sort into categories: Produce, Meat & Seafood, Dairy, Pantry, Other. Each category collapses, shows item counts, and has bulk check/uncheck. There's a manual add form at the top because you'll always need stuff that's not in a recipe.
+
+The best part is stale detection. Change your meal plan after generating a list? An orange "Update List" badge shows up. Regenerating keeps your checked items and manual additions while updating recipe quantities. No lost progress.
+
+<Image
+  width={800}
+  height={800}
+  src="/projects/bite/week-4/grocery-list.png"
+  darkSrc="/projects/bite/week-4/grocery-list.png"
+  alt="Grocery list generation"
+/>
+
+## Phase 2: Grocery List Enhancements
+
+The basic list worked but I wanted it to be better. Inline quantity editing — tap the amount and change it. Bulk operations for checking and clearing. Drag-and-drop reordering within categories using @dnd-kit (grip handles on hover, keyboard accessible).
+
+Smart autocomplete for the manual add — start typing "chi" and it suggests "chicken breast" and "chili powder" from your existing recipes. Small feature but surprisingly useful.
+
+Print generates a clean version with just categories and items. No app UI, just a list ready for paper or a screenshot.
+
+## Going Responsive
+
+I'd been building on desktop for three weeks and finally opened it on my phone. Things needed fixing.
+
+The pattern I went with: full pages on mobile, drawers on desktop. The grocery list slides out as a sheet on bigger screens but navigates to a dedicated page on phones. Same component powers both — the parent decides how to present it. CSS handles the switching with `hidden lg:flex` and `lg:hidden`, no duplicate rendering.
+
+The meal plan calendar shows a grid on desktop and a stacked list on mobile, controlled through URL search params so the server component renders correctly on first load. Recipe sidebar becomes a bottom sheet on small screens. Grocery categories get bigger tap targets.
+
+## Technical Decisions
+
+**<u>Ingredient aggregation on the server</u>**: Could've done the combining client-side but server actions mean it runs once, consistently, with direct database access. No reason to ship parsing logic to the browser.
+
+**<u>Category auto-assignment</u>**: A keyword map handles most of it. "Chicken" → Meat, "milk" → Dairy, "onion" → Produce. Covers 90% of cases without anything fancy.
+
+**<u>Drawer vs. page pattern</u>**: One component, two presentations. The grocery list view doesn't know if it's in a Sheet or a page — the parent decides. Same code, both layouts.
+
+**<u>Testing thoughts</u>**: Started thinking about where tests would actually help. Ingredient aggregation and fraction math are good candidates — complex enough to break, pure enough to test easily. UI tests can wait since everything is still changing weekly.
+
+## Thoughts
+
+The grocery list touches every layer of the app: database design, server-side processing, client-side state, responsive layouts, drag-and-drop, and real UX details like stale detection. One feature, every skill involved. This is where the "learn the full cycle" goal really showed up.
+
+Ingredient combining was harder than I expected. Fractions, fuzzy matching ingredient names, handling missing amounts — it's a tricky problem. Kept it simple with string matching and basic fraction math. Good enough for most real cases.
+
+Four weeks in and Bite has auth, recipe management, URL importing, favorites, categories, meal planning with drag-and-drop, and auto-generated grocery lists. All deployed, all free to run. The infrastructure decisions from Week 1 compounded into real speed by Week 4. Every proper schema choice added up.
