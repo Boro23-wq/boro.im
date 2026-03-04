@@ -15,7 +15,6 @@ export const CopyLink = ({ w, h }: CopyLinkProps) => {
     navigator.clipboard
       .writeText(window.location.href)
       .then(() => {
-        console.log("URL copied to clipboard!");
         setDisabled(true);
         setTimeout(() => {
           setDisabled(false);

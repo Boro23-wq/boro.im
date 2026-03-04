@@ -153,9 +153,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
                     <ArrowRightIcon className="w-4 h-4 text-neutral-300 dark:text-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
 
-                  <h3 className="newsreader-400 text-md mb-1 line-clamp-2">
-                    {post.metadata.title}
-                  </h3>
+                  <h3 className="newsreader-400 mb-2 line-clamp-1">{post.metadata.title}</h3>
 
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-3">
                     {post.metadata.summary}
