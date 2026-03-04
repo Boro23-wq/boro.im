@@ -8,6 +8,7 @@ import { BookOpenTextIcon } from "lucide-react";
 import { estimateReadingTime } from "@/lib/reading-time";
 import { CopyLink } from "@/app/components/copy-link";
 import { BiteContent } from "./bite-content";
+import Link from "next/link";
 
 export const metadata = {
   title: "Bite — Recipe Building App",
@@ -19,6 +20,10 @@ export default function BitePage() {
   const biteProject = projects.find((p) => p.slug === "bite");
 
   if (!biteProject) notFound();
+
+  const projectIndex = projects.findIndex((p) => p.slug === "bite");
+  const previousProject = projects[projectIndex - 1] || null;
+  const nextProject = projects[projectIndex + 1] || null;
 
   const bitePosts = getBitePosts()
     .sort((a, b) => {
@@ -100,6 +105,46 @@ export default function BitePage() {
         </article>
 
         <hr className="h-0.5 mx-auto my-8 bg-neutral-200 border-0 dark:bg-neutral-700" />
+
+        <div className="flex justify-between mt-8">
+          {previousProject ? (
+            <div className="flex items-end">
+              <Link
+                aria-label={`Go to previous page: ${previousProject.metadata.title}`}
+                className="flex flex-col justify-between text-md"
+                href={`/project/${previousProject.slug}`}
+              >
+                <span className="transition-all text-sm mb-1 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300">
+                  Previous
+                </span>
+                <span className="w-36 sm:w-60 md:w-75 truncate transition-all text-md text-neutral-700 dark:text-neutral-300">
+                  {previousProject.metadata.title}
+                </span>
+              </Link>
+            </div>
+          ) : (
+            <span />
+          )}
+
+          {nextProject ? (
+            <div className="flex items-end">
+              <Link
+                aria-label={`Go to next page: ${nextProject.metadata.title}`}
+                className="flex flex-col justify-between text-md"
+                href={`/project/${nextProject.slug}`}
+              >
+                <span className="text-right transition-all text-sm mb-1 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300">
+                  Next
+                </span>
+                <span className="text-right w-36 sm:w-60 md:w-75 truncate transition-all text-md text-neutral-700 dark:text-neutral-300">
+                  {nextProject.metadata.title}
+                </span>
+              </Link>
+            </div>
+          ) : (
+            <span />
+          )}
+        </div>
       </section>
     </>
   );

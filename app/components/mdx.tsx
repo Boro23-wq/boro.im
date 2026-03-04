@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 
@@ -158,23 +158,24 @@ const components = {
   Carousel,
 };
 
-export function CustomMDX({
+export async function CustomMDX({
   source,
   components: extraComponents,
 }: {
   source: string;
   components?: Record<string, React.ComponentType<any>>;
 }) {
-  return (
-    <MDXRemote
-      source={source}
-      options={{
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
-        },
-      }}
-      components={{ ...components, ...extraComponents }}
-    />
-  );
+  const { content } = await compileMDX({
+    source,
+    options: {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+      },
+      blockJS: false,
+    },
+    components: { ...components, ...extraComponents },
+  });
+
+  return content;
 }
