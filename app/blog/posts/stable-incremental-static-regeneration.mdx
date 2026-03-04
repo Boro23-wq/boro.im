@@ -16,9 +16,9 @@ Rebuilding a website for every update could be a tedious task. The Incremental S
 For every incoming traffic, background regeneration pushes the newly-generated page after it's done generating, without any interruption.
 
 <Callout emoji="💡">
-  We can use `fallback: true` option to fallback on stale version of the website
-  when a newer version is being generated. Also, fallback is useful when someone
-  requests a page that’s not generated yet.
+  We can use `fallback: true` option to fallback on stale version of the website when a newer
+  version is being generated. Also, fallback is useful when someone requests a page that’s not
+  generated yet.
 </Callout>
 
 ## High-level Architecture
@@ -26,8 +26,8 @@ For every incoming traffic, background regeneration pushes the newly-generated p
 Here in the diagram, we can see User-1 requesting data from an endpoint (/post/1). While the request is made, User-1 immediately receives a stale response of the request (already generated data). At the same time, another request is triggered to update the data which subsequently re-generates the page with the updated data.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/stable-incremental-static-regeneration/image-1.png"
   alt="static-regeneration-image"
 />
@@ -41,8 +41,8 @@ To enable this feature, one has to configure the interval for re-generation in t
 The following application demonstrates the feature of Incremental Static Re-generation. It re-generates a static page that shows the count of various GitHub reactions of a Github issue available [here.](https://reactions-demo.now.sh/)
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/stable-incremental-static-regeneration/app.gif"
   alt="application-demo"
 />
@@ -92,9 +92,7 @@ if (res.status !== 200) {
   throw new Error("Failed to fetch API");
 }
 
-const reactions = json.data.repository.issue.reactionGroups.map(
-  (item) => item.users.totalCount
-);
+const reactions = json.data.repository.issue.reactionGroups.map((item) => item.users.totalCount);
 ```
 
 The data received is an array of objects like so. Each of these items is mapped through and the object property called 'totalCount' has the figure stored that indicates the total number of reactions for each emoji.

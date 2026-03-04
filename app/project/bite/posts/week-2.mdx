@@ -16,8 +16,8 @@ Started with a shadcn sidebar. Dashboard, My Recipes, Create Recipe, Categories,
 Then came search and filtering. Real-time search across title, cuisine, and category. Multi-select filters, sort options, and active filter pills you can individually remove. This stuff seems simple but there's a lot of small decisions — where does the clear button go, should filters persist across navigation, what do empty states look like. It's hard to notice these things until they're wrong.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/projects/bite/week-2/dashboard.png"
   darkSrc="/projects/bite/week-2/dashboard.png"
   alt="Dashboard"
@@ -32,8 +32,8 @@ Built it with Cheerio for server-side HTML parsing. There's a preview before sav
 No API costs, no waiting for AI responses. Just fast parsing. I can always add Gemini later for harder cases like photos of cookbook pages, but for now schema.org handles 90% of the internet and that's plenty.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/projects/bite/week-2/import-recipe.png"
   darkSrc="/projects/bite/week-2/import-recipe.png"
   alt="Import URL"
@@ -46,8 +46,8 @@ Favorites needed optimistic updates to feel right. Click the heart, it fills imm
 Categories got CRUD operations with a pinning system so your most-used categories stay at the top. The whole flow from creating a category to assigning recipes to filtering by it works end to end.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/projects/bite/week-2/categories.png"
   darkSrc="/projects/bite/week-2/categories.png"
   alt="Categories"

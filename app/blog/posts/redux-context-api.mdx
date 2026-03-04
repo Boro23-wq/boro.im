@@ -13,25 +13,18 @@ We will succinctly look through what these technologies do and how they do, whic
 
 Redux is a JavaScript library used to manage the state of applications (mainly popular with React). By "state" I mean everything that is rendered on the view. From adding an element to the DOM or removing an element from the DOM, everything is taken care of by Redux.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/redux-context-api/redux-flow.png"
-  alt="redux-flow"
-/>
+<Image width="800" height="800" src="/blog/redux-context-api/redux-flow.png" alt="redux-flow" />
 
 Listed below are the components that makeup Redux:
 
-- <u>State</u>: A state is where all the logic of your application lies.
-  Basically, the state describes how your application works, and the UI is
-  rendered based on the state.
-- <u>Actions</u>: Actions are methods that are dispatched to trigger an event.
-  Simply, an action is a way to notify that an event has occurred within the
-  application.
-- <u>Reducers</u>: Reducers are methods that catch different actions triggered
-  and modifies the logic to change and update the state of the application.
-- <u>Subscriptions</u>: Subscriptions are methods to make use of the state in
-  your React application (by the components).
+- <u>State</u>: A state is where all the logic of your application lies. Basically, the state
+  describes how your application works, and the UI is rendered based on the state.
+- <u>Actions</u>: Actions are methods that are dispatched to trigger an event. Simply, an action is
+  a way to notify that an event has occurred within the application.
+- <u>Reducers</u>: Reducers are methods that catch different actions triggered and modifies the
+  logic to change and update the state of the application.
+- <u>Subscriptions</u>: Subscriptions are methods to make use of the state in your React application
+  (by the components).
 
 Now since we know a little bit about Redux let's see-through how all of these components work together.
 
@@ -109,16 +102,14 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 ```
 
 We then use the connect method to connect the "mapStateToProps" and "mapDispatchToProps" function to the "ProductsPage" component.
 
-- <u>mapStateToProps</u>: It is used to provide the store data to the
-  components.
-- <u>mapDispatchToProps</u>: It is used to provide the actions as props to your
-  component.
+- <u>mapStateToProps</u>: It is used to provide the store data to the components.
+- <u>mapDispatchToProps</u>: It is used to provide the actions as props to your component.
 
 ```js
 class ProductsPage extends Component {
@@ -139,17 +130,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
 Before the advent of Context API, the data was passed through each component as a prop. So in order to pass down a prop to a child component it had to travel all the way down from the parent component to the child component (Top-down approach) in the state tree. This scenario is not preferable since props are passed down to components that don't need them. Hence Context API now provides a way to expose a shared entity called "state" that can be used by the components without having to explicitly pass a prop through every level of the tree.
 
 <Callout emoji="💡">
-  Prop Drilling is the process by which you pass data from one part of the React
-  Component tree to another by going through other parts that do not need the
-  data but only help in passing it around.
+  Prop Drilling is the process by which you pass data from one part of the React Component tree to
+  another by going through other parts that do not need the data but only help in passing it around.
 </Callout>
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/redux-context-api/context-api.png"
-  alt="context-api"
-/>
+<Image width="800" height="800" src="/blog/redux-context-api/context-api.png" alt="context-api" />
 
 Listed below are the components that mainly makeup Context:
 
@@ -171,10 +156,10 @@ The context object allows the React components to subscribe to this context obje
 
 Upon providing the context, it is now available to all the components to interact with it. Context is usually provided in the root component that wraps all the child components. This allows all the child components to receive their piece of the context when required.
 
-<u>Note</u>: The context can be made available to all the components of the
-application or to only a few components down the tree. For the former case, we
-can pass the context provider in the root component. And for the latter, we can
-provide it to any particular component down the component tree.
+<u>Note</u>: The context can be made available to all the components of the application or to only a
+few components down the tree. For the former case, we can pass the context provider in the root
+component. And for the latter, we can provide it to any particular component down the component
+tree.
 
 The context provider is implemented as below:
 

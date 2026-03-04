@@ -6,28 +6,27 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useSwipeable } from "react-swipeable";
 import Modal from "./modal";
 
-export const Carousel = ({ imgs, subtitle }) => {
+export const Carousel = ({ imgs, subtitle }: { imgs: string | string[]; subtitle?: string }) => {
+  const images = typeof imgs === "string" ? imgs.split(",") : imgs;
+
   const [current, setCurrent] = useState(0);
   const [isFocus, setIsFocus] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Calculate the middle image index
-  const middleIndex = Math.floor(imgs.length / 2);
+  const middleIndex = Math.floor((images?.length ?? 0) / 2);
 
   useEffect(() => {
     setCurrent(middleIndex);
   }, [middleIndex]);
 
+  if (!images || images.length === 0) return null;
+
   const onPrevClick = () => {
-    if (current > 0) {
-      setCurrent(current - 1);
-    }
+    if (current > 0) setCurrent(current - 1);
   };
 
   const onNextClick = () => {
-    if (current < imgs.length - 1) {
-      setCurrent(current + 1);
-    }
+    if (current < images.length - 1) setCurrent(current + 1);
   };
 
   const handlers = useSwipeable({
@@ -36,23 +35,16 @@ export const Carousel = ({ imgs, subtitle }) => {
     trackMouse: true,
   });
 
-  const handleImageClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const handleImageClick = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <>
       <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
         <div className="relative w-full max-w-[640px] flex items-center" {...handlers}>
-          {/* Left/right controls */}
           <AnimatePresence>
             {isFocus && (
               <>
-                {/* Conditionally render left icon */}
                 {current > 0 && (
                   <motion.div
                     className="absolute left-2 flex justify-start z-10"
@@ -70,8 +62,7 @@ export const Carousel = ({ imgs, subtitle }) => {
                     </button>
                   </motion.div>
                 )}
-                {/* Conditionally render right icon */}
-                {current < imgs.length - 1 && (
+                {current < images.length - 1 && (
                   <motion.div
                     className="absolute right-2 flex justify-end z-10"
                     initial={{ opacity: 0 }}
@@ -91,35 +82,34 @@ export const Carousel = ({ imgs, subtitle }) => {
               </>
             )}
           </AnimatePresence>
-          {/* List of images */}
+
           <motion.div
             className="carousel flex gap-4 flex-nowrap"
             animate={{ x: `calc(-${current * 100}% - ${current}rem)` }}
             onHoverStart={() => setIsFocus(true)}
             onHoverEnd={() => setIsFocus(false)}
           >
-            {[...imgs].map((image, idx) => (
+            {images.map((image, idx) => (
               <motion.img
                 key={idx}
                 src={image}
                 alt={`Image ${idx + 1}`}
                 animate={{ opacity: idx === current ? 1 : 0.35 }}
                 className="aspect-[16/9] object-cover !my-0 cursor-pointer"
-                onClick={handleImageClick} // Open modal on click
+                onClick={handleImageClick}
               />
             ))}
           </motion.div>
 
-          {/* Control pill */}
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
             <div className="flex gap-3 px-3 py-2 bg-neutral-800 rounded-full opacity-90">
-              {[...imgs].map((_, idx) => (
+              {images.map((_, idx) => (
                 <button key={idx} onClick={() => setCurrent(idx)}>
                   <div
                     className={`w-2 h-2 rounded-full ${
                       idx === current ? "bg-neutral-200" : "bg-neutral-600"
                     }`}
-                  ></div>
+                  />
                 </button>
               ))}
             </div>
@@ -131,10 +121,9 @@ export const Carousel = ({ imgs, subtitle }) => {
         {subtitle}
       </p>
 
-      {/* Modal */}
       {isModalOpen && (
         <Modal
-          src={imgs[current]}
+          src={images[current]}
           alt={`Image ${current + 1}`}
           onClose={handleCloseModal}
           isModalOpen={isModalOpen}

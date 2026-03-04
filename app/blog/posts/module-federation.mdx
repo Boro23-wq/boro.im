@@ -13,12 +13,7 @@ Before we try out Module Federation in two different Next.js applications and bo
 
 > Micro-frontend architecture is a design approach in which a front-end app is decomposed into individual, semi-independent “microapps” working loosely together. - [Bob Myers](https://www.toptal.com/front-end/micro-frontends-strengths-benefits)
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/mod-fed/mod-fed-1.png"
-  alt="Module Federation"
-/>
+<Image width="800" height="800" src="/blog/mod-fed/mod-fed-1.png" alt="Module Federation" />
 
 Very simply, micro-frontend allows multiple development teams to work on the same front-end application. The decomposed "micro-apps" can be maintained separately as they are de-coupled, which also means that they can be developed and deployed independently.
 
@@ -26,13 +21,13 @@ Very simply, micro-frontend allows multiple development teams to work on the sam
 
 There are couple of terms that we need to define before we can move further ahead.
 
-- <u>Host</u>: A host is a build/module initialized first during a page load. A
-  host can be termed as a provider.
-- <u>Remote</u>: A remote is another build that consumes some part of the host.
-  They can also be referred to as consumers.
+- <u>Host</u>: A host is a build/module initialized first during a page load. A host can be termed
+  as a provider.
+- <u>Remote</u>: A remote is another build that consumes some part of the host. They can also be
+  referred to as consumers.
 
-<u>Note:</u> All applications can be both remote and host, providers, and
-consumers of any other federated module in the system.
+<u>Note:</u> All applications can be both remote and host, providers, and consumers of any other
+federated module in the system.
 
 Furthermore, we need to know another concept of overriding modules. For example, if you're importing a React component that ships along with the entire React code, the local build won't download the React code again, instead it will overwrite the React code and only import the essential component code. This helps the local build to avoid downloading the already existing dependencies.
 
@@ -96,10 +91,7 @@ Once we have all of our packages installed, we now need to create a config file 
 Go ahead and paste the code below inside the `next.config.js` file. All this config does is, require the module-federation npm package and helps us expose the consumable component inside the "exposes" object.
 
 ```jsx title="next.config.js" {15}
-const {
-  withModuleFederation,
-  MergeRuntime,
-} = require("@module-federation/nextjs-mf");
+const { withModuleFederation, MergeRuntime } = require("@module-federation/nextjs-mf");
 const path = require("path");
 
 module.exports = {
@@ -282,12 +274,7 @@ const Home = () => (
 
 In the index file of our remote app, we now import the Header component and render it within the second application. You now need to run both the development servers and there you go you now have a Next.js application (home) that exposes a consumable component which is then consumed by the second Next.js application (remote). I've put up a snapshot of both the applications below for you to demonstrate what we will have after following all the steps above.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/mod-fed/mod-fed-2.png"
-  alt="application demo"
-/>
+<Image width="800" height="800" src="/blog/mod-fed/mod-fed-2.png" alt="application demo" />
 
 Any changes to the home application will now reflect it back on the remote application. How cool is that? That is Module Federation for you.
 

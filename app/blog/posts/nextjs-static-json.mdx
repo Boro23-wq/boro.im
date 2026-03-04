@@ -135,13 +135,7 @@ import { ListItem, Image, Flex, Text, Stack, Heading } from "@chakra-ui/core";
 import NextLink from "next/link";
 
 const Song = ({ id, name, artist, albumCoverUrl }) => (
-  <ListItem
-    border="1px solid"
-    borderColor="gray.200"
-    borderRadius={4}
-    my={2}
-    bg="white"
-  >
+  <ListItem border="1px solid" borderColor="gray.200" borderRadius={4} my={2} bg="white">
     <NextLink href={`/songs/[id]`} as={`/songs/${id}`} passHref>
       <Flex as="a">
         <Image
@@ -173,12 +167,7 @@ Here, a lot of the code is concentrated on styling. There's not much logic going
 
 The demo of the rendered view can be seen below:
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/nextjs-static-json/app-1.png"
-  alt="app-screen-1"
-/>
+<Image width="800" height="800" src="/blog/nextjs-static-json/app-1.png" alt="app-screen-1" />
 
 We now have a rendered view of our application. But what if we want to click on each of these list items and want to render a view for each of the individual songs in the playlist with a video embedded from Youtube.
 
@@ -278,12 +267,7 @@ export default ({ song }) => (
 
 The rendered view of the above file is demonstrated below:
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/nextjs-static-json/app-2.gif"
-  alt="application-demo"
-/>
+<Image width="800" height="800" src="/blog/nextjs-static-json/app-2.gif" alt="application-demo" />
 
 ## Conclusion
 

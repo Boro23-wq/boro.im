@@ -22,8 +22,8 @@ npx create-strapi-app . || npx create-strapi-app . --quickstart
 ```
 
 <Callout emoji="💡">
-  The `--quickstart` flag is used to automatically set the database as SQLite.
-  Since I will be using MongoDB, I would opt for manual installation.
+  The `--quickstart` flag is used to automatically set the database as SQLite. Since I will be using
+  MongoDB, I would opt for manual installation.
 </Callout>
 
 We create two different directories for the frontend and the backend. The frontend
@@ -34,30 +34,15 @@ the Strapi code.
 
 Once we start the local server, we have an interface as shown below. This is the typical workspace provided by Strapi to register our content.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/next-strapi/1.png"
-  alt="interface-1"
-/>
+<Image width="800" height="800" src="/blog/next-strapi/1.png" alt="interface-1" />
 
 The Content-Type builder (on the left-panel) helps us with defining the type of data we will store in the CMS. For this particular tutorial, we will be retrieving information on songs from the CMS. The "Songs" collection will have the following fields: "url", "title", "artist", "genre", as shown in the picture below:
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/next-strapi/2.png"
-  alt="interface-2"
-/>
+<Image width="800" height="800" src="/blog/next-strapi/2.png" alt="interface-2" />
 
 Once we are done defining the types we can now register different songs and store their information in Strapi like so. We have 5 different entries/songs.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/next-strapi/3.png"
-  alt="interface-3"
-/>
+<Image width="800" height="800" src="/blog/next-strapi/3.png" alt="interface-3" />
 
 ## Configuring Database (MongoDB)
 
@@ -81,8 +66,7 @@ module.exports = ({ env }) => ({
 ```
 
 <Callout emoji="💡">
-  Make sure you have the Database connection string saved in .env file in
-  DATABASE_URI.
+  Make sure you have the Database connection string saved in .env file in DATABASE_URI.
 </Callout>
 
 For setting up the database, there's concise documentation by Strapi, which can be found [here.](https://strapi.io/documentation/developer-docs/latest/guides/databases.html) Please make sure you go through the MongoDB section (in the documentation) to set up the database.
@@ -156,12 +140,7 @@ export default function SongCard({ song }) {
 
 There's not a lot going on here. We receive the songs as a prop and then use them to display their content in the form of a card. The rendered view will look something like this:
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/next-strapi/app-screen.png"
-  alt="app-screen"
-/>
+<Image width="800" height="800" src="/blog/next-strapi/app-screen.png" alt="app-screen" />
 
 Here we have all the content (title, artist, and genre) coming from Strapi CMS when we hit the route `/songs`.
 
@@ -171,25 +150,23 @@ Setting up a Headless CMS like Strapi is not at all tedious and requires very li
 
 ### Benefits of using Headless CMS
 
-1. <u>Flexibility</u>: With the traditional CMS, developers had a lot less to
-   contribute in terms of the frontend. They had a few templates they had to
-   rely on. But with the advent of Headless CMS, developers can choose their
-   frontend framework of choice and can heavily focus on building a rich user
-   experience.
-2. <u>Compatibility</u>: You don't have to worry about the user experience on
-   different devices. Headless CMS makes it easy to display content on any
-   device-type from just one convenient backend.
-3. <u> Scalability</u>: The idea behind scalability in Headless CMS is fairly
-   simple. The backend and frontend are basically de-coupled, unlike traditional
-   CMS. So if you want to customize your frontend which means there is no need
-   to touch any backend code. Hence, the service is always live which helps us
-   avoid any downtime due to maintenance.
+1. <u>Flexibility</u>: With the traditional CMS, developers had a lot less to contribute in terms of
+   the frontend. They had a few templates they had to rely on. But with the advent of Headless CMS,
+   developers can choose their frontend framework of choice and can heavily focus on building a rich
+   user experience.
+2. <u>Compatibility</u>: You don't have to worry about the user experience on different devices.
+   Headless CMS makes it easy to display content on any device-type from just one convenient
+   backend.
+3. <u> Scalability</u>: The idea behind scalability in Headless CMS is fairly simple. The backend
+   and frontend are basically de-coupled, unlike traditional CMS. So if you want to customize your
+   frontend which means there is no need to touch any backend code. Hence, the service is always
+   live which helps us avoid any downtime due to maintenance.
 
 So there you go, those were a few benefits of using Headless CMS. And the list doesn't necessarily stop here. There are a number of benefits including the fact that developers can now spend more time focusing on content creation rather than content management is a huge plus. And, if you don't already know:
 
 <Callout emoji="💡">
-  Spotify uses Next.js and Contentful for their platform for artists tool to
-  help them promote music.
+  Spotify uses Next.js and Contentful for their platform for artists tool to help them promote
+  music.
 </Callout>
 
 ## References

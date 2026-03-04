@@ -43,8 +43,8 @@ src / App.js
 
 You might have more files than this. In case you do, go ahead and delete those files as we will no longer need them for this application.
 
-<u>Note</u>: I have only highlighted the src folder since we will only be
-working inside this directory.
+<u>Note</u>: I have only highlighted the src folder since we will only be working inside this
+directory.
 
 Now that we have the basic structure ready, we can keep going.
 
@@ -60,8 +60,7 @@ Now inside components directory, go ahead and create three different directories
 
 Inside card, user and post directories create the files card.component.jsx, user.component.jsx and post.component.jsx respectively.
 
-<u>Note</u>: The card directory will have a card.css file for styling the card
-container.
+<u>Note</u>: The card directory will have a card.css file for styling the card container.
 
 The folder structure will look something like this after creating all the files:
 
@@ -133,9 +132,7 @@ import Card from "../card/card.component";
 import useFetch from "../../effects/use-fetch.effect";
 
 const User = ({ userId }) => {
-  const user = useFetch(
-    `https://jsonplaceholder.typicode.com/users?id=${userId}`
-  );
+  const user = useFetch(`https://jsonplaceholder.typicode.com/users?id=${userId}`);
 
   return (
     <Card>
@@ -168,9 +165,7 @@ import Card from "../card/card.component";
 import useFetch from "../../effects/use-fetch.effect";
 
 const Post = ({ postId }) => {
-  const post = useFetch(
-    `https://jsonplaceholder.typicode.com/posts?id=${postId}`
-  );
+  const post = useFetch(`https://jsonplaceholder.typicode.com/posts?id=${postId}`);
 
   return (
     <Card>
@@ -245,11 +240,6 @@ export default App;
 
 And after all that is done, we can now see something like this on the screen.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/custom-hook/final.png"
-  alt="application-demo"
-/>
+<Image width="800" height="800" src="/blog/custom-hook/final.png" alt="application-demo" />
 
 There you go, we have our custom hook up and running. Understandably a custom hook is very much a necessity when we write components that use the same component logic. This process bares us from writing any repetitive code and instead write a reusable custom hook component that can be levearaged by various components at a time.

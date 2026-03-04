@@ -30,7 +30,7 @@ export class S3ConfigProvider {
   private readonly _bucketName: string;
 
   constructor() {
-    (this._bucketName = process.env.AWS_BUCKET_NAME ?? "testbucket"),
+    ((this._bucketName = process.env.AWS_BUCKET_NAME ?? "testbucket"),
       (this._s3 = new S3({
         accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "testaccesskey",
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "testsecretkey",
@@ -38,7 +38,7 @@ export class S3ConfigProvider {
         s3ForcePathStyle: true,
         region: process.env.AWS_REGION ?? "ap-southeast-1",
         logger: console,
-      }));
+      })));
   }
 
   getS3() {
@@ -114,14 +114,7 @@ We are all set with the DTO. Now we can go ahead and define the only route that 
 Inside the controller file, we define the route or path prefix `/upload` that will take care of the action to upload the image file to S3. We are using FileInterceptors to only intercept files with a specific key. The `upload` method below will delegate the rest of the operation to the service file by calling the upload method inside the service file which performs the required logic to upload the image to S3.
 
 ```ts title="uploadimage.controller.ts"
-import {
-  Post,
-  HttpStatus,
-  UseInterceptors,
-  UploadedFile,
-  Controller,
-  Res,
-} from "@nestjs/common";
+import { Post, HttpStatus, UseInterceptors, UploadedFile, Controller, Res } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiResponse } from "@nestjs/swagger";
 
@@ -143,9 +136,7 @@ export class UploadImageController {
         data,
       });
     } catch (error) {
-      return response
-        .status(500)
-        .json(`Failed to upload image to S3: ${error.message}`);
+      return response.status(500).json(`Failed to upload image to S3: ${error.message}`);
     }
   }
 }
@@ -256,8 +247,8 @@ DATA_DIR=/tmp/localstack/data localstack infra start --docker
 <Image
   src="/blog/upload-image-to-s3/thunder-upload.png"
   alt="thunder client"
-  width={800}
-  height={800}
+  width="800"
+  height="800"
 />
 
 We can see from the image above we receive a response back with the data object containing the Link (URL) of the image uploaded to S3. The image is now accessible from the URL. There you go we are now finally done with implementing a service that uploads image files to an S3 bucket.

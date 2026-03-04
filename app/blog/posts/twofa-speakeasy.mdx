@@ -17,10 +17,9 @@ In the same way, the two-factor authentication method requires you to enter addi
 - Do not incur any extra costs while setting up.
 - Easy and convenient setup. For most implementations, all a user has to do is enable two-factor authentication and scan a QR code or enter their cellphone number so they can view or receive authentication codes respectively
 
-<u>NOTE</u>: In this tutorial, we will deal with a backend that implements the
-time-based one-time password (OTP) made available to us by the Speakeasy
-library. This tutorial only covers the backend implementation of the two-factor
-authentication.
+<u>NOTE</u>: In this tutorial, we will deal with a backend that implements the time-based one-time
+password (OTP) made available to us by the Speakeasy library. This tutorial only covers the backend
+implementation of the two-factor authentication.
 
 ## Setup
 
@@ -120,12 +119,7 @@ $ node index.js
 
 If we hit the route `/api`, we receive the following as a JSON response;
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/2fa-speakeasy/se-2.png"
-  alt="speakeasy-2"
-/>
+<Image width="800" height="800" src="/blog/2fa-speakeasy/se-2.png" alt="speakeasy-2" />
 
 ## Generate Secret Key
 
@@ -153,21 +147,11 @@ app.post("/api/register", (req, res) => {
 
 Right after we add the routes we can now make a POST request to this route to register a user like so:
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/2fa-speakeasy/se-3.png"
-  alt="speakeasy-3"
-/>
+<Image width="800" height="800" src="/blog/2fa-speakeasy/se-3.png" alt="speakeasy-3" />
 
 Now open the Google Authenticator extension/app(this can be installed as an extension) and enter the secret key you just received like so:
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/2fa-speakeasy/gauth-menu.png"
-  alt="auth-menu"
-/>
+<Image width="800" height="800" src="/blog/2fa-speakeasy/gauth-menu.png" alt="auth-menu" />
 
 ## Verify the secret
 
@@ -205,12 +189,7 @@ app.post("/api/verify", (req, res) => {
 
 Now open up the two-factor authentication extension and retrieve the code so we can verify the secret using a Postman request to the verify route.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/2fa-speakeasy/se-4.png"
-  alt="postman"
-/>
+<Image width="800" height="800" src="/blog/2fa-speakeasy/se-4.png" alt="postman" />
 
 After the validation, the secret key is now stored permanently and is used to verify future codes.
 
@@ -252,12 +231,7 @@ app.post("/api/validate", (req, res) => {
 
 Now hit the `/validate` route and verify the code from the authenticator using Postman.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/2fa-speakeasy/se-5.png"
-  alt="postman"
-/>
+<Image width="800" height="800" src="/blog/2fa-speakeasy/se-5.png" alt="postman" />
 
 And there you go! We have successfully implemented a two-factor authentication using Speakeasy. We looked into how we can register a user and create a secret shared between your server and the authenticator app; verifying the secret and using it to validate tokens.
 

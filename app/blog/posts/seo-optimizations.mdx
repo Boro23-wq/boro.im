@@ -7,12 +7,7 @@ summary: An application demonstrating simple tweaks to boost SEO and Accessibili
 
 Today, we have a fairly simple task of optimizing the SEO of an even fairly simple Next.js app. We will produce reports from lighthouse before and after the optimizations to make sure we understand the optimizations in each step of the way.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/seo-optimizations/liverpool.png"
-  alt="liverpool"
-/>
+<Image width="800" height="800" src="/blog/seo-optimizations/liverpool.png" alt="liverpool" />
 
 The application is only a couple lines of code with an h2 and an image tag. The crux of this tutorial is not to try anything complex but to optimize the SEO of a simple yet purposeful application. By the end of this tutorial, we will clearly understand the necessary steps that we need to take along the way to improve SEO and accessibility.
 
@@ -21,8 +16,8 @@ The application is only a couple lines of code with an h2 and an image tag. The 
 If you don't already know where to find the lighthouse interface, I have attached a little image that can help you find it to get started with lighthouse.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/seo-optimizations/lighthouse-report.png"
   alt="lighthouse"
 />
@@ -30,8 +25,8 @@ If you don't already know where to find the lighthouse interface, I have attache
 Make sure you check the SEO and Accessibility options since we are only dealing with SEO in this tutorial. Make sure you uncheck any other options. Hit the Generate report button to see where your SEO ranks.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/seo-optimizations/lighthouse-report.png"
   alt="report-1"
 />
@@ -48,12 +43,7 @@ Also when lighthouse generates a report, it also provides you with additional in
 - Image element doesn't have an `alt` tag.
 - html element doesn't have a `lang` attribute.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/seo-optimizations/account-report.png"
-  alt="acc-report"
-/>
+<Image width="800" height="800" src="/blog/seo-optimizations/account-report.png" alt="acc-report" />
 
 ### SEO Scores
 
@@ -61,12 +51,7 @@ Also when lighthouse generates a report, it also provides you with additional in
 - Document doesn't have a meta description.
 - Image element doesn't have an `alt` tag.
 
-<Image
-  width={800}
-  height={800}
-  src="/blog/seo-optimizations/seoreport.png"
-  alt="seo-report"
-/>
+<Image width="800" height="800" src="/blog/seo-optimizations/seoreport.png" alt="seo-report" />
 
 # Step towards optimization
 
@@ -90,12 +75,7 @@ export default function Home() {
   return (
     <main className={styles.container}>
       <h1>Liverpool Football Club </h1>
-      <Image
-        src="/anfield.jpg"
-        alt="Liverpool Football Club Stadium"
-        width="800"
-        height="600"
-      />
+      <Image src="/anfield.jpg" alt="Liverpool Football Club Stadium" width="800" height="600" />
     </main>
   );
 }
@@ -112,12 +92,7 @@ export default function Home() {
   return (
     <main className={styles.container}>
       <h1>Liverpool Football Club </h1>
-      <Image
-        src="/anfield.jpg"
-        alt="Liverpool Football Club Stadium"
-        width="800"
-        height="600"
-      />
+      <Image src="/anfield.jpg" alt="Liverpool Football Club Stadium" width="800" height="600" />
     </main>
   );
 }
@@ -136,12 +111,7 @@ export default function Home() {
       </Head>
 
       <h1>Liverpool Football Club </h1>
-      <Image
-        src="/anfield.jpg"
-        alt="Liverpool Football Club Stadium"
-        width="800"
-        height="600"
-      />
+      <Image src="/anfield.jpg" alt="Liverpool Football Club Stadium" width="800" height="600" />
     </main>
   );
 }
@@ -230,8 +200,8 @@ The following lines are removed from index.js (marked by x).
 Voila! There we have our final report from Lighthouse. The nitty-gritty optimizations were certainly handy and the SEO and Accessibility ranks were bumped up to a maximum of 100.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/seo-optimizations/final-seo-report.png"
   alt="final-report"
 />

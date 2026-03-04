@@ -24,6 +24,7 @@ const prettyCodeOptions = {
 };
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
+  if (!data?.headers || !data?.rows) return null;
   return (
     <div className="my-8 overflow-x-auto">
       <div className="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden inline-block">

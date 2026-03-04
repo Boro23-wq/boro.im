@@ -28,19 +28,18 @@ For example: Considering the flow diagram below, we realize that controllers and
 That doesn't make too much sense after all. It wouldn't probably make much difference if you just have a small application. But when the application grows and you have to register more controllers and routes and have to write more business logic, that's where things seem to get out of control and are certainly not maintainable.
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/nestjs/three-tier-architecture.png"
   alt="three-tier-architecture"
 />
 
-1. <u>Controllers:</u> A controller's sole purpose is to receive requests for the
-   application and deal with routes.
-2. <u>Service Layer:</u> This part of the block should only include business logic.
-   For example, all the CRUD operations and methods to determine how data can be
-   created, stored and updated.
-3. <u>Data Access Layer:</u> This layer takes care and provides logic to access data
-   stored in persistent storage of some kind. For example an ODM like Mongoose.
+1. <u>Controllers:</u> A controller's sole purpose is to receive requests for the application and
+   deal with routes.
+2. <u>Service Layer:</u> This part of the block should only include business logic. For example, all
+   the CRUD operations and methods to determine how data can be created, stored and updated.
+3. <u>Data Access Layer:</u> This layer takes care and provides logic to access data stored in
+   persistent storage of some kind. For example an ODM like Mongoose.
 
 ## NestJS Project Directory structure
 
@@ -116,7 +115,7 @@ Also, the `@Get()` decorator accepts a pathname that we can make use of to reque
 
 Let's request to the endpoint `getAllCats` that we just defined and see what we get returned.
 
-<Image width={800} height={800} src="/blog/nestjs/postman.png" alt="postman" />
+<Image width="800" height="800" src="/blog/nestjs/postman.png" alt="postman" />
 
 As we can tell the return result is received as expected. This is technically the pattern that we are going to see a lot with Nest. We have a service file that will implement all the methods/logic of our application while the controller file will take care of returning the results from the services using appropriate routes.
 

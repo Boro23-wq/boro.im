@@ -26,8 +26,8 @@ Before we touch any code, it is important to establish a mental model of how AWS
 5. API returns data after verification
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/aws-cognito-for-user-auth/high-level-diagram-aws-cognito.png"
   alt="aws cognito — high level architecture "
 />
@@ -65,8 +65,8 @@ Set the following values:
    - profile
 
 <Image
-  width={800}
-  height={800}
+  width="800"
+  height="800"
   src="/blog/aws-cognito-for-user-auth/hosted-ui.png"
   alt="aws cognito — managed ui settings"
 />
@@ -95,9 +95,7 @@ From a button or a link redirect the user to Hosted UI for them to be able to lo
 
 ```ts
 export function signIn() {
-  const base = COGNITO_DOMAIN.startsWith("http")
-    ? COGNITO_DOMAIN
-    : `https://${COGNITO_DOMAIN}`;
+  const base = COGNITO_DOMAIN.startsWith("http") ? COGNITO_DOMAIN : `https://${COGNITO_DOMAIN}`;
 
   const params = new URLSearchParams({
     client_id: COGNITO_CLIENT_ID,
@@ -137,14 +135,11 @@ export default async function CallbackPage({ searchParams }: Props) {
     redirect_uri: "http://localhost:3000/auth/callback",
   });
 
-  await fetch(
-    `https://${process.env.NEXT_PUBLIC_COGNITO_DOMAIN}/oauth2/token`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body,
-    },
-  );
+  await fetch(`https://${process.env.NEXT_PUBLIC_COGNITO_DOMAIN}/oauth2/token`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  });
 
   // 👉 Tokens can be stored securely here (cookies/session)
 
