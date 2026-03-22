@@ -11,8 +11,8 @@ import { BiteContent } from "./bite-content";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Bite — Recipe Building App",
-  description: "Building an MVP recipe app from scratch",
+  title: "Bite — AI cooking companion",
+  description: "Building an AI-powered cooking companion from scratch",
 };
 
 export default function BitePage() {

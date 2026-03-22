@@ -1,0 +1,86 @@
+---
+title: Week 6 - Launch Prep & Public Face
+publishedAt: "2025-03-03"
+summary: Rebuilt the landing page, designed custom auth pages, wired preferences end-to-end, and shipped the ingredient system improvements that make Bite feel complete
+tags: ["building-bite", "landing-page", "settings", "design", "week-6"]
+---
+
+## The Pillar
+
+Week 6 wasn't about adding features. It was about making Bite look like a product worth using. A public landing page with a waitlist, auth pages that don't look like defaults, settings that actually do something, and a batch of ingredient system improvements that should've been there from the start. The feature work is done. This week was about shipping.
+
+## The Landing Page
+
+The landing page started from scratch. Previous version had too much going on — serif fonts, decorative flourishes, section counters. The new direction: cursor.com / vercel.com energy. Bold sans-serif, strong value props, no ornamentation.
+
+The centerpiece is the **Import Terminal** — an animated demo of pasting a recipe URL and watching Bite extract it in real time. It transitions from a before state (raw URL) to an after state (structured recipe card) using `AnimatePresence`. Shows the actual product, not a screenshot.
+
+The **Gemini Pipeline** section visualizes the AI extraction flow with dotted SVG connectors and cascading glow animations — each stage lights up in sequence. It's the one place I let myself have fun with motion. The rest of the page is flat and direct.
+
+The navbar has a wordmark (`bite.` with an orange period), an Early Access badge, and a waitlist CTA that expands inline to an email input — no page redirect, no modal. Signups land in Neon via a server action. Resend handles confirmation emails once the domain is verified.
+
+<Image
+  width="800"
+  height="800"
+  src="/projects/bite/week-6/landing.png"
+  darkSrc="/projects/bite/week-6/landing.png"
+  alt="Bite landing page"
+/>
+
+## Auth Pages
+
+The Clerk default sign-in page was fine. Fine isn't good enough when the landing page is polished and the auth experience breaks the feeling immediately.
+
+Built custom sign-in and sign-up pages with a split-panel layout: dark left panel (`#0A0A0B`) with animated SVG gradient rings and a center orange glow, clean white right panel with the form. The Clerk `appearance` prop themes the form elements — no Clerk Elements (deprecated), no CSS hacks. The gradient rings are pure SVG with CSS animations. No Framer Motion on the auth pages after a white flash issue forced a rollback.
+
+Added a custom Password field with a show/hide toggle, matching the Bite design system exactly. Redirect env vars (`NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL`, `NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL`) were the missing piece that fixed a post-sign-in loading loop.
+
+<Image
+  width="800"
+  height="800"
+  src="/projects/bite/week-6/auth.png"
+  darkSrc="/projects/bite/week-6/auth.png"
+  alt="Custom auth pages"
+/>
+
+## Settings & Preferences Wired Up
+
+The settings page existed. None of it actually did anything. Week 6 fixed that.
+
+A `PreferencesProvider` context wraps the dashboard and feeds user preferences into every component that needs them. `defaultViewMode` initializes the recipe grid/list toggle. `defaultServings` becomes the fallback `baseServings` in the serving stepper (integer steps — 1, 2, 3 — not fractional multipliers). `measurementUnit` gets injected into every Gemini call site so new recipe imports extract ingredients in your preferred unit system from the start.
+
+Account editing is live: name updates via `user.update()` with optimistic UI (no page refresh), profile photo via `user.setProfileImage({ file })`. Google OAuth users see a Clerk-managed security section instead of an in-app password form — correct behavior, not a shortcut.
+
+The sidebar footer got a redesign too. Direct sign-out button replaced by a vertical dots (`MoreVertical`) dropdown, cleaner and less alarming.
+
+## Ingredient System
+
+Two gaps I'd been ignoring: ingredient groups and unit conversion.
+
+**Ingredient groups** let recipes have labeled sections — "For the sauce:", "Frosting", "--- Filling ---". The parser now detects section headers and assigns a `group` column to subsequent ingredients. Rendering them grouped makes complex recipes dramatically easier to follow in Cook Mode.
+
+**Unit conversion** chains after serving scaling. The `convert-units.ts` module handles metric ↔ imperial with a density lookup table for solid ingredients — flour is 120g/cup, sugar 200g, butter 227g. Volume conversions use standard ml equivalents. New imports respect your preference from day one.
+
+**Favicons and app icons** got done properly: a full set generated from the Bite brand mark — `favicon.ico`, apple-touch-icon, PWA icons at 192px and 512px, Open Graph image. All wired into Next.js App Router conventions via the `metadata` export and `manifest.ts`.
+
+## Technical Decisions
+
+**<u>Tailwind v4 clarity</u>**: Deleted `tailwind.config.ts` entirely. All tokens live in `globals.css` via `@theme inline`. The container utility is `@utility container { margin-inline: auto; max-width: 1100px; }`. This caused an edge-to-edge layout bug that took embarrassingly long to diagnose.
+
+**<u>Appearance prop over Clerk Elements</u>**: Clerk Elements is deprecated. The `appearance` prop is the right way to theme Clerk components in 2026. Covers font, colors, border radius, and shadows without touching internal Clerk class names.
+
+**<u>Density lookup for unit conversion</u>**: Volume-to-gram conversion for solids is wrong without density data. A simple lookup table handles the 10 most common baking/cooking ingredients correctly. Everything else falls back to the volume unit.
+
+**<u>`Math.random()` in render</u>**: Causes hydration mismatches — server and client generate different values. Fixed by moving random seeds to module-level constants or `useMemo`.
+
+**<u>Overflow clipping</u>**: A recurring bug source. Toast notifications and focus rings disappearing is almost always a parent with `overflow-hidden`. Check there first.
+
+## Thoughts
+
+Landing pages are deceptively hard. The content is simple — here's what it does, here's why it matters, sign up. But making it feel credible takes real iteration. The import terminal animation went through four versions. The navbar went through three styles before landing on the wordmark approach.
+
+The preferences wiring was satisfying in a different way. It's not a visible feature — users don't see a "preferences are now wired" changelog. But when you set metric units and every new recipe comes in with grams and milliliters, you feel it. That kind of invisible correctness is what separates apps from products.
+
+Six weeks. Auth, database, recipe management, URL and social import, Cook Mode with voice and timers, meal planning, grocery lists, pantry, onboarding, analytics, settings, landing page, custom auth. All deployed, all free to run, no team.
+
+Bite is ready. Time to find out if anyone else wants to use it.

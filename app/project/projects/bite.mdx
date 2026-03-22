@@ -1,34 +1,24 @@
 ---
 title: Bite — Road to MVP
-summary: Building an AI recipe management app. Documenting weekly progress, and challenges as I build.
+summary: Building an AI cooking companion. Documenting weekly progress, and challenges as I build.
 publishedAt: "2025-01-25"
 # image: /projects/cover/bite.png
 tags: ["MVP", "Development", "Building in Public"]
 ---
 
-## About Bite
+## Why Bite Exists
 
-Bite is a recipe management app that solves a simple problem: losing recipes across Instagram saved posts, TikTok bookmarks, screenshots, and random websites. Instead of scattered recipes everywhere, Bite gives you one organized place for all your cooking inspirations.
+I cook almost every day. I love finding new recipes — on Instagram, YouTube, random food blogs. And for years I've had the same problem: I save everything and find nothing when its time to cook. Instagram saves buried under 100 posts, screenshots lost in my camera roll, and bookmarks I forget even exist.
 
-## The Problem
+One day I searched my own phone for a dinner recipe I remembered loving and spent 15 minutes just finding it. That was the moment I decided to just build Bite.
 
-As someone who cooks everyday and love trying new recipes online, I found myself constantly:
+But I didn't want to build another recipe box. Recipe boxes are fine. What I actually wanted was something closer to a cooking companion — something that doesn't just store recipes but helps you actually cook them. Guides you through steps, knows what's in your fridge, suggests what to make tonight based on what you have, and remembers the pantry items that needs to be cooked before they go bad.
 
-- Saving recipes to Instagram save posts only to scroll endlessly trying to find them
-- Taking screenshots that get lost in my camera roll
-- Bookmarking recipe sites I forget about
-- Copying recipe URLs into random notes apps
+That's Bite. An AI cooking companion that happens to also keep your recipes organized.
 
-There had to be a better way.
+## What It Does
 
-## The Solution
-
-Bite lets you save recipes from anywhere using multiple methods:
-
-1. **Screenshot/Photo import** - Upload recipe photos, AI extracts the content
-2. **URL import** - Paste any recipe link from blogs or social media
-3. **Text paste** - Copy/paste recipe text, AI structures it
-4. **Manual entry** - Traditional recipe creation for family recipes
+You can throw anything at Bite and it figures it out. Paste a YouTube link, a TikTok, a blog URL, a screenshot from Instagram, a photo of a cookbook page — Bite extracts the recipe, structures it, and saves it with zero copying or reformatting.
 
 <Image
   width="800"
@@ -38,41 +28,13 @@ Bite lets you save recipes from anywhere using multiple methods:
   alt="Bite flow diagram"
 />
 
-The AI automatically extracts:
+Once it's saved, Bite actually helps you use it. Cook Mode walks you through recipes step by step, keeps your screen on, listens to voice commands, runs timers, and reads steps aloud if your hands can't reach your phone. The meal planner helps you figure out the week. The grocery list generates itself from whatever you planned. The pantry tracks what you have and tells you what you can cook right now.
 
-- Recipe title and description
-- Ingredient lists with quantities
-- Step-by-step instructions
-- Cooking times and servings
+It's the cooking workflow I always wanted.
 
-## v1 Features (Shipped)
+## The Stack
 
-### Core Features
-
-- **<u>User authentication</u>**: Email and Google sign-in
-- **<u>Recipe creation</u>**: Manual entry with ingredients and instructions
-- **<u>Recipe collection</u>**: View all your saved recipes
-- **<u>Recipe details</u>**: Full ingredient and instruction display
-- **<u>Protected routes</u>**: Secure, user-specific data
-
-### What's Coming Next
-
-- Recipe editing and deletion
-- Image uploads (Cloudinary)
-- AI recipe parsing from Instagram/blog links
-- Recipe tagging and search
-- Meal planning calendar
-- Grocery list generation
-- Nutrition tracking (macros)
-
-### What's NOT in v1
-
-- Mobile native apps
-- Social features / recipe sharing
-- Recipe ratings/reviews
-- Multiple user accounts/family sharing
-
-## Tech Stack
+Next.js App Router, Drizzle ORM on Neon PostgreSQL, Clerk for auth, Google Gemini for AI extraction, UploadThing for images, Tailwind CSS v4. Vercel for hosting, Cloudflare for DNS.
 
 <Image
   width="800"
@@ -82,13 +44,81 @@ The AI automatically extracts:
   alt="Bite tech stack"
 />
 
-## Why I'm Building This
+---
 
-This is my personal project to:
+## The Build Log
 
-1. Solve my own problem (I genuinely need this as a calorie-conscious eater who likes rotating recipes)
-2. Learn the complete development cycle from building to deployment
-3. Master modern tech stack (Next.js 15, Drizzle, Clerk, etc.)
-4. Ship a complete product end-to-end
+Six weeks, solo. Here's everything that shipped.
 
-I'm documenting the entire journey in my blog - the wins, the challenges, the technical decisions.
+<BuildLog
+  entries={[
+    {
+      week: 1,
+      date: "Jan 27",
+      title: "MVP Built & Deployed",
+      summary:
+        "Auth, database, deployment, relational schema. The groundwork that saves you from extra work later.",
+      tags: ["infrastructure", "auth", "database"],
+      href: "/blog/bite-week-1",
+      done: true,
+    },
+    {
+      week: 2,
+      date: "Feb 3",
+      title: "From Skeleton to Real Product",
+      summary:
+        "Dashboard, recipe cards, search, filters, URL import, favorites, categories. The week Bite started looking like something I'd actually use.",
+      tags: ["ui", "import", "search"],
+      href: "/blog/bite-week-2",
+      done: true,
+    },
+    {
+      week: 3,
+      date: "Feb 10",
+      title: "Meal Planning & Polish",
+      summary:
+        "Drag-and-drop meal planning calendar. Built with @dnd-kit and date-fns — no calendar library.",
+      tags: ["meal planning", "dnd-kit", "design"],
+      href: "/blog/bite-week-3",
+      done: true,
+    },
+    {
+      week: 4,
+      date: "Feb 17",
+      title: "Grocery Lists & Responsiveness",
+      summary:
+        "Grocery lists that generate from your meal plan and combine ingredients intelligently. Two recipes needing chicken breast? One line item.",
+      tags: ["grocery", "mobile", "ai"],
+      href: "/blog/bite-week-4",
+      done: true,
+    },
+    {
+      week: 5,
+      date: "Feb 24",
+      title: "Cook Mode, Pantry & Onboarding",
+      summary:
+        "Cook Mode with Wake Lock, voice commands, and auto-detected timers. Pantry with AI receipt scanning and `What Can I Cook?` matching. Onboarding that seeds 18 personalized recipes on signup.",
+      tags: ["cook mode", "pantry", "onboarding"],
+      href: "/blog/bite-week-5",
+      done: true,
+    },
+    {
+      week: 6,
+      date: "Mar 3",
+      title: "Launch Prep & Public Face",
+      summary:
+        "New landing page, custom auth pages, settings wired end-to-end, ingredient groups for complex recipes.",
+      tags: ["landing page", "settings", "design"],
+      href: "/blog/bite-week-6",
+      done: true,
+    },
+  ]}
+/>
+
+---
+
+## What I Learned
+
+Building in public sounds great. It's mostly just hard. Every week had a moment where I thought something would take an afternoon and it took a few days.
+
+The part that surprised me most was how much the AI features changed what was possible. Gemini Vision reading a grocery receipt. Gemini parsing a TikTok transcript into a structured recipe. Things that would've been weeks of custom engineering. The barrier to shipping real, useful software has never been lower.

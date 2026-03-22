@@ -8,6 +8,8 @@ import Pre from "./pre";
 import RoundedImage from "./rounded-image";
 import { BentoGrid } from "./bento-grid";
 import { Carousel } from "./carousel";
+import { BuildLog } from "./build-log";
+import { FeatureShowcase } from "./feature-showcase";
 
 /** @type {import('rehype-pretty-code').Options} */
 const prettyCodeOptions = {
@@ -156,6 +158,8 @@ const components = {
   BentoGrid,
   pre: Pre,
   Carousel,
+  BuildLog,
+  FeatureShowcase,
 };
 
 export async function CustomMDX({

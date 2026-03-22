@@ -7,57 +7,93 @@ tags: ["building-bite", "features", "ui", "week-2"]
 
 ## The Pillar
 
-Week 2 was about making Bite look and feel like a real app. Week 1 got auth, database, and deployment done. This week I wanted a proper dashboard, recipe cards, and the ability to import recipes from a URL. By the end of it, Bite actually looked like something I'd use.
+Week 2 was about making Bite look and feel like a real app. Week 1 got auth, database, and deployment done. This week I wanted a proper dashboard, recipe cards, and the ability to import recipes from a URL.
 
 ## Building the Dashboard
 
-Started with a shadcn sidebar. Dashboard, My Recipes, Create Recipe, Categories, Favorites, Settings. Recipe cards show the image, title, cuisine, cook time, and servings. Even with placeholder images, the layout felt legit.
+Started with a shadcn sidebar. Dashboard, My Recipes, Create Recipe, Categories, Favorites, Settings. Recipe cards show the image, title, cuisine, cook time, and servings. Even with placeholder images, the layout felt in place.
 
 Then came search and filtering. Real-time search across title, cuisine, and category. Multi-select filters, sort options, and active filter pills you can individually remove. This stuff seems simple but there's a lot of small decisions — where does the clear button go, should filters persist across navigation, what do empty states look like. It's hard to notice these things until they're wrong.
 
-<Image
-  width="800"
-  height="800"
+<FeatureShowcase
+  tag="Dashboard"
+  title="Recipe cards, search, and filters"
+  desc="Real-time search across title, cuisine, and category. Multi-select filters with active filter pills you can individually remove."
   src="/projects/bite/week-2/dashboard.png"
   darkSrc="/projects/bite/week-2/dashboard.png"
+  url="biterecipes.app/dashboard"
   alt="Dashboard"
 />
 
 ## URL Import with Schema.org
 
-This was the big feature of the week. Paste a recipe URL and Bite extracts the title, ingredients, instructions, times, servings, and image automatically. No AI needed. Most recipe sites use schema.org/Recipe JSON-LD markup, so the structured data is already there.
+Most recipe sites already embed structured data in their HTML using a standard called [Schema.org](http://schema.org). It looks like this — hidden in a `<script>` tag you'd never notice:
 
-Built it with Cheerio for server-side HTML parsing. There's a preview before saving so you can check everything looks right. Works with AllRecipes, Food Network, and most major recipe sites out of the box.
+```json
+{
+  "@type": "Recipe",
+  "name": "Chocolate Chip Cookies",
+  "recipeIngredient": ["2 cups flour", "1 cup butter"],
+  "recipeInstructions": ["..."],
+  "cookTime": "PT15M"
+}
+```
 
-No API costs, no waiting for AI responses. Just fast parsing. I can always add Gemini later for harder cases like photos of cookbook pages, but for now schema.org handles 90% of the internet and that's plenty.
+That's the actual data sitting on AllRecipes, Food Network, and most major recipe sites. No AI needed — just read it.
 
-<Image
-  width="800"
-  height="800"
+**Parsing it is surprisingly clean.** I use Cheerio (server-side jQuery, basically) to find the script tag and pull the data out:
+
+```js
+const $ = cheerio.load(html);
+const jsonLd = $('script[type="application/ld+json"]').text();
+const schema = JSON.parse(jsonLd);
+
+const title = schema.name;
+const ingredients = schema.recipeIngredient;
+```
+
+**Where Gemini comes in** is for the edge cases — cookbook photos, handwritten recipes, or sites that don't follow the standard. Schema.org handles ~90% of the internet cleanly and instantly (no API cost, no latency). Gemini handles the rest, taking something unstructured like a photo and returning the same clean shape:
+
+```js
+// Same output format, different input path
+{
+  (title, ingredients, instructions, servings, image);
+}
+```
+
+The preview step before saving lets you catch anything that parsed weirdly before it hits your recipe list.
+
+<FeatureShowcase
+  tag="URL Import"
+  title="Paste a link, get a recipe"
+  desc="Cheerio parses the schema.org JSON-LD already baked into most recipe sites. Preview before saving so nothing lands wrong."
   src="/projects/bite/week-2/import-recipe.png"
   darkSrc="/projects/bite/week-2/import-recipe.png"
+  url="biterecipes.app/dashboard/import"
   alt="Import URL"
 />
 
 ## Favorites & Categories
 
-Favorites needed optimistic updates to feel right. Click the heart, it fills immediately, server catches up in the background. Simple idea, but I went through three implementations before one worked without flickering. React's useOptimistic kept reverting the state on revalidation which was annoying. Ended up using a cache Map pattern instead — store the optimistic state in memory, sync when the server confirms. Less clever, more reliable.
+Favorites needed optimistic updates to feel right. Click the heart, it fills immediately, server catches up in the background. Simple idea, but I went through three implementations before one worked without flickering. React's `useOptimistic` kept reverting the state on revalidation which was annoying. Ended up using a cache Map pattern instead — store the optimistic state in memory, sync when the server confirms. Less clever, more reliable.
 
-Categories got CRUD operations with a pinning system so your most-used categories stay at the top. The whole flow from creating a category to assigning recipes to filtering by it works end to end.
+Categories got CRUD operations with a pinning system so your most-used categories stay at the top as well as in your dashboard. The whole flow from creating a category to assigning recipes to filtering by it works end to end.
 
-<Image
-  width="800"
-  height="800"
+<FeatureShowcase
+  tag="Categories"
+  title="Pin your most-used collections"
+  desc="Full CRUD with a pinning system. Pinned categories surface on the dashboard for quick access."
   src="/projects/bite/week-2/categories.png"
   darkSrc="/projects/bite/week-2/categories.png"
+  url="biterecipes.app/dashboard/categories"
   alt="Categories"
 />
 
 ## Technical Decisions
 
-**<u>Schema.org over AI for import</u>**: Could've used Gemini for recipe parsing, but 90% of recipe sites already have structured markup. No reason to burn API calls when the data is right there.
+**<u>Schema.org over AI for import</u>**: Could've used Gemini for recipe parsing, but 90% of recipe sites already have structured markup. Didn't see a reason to burn API calls when the data is right there.
 
-**<u>Optimistic updates with cache Map</u>**: useOptimistic wasn't behaving how I expected. A plain Map tracking pending states was simpler and actually worked.
+**<u>Optimistic updates with cache Map</u>**: `useOptimistic` wasn't behaving how I expected. A plain Map tracking pending states was simpler and actually worked.
 
 **<u>Radix UI primitives</u>**: Used shadcn's Select (built on Radix) for filter dropdowns. Better UX than native selects, consistent styling, accessible by default.
 
@@ -67,6 +103,6 @@ Categories got CRUD operations with a pinning system so your most-used categorie
 
 Week 2 had more surface area than I expected. Infrastructure is finite — auth and database are done once. But features keep expanding. Every feature touches UI, server actions, database queries, error handling, and edge cases.
 
-The relational database from Week 1 paid off already. Adding favorites was just a boolean on the recipes table. Categories were a new table with a junction. No schema regrets.
+The relational database from Week 1 paid off already. Adding favorites was just as easy as adding a boolean on the recipes table. Categories were a new table with a junction. No major schema changes.
 
 Next week is meal planning — the feature that makes Bite more than just a recipe box.
