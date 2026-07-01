@@ -27,13 +27,15 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Sintu Boro",
+    default: "Sintu Boro — Software Developer building web experiences",
     template: "%s",
   },
-  description: "Software designer, developer, and blogger.",
+  description:
+    "Sintu Boro is a software developer building fast, accessible web applications and writes about the process along the way.",
   openGraph: {
-    title: "Sintu Boro",
-    description: "Software designer, developer, and blogger.",
+    title: "Sintu Boro — Software Developer building web experiences",
+    description:
+      "Sintu Boro is a software developer building fast, accessible web applications and writes about the process along the way.",
     url: baseUrl,
     siteName: "Sintu Boro",
     locale: "en_US",
@@ -86,20 +88,11 @@ export const metadata: Metadata = {
   },
 };
 
-const cx = (...classes: Array<string | undefined | false>) =>
-  classes.filter(Boolean).join(" ");
+const cx = (...classes: Array<string | undefined | false>) => classes.filter(Boolean).join(" ");
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      suppressHydrationWarning
-      lang="en"
-      className={cx(geist.variable, newsreader.variable)}
-    >
+    <html suppressHydrationWarning lang="en" className={cx(geist.variable, newsreader.variable)}>
       <body className="antialiased">
         <ThemeProvider attribute="class" enableColorScheme={false} enableSystem>
           <div className="main-container">
