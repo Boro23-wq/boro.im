@@ -36,8 +36,8 @@ export default function Page() {
         <div className="mb-8">
           <p className="newsreader-400-tall font-medium mt-1 text-xl tracking-tight">{`/ work`}</p>
           <p className="mt-8 text-base text-neutral-600 dark:text-neutral-300 max-w-2xl">
-            Experienced software developer with a knack for enhancing web applications, and
-            streamlining development processes through innovative solutions.
+            I&apos;m a software developer who enjoys building solid web applications and finding
+            better ways for teams to ship them.
           </p>
         </div>
 
@@ -236,12 +236,13 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Wave carousel */}
+        {/* Wave carousel
         <div className="my-16">
           <Carousel imgs={waveImages} subtitle="Few mockup screens I designed for WAVE app." />
         </div>
+        */}
 
-        {/* Components Section */}
+        {/* Components Section
         <div className="mt-6">
           <div className="mb-8">
             <h4 className="newsreader-400-tall tracking-tight mb-2">Components</h4>
@@ -251,7 +252,6 @@ export default function Page() {
             </p>
           </div>
 
-          {/* bento grid */}
           <div className="bento grid auto-rows-[192px] gap-1 grid-cols-2 sm:grid-cols-3">
             {blackxImages.map((img, i) => (
               <div
@@ -274,6 +274,7 @@ export default function Page() {
             BlackX web analytics components
           </p>
         </div>
+        */}
 
         {/* Read more */}
         <div className="mt-8 border-t border-neutral-200 dark:border-neutral-800 pt-8">

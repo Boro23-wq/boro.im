@@ -11,6 +11,7 @@ import { CustomMDX } from "@/app/components/mdx"; // renamed to *Client to diffe
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
 import { CopyLink } from "@/app/components/copy-link";
 import { ReportView } from "./view";
+import { LikeButton } from "./like-button";
 
 type Props = {
   params: Promise<{ slug: string }>; // match the Promise type
@@ -148,6 +149,7 @@ export default async function Blog({ params }: Props) {
               <Eye className="w-5 h-5" />
               {Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
             </span>
+            <LikeButton slug={slug} />
           </div>
           <div className="flex">
             <CopyLink w="8" h="8" />

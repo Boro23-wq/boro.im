@@ -93,6 +93,19 @@ const Scroller = () => {
           <div className="mb-8 content">
             <div className="flex items-center mb-2">
               <Link
+                href="/project/bite"
+                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
+              >
+                Bite
+              </Link>
+            </div>
+            <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
+              AI cooking companion, built in public.
+            </p>
+          </div>
+          <div className="mb-8 content">
+            <div className="flex items-center mb-2">
+              <Link
                 href="/project/carely"
                 className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
               >
@@ -101,19 +114,6 @@ const Scroller = () => {
             </div>
             <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
               Care co-ordination and management portal.
-            </p>
-          </div>
-          <div className="mb-8 content">
-            <div className="flex items-center mb-2">
-              <Link
-                href="/project/ui-ux-design"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
-              >
-                UI/UX Design
-              </Link>
-            </div>
-            <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
-              My interaction with web design and what I've built.
             </p>
           </div>
           <div>
