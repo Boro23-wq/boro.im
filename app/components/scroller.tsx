@@ -1,8 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRightTopIcon } from "./icons";
+import { getBlogPosts } from "../blog/utils";
+import { getProjects } from "../project/utils";
+
+function byRecent(a: { metadata: { publishedAt: string } }, b: { metadata: { publishedAt: string } }) {
+  return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
+}
 
 const Scroller = () => {
+  const recentPosts = getBlogPosts().sort(byRecent).slice(0, 3);
+  const recentProjects = getProjects().sort(byRecent).slice(0, 2);
+
   return (
     <div className="scroller relative">
       <div className="flex overflow-x-auto space-x-8">
@@ -46,32 +55,21 @@ const Scroller = () => {
         {/* blogs */}
         <div className="flex-shrink-0 w-40 sm:w-48">
           <h1 className="text-sm mb-4 text-neutral-500">writing</h1>
-          <div className="mb-8 content">
-            <div className="mb-2">
-              <Link
-                href="/blog/netflix-architecture"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
-              >
-                Netflix streaming
-              </Link>
+          {recentPosts.map((post) => (
+            <div key={post.slug} className="mb-8 content">
+              <div className="mb-2">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="line-clamp-2 text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
+                >
+                  {post.metadata.title}
+                </Link>
+              </div>
+              <p className="line-clamp-2 text-wrap md:text-wrap text-md font-normal text-neutral-500">
+                {post.metadata.summary}
+              </p>
             </div>
-            <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
-              System behind the tremendous scale.
-            </p>
-          </div>
-          <div className="mb-8 content">
-            <div className="mb-2">
-              <Link
-                href="/blog/aws-cognito-for-user-auth"
-                className="text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
-              >
-                AWS Cognito setup
-              </Link>
-            </div>
-            <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
-              AWS Cognito for user authentication.
-            </p>
-          </div>
+          ))}
           <div>
             <div className="flex items-center mb-2">
               <Link
@@ -90,32 +88,21 @@ const Scroller = () => {
         {/* projects */}
         <div className="flex-shrink-0 w-40 sm:w-48">
           <h1 className="text-sm mb-4 text-neutral-500">projects</h1>
-          <div className="mb-8 content">
-            <div className="flex items-center mb-2">
-              <Link
-                href="/project/bite"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
-              >
-                Bite
-              </Link>
+          {recentProjects.map((project) => (
+            <div key={project.slug} className="mb-8 content">
+              <div className="mb-2">
+                <Link
+                  href={`/project/${project.slug}`}
+                  className="line-clamp-2 text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
+                >
+                  {project.metadata.title}
+                </Link>
+              </div>
+              <p className="line-clamp-2 text-wrap md:text-wrap text-md font-normal text-neutral-500">
+                {project.metadata.summary}
+              </p>
             </div>
-            <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
-              AI cooking companion, built in public.
-            </p>
-          </div>
-          <div className="mb-8 content">
-            <div className="flex items-center mb-2">
-              <Link
-                href="/project/carely"
-                className=" text-md text-wrap md:text-wrap font-normal underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-500 transition-all"
-              >
-                Carely
-              </Link>
-            </div>
-            <p className="text-wrap md:text-wrap text-md font-normal text-neutral-500">
-              Care co-ordination and management portal.
-            </p>
-          </div>
+          ))}
           <div>
             <div className="flex items-center mb-2">
               <Link
