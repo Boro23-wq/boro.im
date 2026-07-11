@@ -27,8 +27,9 @@ export default function Page() {
           data-animate
           className="animate-enter mb-8"
         >
-          <span className="newsreader-400">Developing experiences.</span> I turn complex business
-          processes into simple, easy-to-use interfaces.
+          <span className="newsreader-400">Developing experiences.</span> I take complicated
+          business processes and turn them into simple, clean interfaces that are easy to work
+          with.
         </p>
 
         {/* main blog/project highlight */}
