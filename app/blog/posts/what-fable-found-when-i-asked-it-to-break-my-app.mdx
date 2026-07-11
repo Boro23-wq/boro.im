@@ -2,23 +2,23 @@
 title: What Fable found when I asked it to break my app
 publishedAt: "2026-07-10"
 summary: I built an app fast with Clerk and Supabase, then pointed a coding agent at it and asked it to find every way in. Here is what it found, and a checklist so it does not happen to you.
+image: /blog/what-fable-found-when-i-asked-it-to-break-my-app/cover.png
 ---
 
-I built a small app recently. It reads the newsletters piling up in your inbox, runs them through an LLM, and emails you back a short daily brief.
+I built an app recently. It reads all the newsletters piling up in your inbox, runs them through an LLM, and emails you back a short daily brief.
 
-I built it the way a lot of things get built now. Fast. Next.js for the app, Clerk for auth, Supabase for the database, all wired together in a couple of weekends of momentum. That stack is designed to let you skip the boring parts. You drop in a component, paste an API key, and you have working login and a real database the same afternoon.
+I built it the way a lot of things get built now. Next.js for the app, Clerk for auth, Supabase for the database, all wired together in a couple of days of momentum. That stack is designed to skip the boring parts. You drop in a component, paste an API key, and you have working login and a real database the same hour.
 
 That is genuinely great. It is also exactly where the trouble hides, because "working" and "safe" are not the same thing, and these tools are so good at getting you to "working" that you never notice you skipped "safe." Nothing errors. Nothing turns red. The app just works, so you move on to the next feature.
 
 So I ran an experiment. I pointed an AI coding agent at my own codebase and asked it plainly to find every way someone could read data they should not, break in, or abuse the app. Then I actually tested what it told me.
 
-It found eleven things. A few were nothing. A few made me close the laptop and go for a walk. Below are the ones worth your time, and at the end, a checklist you can run against your own app this weekend.
+It found eleven things. A few were nothing but a few made me close the laptop and go for a walk. Below are the ones worth your time, and at the end, a checklist you can run against your own app this weekend.
 
 <Image
-  priority
   width="800"
-  height="800"
-  src="/blog/vibecoding-security-audit/hero.png"
+  height="450"
+  src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783739556412.png"
   alt="working is not the same as safe, a split illustration"
 />
 
@@ -57,12 +57,19 @@ The fix is one line per table: `alter table <name> enable row level security;` w
   width="800"
   height="450"
   src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738723287.png"
-  alt=""
+  alt="row level security blocks the anon key while the server key still works"
 />
 
 ## 2. The debug route you forgot to delete
 
 Early on, while wiring up the email side, I built myself a tiny debug endpoint that fetched a few messages and printed them, just to confirm the connection worked. Then it worked, and I forgot it existed.
+
+<Image
+  width="800"
+  height="450"
+  src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783739712831.png"
+  alt="Debug route"
+/>
 
 To save myself a step, I had hardcoded my own account's token into it: `refresh_token: process.env.GOOGLE_REFRESH_TOKEN`. So the endpoint did not read the visitor's inbox. It read mine. Always mine.
 
@@ -128,6 +135,13 @@ The fix is to treat model output like any untrusted input: `escapeHtml(modelText
 ## 6. My own security fix broke production login
 
 The humbling one. I am keeping it, because the wins are not believable without it.
+
+<Image
+  width="800"
+  height="450"
+  src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783739831703.png"
+  alt="dev vs prod"
+/>
 
 I added a Content Security Policy, a header that tells the browser which outside origins may load scripts. I wrote the allowlist, tested locally, login worked, everything green, shipped it. Production login broke instantly for everyone.
 
