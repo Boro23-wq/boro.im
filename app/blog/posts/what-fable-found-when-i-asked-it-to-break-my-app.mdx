@@ -1,0 +1,194 @@
+---
+title: What Fable found when I asked it to break my app
+publishedAt: "2026-07-10"
+summary: I built an app fast with Clerk and Supabase, then pointed a coding agent at it and asked it to find every way in. Here is what it found, and a checklist so it does not happen to you.
+---
+
+I built a small app recently. It reads the newsletters piling up in your inbox, runs them through an LLM, and emails you back a short daily brief.
+
+I built it the way a lot of things get built now. Fast. Next.js for the app, Clerk for auth, Supabase for the database, all wired together in a couple of weekends of momentum. That stack is designed to let you skip the boring parts. You drop in a component, paste an API key, and you have working login and a real database the same afternoon.
+
+That is genuinely great. It is also exactly where the trouble hides, because "working" and "safe" are not the same thing, and these tools are so good at getting you to "working" that you never notice you skipped "safe." Nothing errors. Nothing turns red. The app just works, so you move on to the next feature.
+
+So I ran an experiment. I pointed an AI coding agent at my own codebase and asked it plainly to find every way someone could read data they should not, break in, or abuse the app. Then I actually tested what it told me.
+
+It found eleven things. A few were nothing. A few made me close the laptop and go for a walk. Below are the ones worth your time, and at the end, a checklist you can run against your own app this weekend.
+
+<Image
+  priority
+  width="800"
+  height="800"
+  src="/blog/vibecoding-security-audit/hero.png"
+  alt="working is not the same as safe, a split illustration"
+/>
+
+We will go through:
+
+1. The Supabase key that can read your whole database
+2. The debug route you forgot to delete
+3. Why deleting a user does not revoke their access
+4. The save that lies about working
+5. How an LLM turns into a phishing vector
+6. The security fix that broke production
+
+## 1. The Supabase key in your browser can read your database
+
+This is the big one. If you take nothing else from this post, take this.
+
+Supabase gives you two keys. The **anon key** is meant to be public. It ships in your frontend JavaScript so the browser can talk to your database, and anyone who opens your site can copy it out of the page source. That is not a leak, that is the design.
+
+The anon key is only safe because of a second thing called **Row Level Security**, or RLS. RLS is the rule that says this public key may read nothing unless you explicitly write a policy allowing it. Deny by default.
+
+Here is the trap. When you create a table in Supabase, RLS is off until you turn it on. Your app keeps working perfectly, because your server talks to Supabase using the other key, the `service_role` key, which bypasses RLS completely. So you never notice. Everything stays green.
+
+The agent noticed. It took my anon key straight from the page source and hit the REST API directly. It got back 368 rows across 9 users, and 154 of them still held the full raw body of people's emails. No login, no exploit, just a public key and a default I never changed.
+
+You can test yours in ten seconds:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" "https://<project>.supabase.co/rest/v1/<table>?select=*&limit=1" -H "apikey: <anon-key>"
+```
+
+`401` means you are locked down. `200` means anyone on the internet can read that table.
+
+The fix is one line per table: `alter table <name> enable row level security;` with no policy, which means deny everyone. I then locked down every table at once by looping over `pg_tables` instead of listing them by hand, because listing by hand is how I had missed a couple in the first place.
+
+<Image
+  width="800"
+  height="450"
+  src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738723287.png"
+  alt=""
+/>
+
+## 2. The debug route you forgot to delete
+
+Early on, while wiring up the email side, I built myself a tiny debug endpoint that fetched a few messages and printed them, just to confirm the connection worked. Then it worked, and I forgot it existed.
+
+To save myself a step, I had hardcoded my own account's token into it: `refresh_token: process.env.GOOGLE_REFRESH_TOKEN`. So the endpoint did not read the visitor's inbox. It read mine. Always mine.
+
+It sat behind Clerk auth, so it was not open to the whole internet, but it was open to every single signed-up user. Any of them could have loaded that URL and read the senders, subjects, and previews of my personal email.
+
+The fix was to delete the route and revoke the token, so the credential behind it is dead even if a copy survives somewhere. The lesson is that the most dangerous code in your app is often the code you wrote to help yourself. A debug route, a temporary admin shortcut, a script with your own keys in it. It never gets the scrutiny real features get, because the moment it works you stop thinking about it.
+
+## 3. Deleting a user does not revoke their access
+
+This one I genuinely did not see coming.
+
+When a user connects Google, my app receives a refresh token that lets it keep reading their newsletters until they disconnect. Over months of building I made test accounts, connected them, and later deleted them in Clerk. Tidy.
+
+Except deleting a user in Clerk does exactly one thing. It deletes them from Clerk. The permission the user granted lives on Google's servers, not mine, and removing my copy does nothing to tell Google to hang up. The agent found four stored tokens in my database, and three of them belonged to Clerk accounts that no longer existed. The accounts were gone, but my app still held live keys to read those three inboxes.
+
+The fix is to make deletion and revocation happen together, and in the right order: `await oauth2Client.revokeToken(token)` first, then delete the row, so a failure can never strand a live grant you no longer have the token to revoke.
+
+Deletion is not revocation. One tidies your house, the other cuts the wire. Almost every app that connects to a third party has this seam, and "what happens to that connection when the user leaves" is a question most of us never ask.
+
+<Image
+  width="800"
+  height="450"
+  src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738793884.png"
+  alt="deleting the user locally leaves the Google connection still live"
+/>
+
+## 4. Every save said it worked. Some were failing silently.
+
+My app has optimistic UI. Click bookmark and the icon fills in instantly while the save happens in the background. If it works, you never notice, which is the point.
+
+The agent looked at how those saves were checked and found the usual pattern, `if (res.ok) { /* assume saved */ }`. That looks completely correct. Here is why it lies.
+
+When your Clerk session expires, the middleware does not return an error to your `fetch`. It returns a redirect to the sign-in page, and `fetch` follows redirects silently. The sign-in page loads fine and returns `200`, so `res.ok` is `true` for a request that never reached your save handler. The write vanishes, the icon fills in, and the user only finds out on refresh when the bookmark is simply gone.
+
+The fix is to stop trusting the surface answer and check `if (res.redirected)`, which catches the bounce to the login page and lets you treat it as the failure it really is. `res.ok` means the response succeeded, not that the thing you asked for happened, and with auth middleware in the mix those two come apart.
+
+<Image
+  width="800"
+  height="450"
+  src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738900639.png"
+  alt="a request redirected to sign-in still returns 200 and looks successful"
+/>
+
+## 5. A stranger could phish my users through my own app
+
+This is the most modern bug of the batch, and it is the shape of thing we are all going to hit more often.
+
+My app decides whether an incoming email is a newsletter by checking for the `List-Unsubscribe` header. Then it sends the body to an LLM to summarize, and drops the result into the daily brief email that goes out from me, branded as mine, that people trust.
+
+Two problems compounded. Anyone can send an email that carries a `List-Unsubscribe` header, so a stranger can get their content into my pipeline. And that content goes to an LLM whose output can be steered by its input, while my code was dropping the model's output straight into the outgoing HTML email, links and all, without escaping it.
+
+So in principle a stranger could email my user a crafted newsletter, influence the summary, and place an attacker chosen link inside a trusted email with my name on it. To be honest about the ceiling, email clients strip scripts, so this is link injection and phishing rather than a full takeover. It is still bad, because the entire value of the brief is that people trust the sender.
+
+The fix is to treat model output like any untrusted input: `escapeHtml(modelText)` before it enters the email, and a `safeUrl()` check that rejects anything that is not a normal http or https link. LLM output is not automatically safe. If a stranger can influence what goes into the model, treat what comes out of it with the same suspicion you would give anything a stranger typed.
+
+<Image
+  width="800"
+  height="450"
+  src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738970139.png"
+  alt="untrusted email flows through the LLM into a trusted outgoing email"
+/>
+
+## 6. My own security fix broke production login
+
+The humbling one. I am keeping it, because the wins are not believable without it.
+
+I added a Content Security Policy, a header that tells the browser which outside origins may load scripts. I wrote the allowlist, tested locally, login worked, everything green, shipped it. Production login broke instantly for everyone.
+
+The reason is a Clerk detail that is easy to miss. Clerk serves its frontend script from a different host depending on the key. On a development key it is `your-slug.clerk.accounts.dev`, and on a production key it is a subdomain on your own domain, like `clerk.yourapp.com`. I had allowlisted the dev host, because that is the one I saw while testing, so the production host was never on the list. Locally everything passed. In production the browser blocked Clerk's own script and login died.
+
+The fix was to stop hardcoding the host and derive it from the publishable key, since the host is base64 encoded inside the key itself. Two lessons. "Works on my machine" hides in exactly the gap between your laptop and production. And a security change is still a change. It can break things as easily as a feature, and it deserves the same caution on the way out, maybe more.
+
+## The smaller ones, still worth thirty seconds each
+
+The agent also flagged, and I fixed:
+
+- **OAuth tokens stored in plain text.** Now encrypted at rest, so a database leak alone does not hand over live inbox access.
+- **A feedback link authenticated by base64.** Base64 is encoding, not authentication, so anyone could forge it. Now signed.
+- **A share page that served every record by URL.** No ownership check, so every summary was readable whether shared or not. Now opt-in.
+- **CSRF left wide open** by a leftover `allowedOrigins: ["*"]` on server actions. Deleted.
+- **Two tables I forgot existed,** still exposed after my first lockdown. Fixed by walking `pg_tables` instead of trusting my memory.
+
+## The vibecoding security checklist
+
+If you are shipping fast on Clerk, Supabase, and Next.js, here is the list I wish I had run before I had users. Most of these are one time, sub five minute checks.
+
+**Supabase**
+
+- [ ] RLS is on for every table. Verify with the curl test above, do not assume.
+- [ ] The `service_role` key lives only on the server, never in a `NEXT_PUBLIC_` variable or the client bundle.
+- [ ] You know which key is which. Anon is public and RLS gated, service_role is secret and bypasses everything.
+- [ ] You locked down by walking `pg_tables`, not by listing tables from memory.
+
+**Clerk and auth**
+
+- [ ] You tested what a request does when the session is expired, not just when it is valid. Watch for silent redirects.
+- [ ] Deleting a user also revokes any third party grants they made. Deletion is not revocation.
+- [ ] Your CSP allowlists the production Clerk host, not just the dev one. Derive it from the key.
+- [ ] There is a real delete-account and disconnect path, and it revokes upstream before it erases locally.
+
+**Secrets and tokens**
+
+- [ ] Third party tokens are encrypted at rest, not plain columns.
+- [ ] No hardcoded personal credentials anywhere, especially in debug or admin code.
+- [ ] Anything signed or authenticated uses a real signature, never bare base64.
+
+**The stuff you forgot**
+
+- [ ] Every debug, test, and admin route is deleted or genuinely locked down.
+- [ ] Public-by-URL pages check ownership or visibility, not just a hard to guess id.
+- [ ] LLM output that reaches HTML or email is escaped, and any URLs in it are validated.
+
+## Final Thoughts
+
+Here is the thing I want to say plainly. Every account that was ever exposed in all of this was a test account I made myself. No real person's inbox, no real person's data. I got to find and fix all of it while the only person I could have hurt was me. That is luck on timing, not a medal for diligence.
+
+What actually changed my mind about the exercise was realizing why I had missed these in the first place. I wrote this app. I have read every line more times than I can count, and that is the problem. When you have read your own code a hundred times, your eyes stop seeing it. You do not check whether RLS is on, because you remember intending to handle it, and intending feels identical to having done it.
+
+An AI reviewer has no memory of intending anything. It does not get bored on the tenth read, and it does not assume the boring parts are handled. It just goes and checks the thing you would swear you already did. That is the real value, not that it is smarter than me, but that it is a fresh set of eyes that never gets tired, pointed at code I had gone blind to.
+
+You can do this today. Point a coding agent at your repo and ask it plainly where someone could read data they should not, what happens to connected accounts when a user deletes themselves, and what you are trusting that you should not. Then test what it says, because it gets things wrong too. A couple of mine were nothing. The real ones were very real. Worst case you spend an afternoon confirming you are solid, and best case you find the setting you never turned on before someone else does.
+
+## References
+
+- [Supabase Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security): how RLS policies work and why the anon key is safe only with them enabled.
+- [Supabase API keys](https://supabase.com/docs/guides/api/api-keys): the difference between the anon key and the service_role key.
+- [Clerk and Content Security Policy](https://clerk.com/docs/security/clerk-csp): the frontend API hosts Clerk needs allowlisted, and how they differ by environment.
+- [Google OAuth token revocation](https://developers.google.com/identity/protocols/oauth2/web-server#tokenrevoke): revoking a granted connection from your side.
+- [OWASP prompt injection](https://owasp.org/www-project-top-10-for-large-language-model-applications/): treating model output as untrusted input.
