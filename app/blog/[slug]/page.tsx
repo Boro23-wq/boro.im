@@ -82,7 +82,10 @@ export async function generateMetadata({ params }: Props) {
 export default async function Blog({ params }: Props) {
   const { slug } = await params;
   let posts = getBlogPosts();
-  const views = (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
+  const views = await redis
+    .get<number>(["pageviews", "projects", slug].join(":"))
+    .then((v) => v ?? 0)
+    .catch(() => 0);
 
   const sortedPosts = posts.sort(
     (a, b) =>

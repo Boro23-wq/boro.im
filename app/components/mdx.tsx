@@ -109,14 +109,14 @@ function createHeading(level: number) {
 
 function CustomCheckbox({ checked, children }: { checked: boolean; children: React.ReactNode }) {
   return (
-    <div className="flex items-center">
+    <div className="flex items-start">
       <input
         type="checkbox"
         checked={checked}
         readOnly
-        className="h-3.5 w-3.5 accent-neutral-600 checked:dark:accent-neutral-400 transition-all duration-150 ease-in-out"
+        className="mt-[11px] h-3.5 w-3.5 shrink-0 accent-neutral-600 checked:dark:accent-neutral-400 transition-all duration-150 ease-in-out"
       />
-      <label className="ml-1">{children}</label>
+      <label className="ml-1 leading-7.5">{children}</label>
     </div>
   );
 }
@@ -124,7 +124,7 @@ function CustomCheckbox({ checked, children }: { checked: boolean; children: Rea
 function CustomListItem({ children }: { children: any }) {
   if (children && children[0]?.type === "input") {
     const checked = children[0]?.props?.checked ?? false;
-    const checkboxLabel = children[2];
+    const checkboxLabel = children.slice(1);
     return (
       <li className="task-list-item">
         <CustomCheckbox checked={checked}>{checkboxLabel}</CustomCheckbox>

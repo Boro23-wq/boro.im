@@ -27,7 +27,7 @@ const RoundedImage = (props) => {
   return (
     <>
       <div className="rounded-img md:bg-neutral-50 md:border-neutral-200 md:dark:bg-neutral-800 md:border md:dark:border-neutral-700 md:p-4 md:rounded-sm my-8">
-        <p className="!mt-0 text-xs tracking-wide font-medium uppercase !text-neutral-400 !dark:text-neutral-800 hidden md:block">
+        <p className="!mt-0 px-1 text-xs tracking-wide font-medium !text-neutral-400 !dark:text-neutral-800 hidden md:block">
           {props.alt}
         </p>
         <Image
@@ -46,7 +46,7 @@ const RoundedImage = (props) => {
             isModalOpen={isModalOpen}
           />
         )}
-        <p className="!mt-4 text-center text-xs font-medium uppercase !text-neutral-400 !dark:text-neutral-800 block md:hidden">
+        <p className="!mt-4 px-4 text-center text-xs font-medium !text-neutral-400 !dark:text-neutral-800 block md:hidden">
           {props.alt}
         </p>
       </div>

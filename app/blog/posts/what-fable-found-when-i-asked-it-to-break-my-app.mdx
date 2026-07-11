@@ -21,7 +21,7 @@ It found eleven vulnerabilities. A few were nothing but a few made me close the 
   width="800"
   height="450"
   src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783739556412.png"
-  alt="working is not the same as safe, a split illustration"
+  alt="Working is not the same as safe, a split illustration"
 />
 
 We will go through:
@@ -59,7 +59,7 @@ The fix is one line per table: `alter table <name> enable row level security;` w
   width="800"
   height="450"
   src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738723287.png"
-  alt="row level security blocks the anon key while the server key still works"
+  alt="Row level security blocks the anon key while the server key still works"
 />
 
 ## 2. The debug route I forgot to delete
@@ -95,7 +95,7 @@ Deletion is not revocation. One tidies your house and the other cuts the wire. A
   width="800"
   height="450"
   src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738793884.png"
-  alt="deleting the user locally leaves the Google connection still live"
+  alt="Deleting the user locally leaves the Google connection still live"
 />
 
 ## 4. Every save said it worked. Some were failing silently.
@@ -112,7 +112,7 @@ The fix is to stop trusting the surface answer and check `if (res.redirected)`, 
   width="800"
   height="450"
   src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738900639.png"
-  alt="a request redirected to sign-in still returns 200 and looks successful"
+  alt="A request redirected to sign-in still returns 200 and looks successful"
 />
 
 ## 5. A stranger could phish my users through my own app
@@ -131,7 +131,7 @@ The fix is to treat model output like any untrusted input: `escapeHtml(modelText
   width="800"
   height="450"
   src="/blog/what-fable-found-when-i-asked-it-to-break-my-app/image-1783738970139.png"
-  alt="untrusted email flows through the LLM into a trusted outgoing email"
+  alt="Untrusted email flows through the LLM into a trusted outgoing email"
 />
 
 ## The smaller ones, still worth thirty seconds each
