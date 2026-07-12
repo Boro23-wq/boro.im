@@ -2,8 +2,10 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Search, X } from "lucide-react";
+import { Search, X, ChevronDown } from "lucide-react";
 import { BlogHeader } from "./blog-header";
+
+const INITIAL_COUNT = 10;
 
 type BlogPost = {
   slug: string;
@@ -45,8 +47,11 @@ function HighlightText({ text, query }: { text: string; query: string }) {
 export function BlogPostsWithSearch({ posts }: BlogPostsWithSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(true);
+  const [showAll, setShowAll] = useState(false);
 
-  const { filteredBlogs, groupedBlogs } = useMemo(() => {
+  const isSearching = searchQuery.trim().length > 0;
+
+  const { filteredBlogs, groupedBlogs, hiddenCount, revealIndexBySlug } = useMemo(() => {
     const filtered = posts
       .filter((post) => {
         const query = searchQuery.toLowerCase();
@@ -60,7 +65,10 @@ export function BlogPostsWithSearch({ posts }: BlogPostsWithSearchProps) {
           new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime(),
       );
 
-    const grouped = filtered.reduce((acc: { [key: string]: BlogPost[] }, blog) => {
+    const visible = isSearching || showAll ? filtered : filtered.slice(0, INITIAL_COUNT);
+    const revealIndexBySlug = new Map(filtered.map((post, i) => [post.slug, i]));
+
+    const grouped = visible.reduce((acc: { [key: string]: BlogPost[] }, blog) => {
       const year = new Date(blog.metadata.publishedAt).getFullYear();
       if (!acc[year]) acc[year] = [];
       acc[year].push(blog);
@@ -71,8 +79,13 @@ export function BlogPostsWithSearch({ posts }: BlogPostsWithSearchProps) {
       ([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA),
     );
 
-    return { filteredBlogs: filtered, groupedBlogs: sortedGroups };
-  }, [searchQuery, posts]);
+    return {
+      filteredBlogs: filtered,
+      groupedBlogs: sortedGroups,
+      hiddenCount: filtered.length - visible.length,
+      revealIndexBySlug,
+    };
+  }, [searchQuery, posts, showAll, isSearching]);
 
   return (
     <>
@@ -97,11 +110,21 @@ export function BlogPostsWithSearch({ posts }: BlogPostsWithSearchProps) {
                     {year}
                   </span>
                 </div>
-                {posts.map((post, index) => (
+                {posts.map((post, index) => {
+                  const revealIndex = revealIndexBySlug.get(post.slug) ?? 0;
+                  const isNewlyRevealed = !isSearching && showAll && revealIndex >= INITIAL_COUNT;
+
+                  return (
                   <Link
                     key={post.slug}
                     href={`/blog/${post.slug}`}
-                    className="group flex items-center px-4 py-3 hover:bg-neutral-50 dark:hover:bg-neutral-900/50 border-b border-neutral-200/45 dark:border-neutral-800/75 last:border-0"
+                    data-animate={isNewlyRevealed || undefined}
+                    style={
+                      isNewlyRevealed
+                        ? ({ "--stagger": Math.min(revealIndex - INITIAL_COUNT, 8) } as React.CSSProperties)
+                        : undefined
+                    }
+                    className={`group flex items-center px-4 py-3 hover:bg-neutral-50 dark:hover:bg-neutral-900/50 motion-safe:hover:translate-x-0.5 motion-safe:transition-transform border-b border-neutral-200/45 dark:border-neutral-800/75 last:border-0 ${isNewlyRevealed ? "motion-safe:animate-enter" : ""}`}
                   >
                     <span className="w-12 text-xs text-neutral-400 font-mono">
                       {String(index + 1).padStart(2, "0")}
@@ -116,10 +139,21 @@ export function BlogPostsWithSearch({ posts }: BlogPostsWithSearchProps) {
                       })}
                     </time>
                   </Link>
-                ))}
+                  );
+                })}
               </div>
             ))}
           </div>
+        )}
+
+        {!isSearching && !showAll && hiddenCount > 0 && (
+          <button
+            onClick={() => setShowAll(true)}
+            className="w-full mt-4 flex items-center justify-center gap-2 px-4 py-3 text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900/50 border border-neutral-200/45 dark:border-neutral-800/75 rounded-sm motion-safe:active:scale-[0.98] motion-safe:transition-transform"
+          >
+            Load {hiddenCount} more posts
+            <ChevronDown className="w-4 h-4" />
+          </button>
         )}
 
         {/* Blur gradient backdrop above search bar */}

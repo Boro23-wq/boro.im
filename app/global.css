@@ -662,3 +662,22 @@ blockquote {
 [data-animation-controller="false"] [data-animate] {
   animation: none;
 }
+
+.link-underline {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .link-underline {
+    background-size: 0% 1px;
+    transition: background-size 0.3s ease;
+  }
+
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+}

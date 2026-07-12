@@ -4,8 +4,11 @@ import { getProjects } from "../project/utils";
 import Link from "next/link";
 import Image from "next/image";
 
+// Temporarily hidden from the project page (files kept in app/project/projects/, not deleted).
+const hiddenSlugs = ["sharing-snippets", "pokedex"];
+
 export function Projects() {
-  let allProjects = getProjects();
+  let allProjects = getProjects().filter((project) => !hiddenSlugs.includes(project.slug));
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-l border-neutral-200 dark:border-neutral-800  overflow-hidden">
@@ -29,7 +32,7 @@ export function Projects() {
                   src={project.metadata.image}
                   alt={project.metadata.title}
                   fill
-                  className="object-cover"
+                  className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center">

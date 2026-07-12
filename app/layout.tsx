@@ -6,6 +6,9 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
+import { CommandMenu } from "./components/command-menu";
+import { getBlogPosts } from "./blog/utils";
+import { getProjects } from "./project/utils";
 import { baseUrl } from "./sitemap";
 
 const geist = Geist({
@@ -91,6 +94,22 @@ export const metadata: Metadata = {
 const cx = (...classes: Array<string | undefined | false>) => classes.filter(Boolean).join(" ");
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const posts = getBlogPosts()
+    .map((post) => ({
+      slug: post.slug,
+      title: post.metadata.title,
+      publishedAt: post.metadata.publishedAt,
+    }))
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+
+  const projects = getProjects()
+    .map((project) => ({
+      slug: project.slug,
+      title: project.metadata.title,
+      publishedAt: project.metadata.publishedAt,
+    }))
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+
   return (
     <html suppressHydrationWarning lang="en" className={cx(geist.variable, newsreader.variable)}>
       <body className="antialiased">
@@ -106,6 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
           </div>
           <Footer />
+          <CommandMenu posts={posts} projects={projects} />
         </ThemeProvider>
       </body>
     </html>

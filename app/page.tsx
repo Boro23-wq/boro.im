@@ -1,14 +1,28 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import Scroller from "./components/scroller";
-import { ArrowRightTopIcon } from "./components/icons";
+import RecentWriting from "./components/recent-writing";
+import { SocialPills } from "./components/social-pills";
+import { CommandMenuHint } from "./components/command-menu-hint";
+import { Reveal } from "./components/motion";
+import { getBlogPosts } from "./blog/utils";
+import { getProjects } from "./project/utils";
 
-const social = [
-  { name: "github", url: "https://github.com/Boro23-wq" },
-  { name: "linkedin", url: "https://www.linkedin.com/in/sintu-boro/" },
-  { name: "x", url: "https://x.com/sdotboro" },
-];
+function getStats() {
+  const posts = getBlogPosts();
+  const projects = getProjects();
+  const oldestYear = posts.reduce((min, post) => {
+    const year = new Date(post.metadata.publishedAt).getFullYear();
+    return year < min ? year : min;
+  }, new Date().getFullYear());
+  const years = Math.max(1, new Date().getFullYear() - oldestYear);
+
+  return { postCount: posts.length, projectCount: projects.length, years };
+}
 
 export default function Page() {
+  const { postCount, projectCount, years } = getStats();
+
   return (
     <div>
       <section data-animation-controller="true" className="leading-7 dark:text-[#d4d4d4]">
@@ -25,16 +39,52 @@ export default function Page() {
         <p
           style={{ "--stagger": 2 } as React.CSSProperties}
           data-animate
-          className="animate-enter mb-8"
+          className="animate-enter mb-2"
         >
           <span className="newsreader-400">Developing experiences.</span> I take complicated
           business processes and turn them into simple, clean interfaces that are easy to work
           with.
         </p>
 
+        {/* stats */}
+        <p
+          style={{ "--stagger": 3 } as React.CSSProperties}
+          data-animate
+          className="animate-enter mb-8 text-xs font-mono text-neutral-400"
+        >
+          {postCount} posts · {projectCount} projects · {years}
+          {years === 1 ? " yr" : " yrs"} building for the web
+        </p>
+
+        {/* now */}
+        <div
+          style={{ "--stagger": 4 } as React.CSSProperties}
+          data-animate
+          className="animate-enter flex items-center mt-10"
+        >
+          <h4 className="newsreader-400 mb-2">Now.</h4>
+        </div>
+
+        <p
+          style={{ "--stagger": 5 } as React.CSSProperties}
+          data-animate
+          className="animate-enter mb-8"
+        >
+          Lately, I&apos;ve been building a customer portal so Wave&apos;s customers can keep an
+          eye on hub activity more easily. If you&apos;re curious, you can check out more of what
+          I&apos;ve built, past and present,{" "}
+          <Link
+            className="link-underline decoration-1 decoration-neutral-200 dark:decoration-neutral-600"
+            href="/work"
+          >
+            <span className="newsreader-400">here</span>
+          </Link>
+          .
+        </p>
+
         {/* main blog/project highlight */}
         <div
-          style={{ "--stagger": 3 } as React.CSSProperties}
+          style={{ "--stagger": 6 } as React.CSSProperties}
           data-animate
           className="animate-enter flex items-center mt-14"
         >
@@ -43,7 +93,7 @@ export default function Page() {
 
         {/* scroll */}
         <div
-          style={{ "--stagger": 4 } as React.CSSProperties}
+          style={{ "--stagger": 7 } as React.CSSProperties}
           data-animate
           className="my-4 animate-enter"
         >
@@ -52,7 +102,7 @@ export default function Page() {
 
         {/* experience */}
         <div
-          style={{ "--stagger": 5 } as React.CSSProperties}
+          style={{ "--stagger": 8 } as React.CSSProperties}
           data-animate
           className="animate-enter flex items-center mt-10"
         >
@@ -60,7 +110,7 @@ export default function Page() {
         </div>
 
         <div
-          style={{ "--stagger": 6 } as React.CSSProperties}
+          style={{ "--stagger": 9 } as React.CSSProperties}
           data-animate
           className="animate-enter"
         >
@@ -68,7 +118,7 @@ export default function Page() {
             <p>
               These days, I&apos;m working with the{" "}
               <Link
-                className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
+                className="link-underline decoration-1 decoration-neutral-200 dark:decoration-neutral-600"
                 href="https://wavedds.com/"
                 target="_blank"
               >
@@ -79,60 +129,37 @@ export default function Page() {
               and helping the team standardize how we build things.
             </p>
           </div>
+        </div>
 
-          <div
-            style={{ "--stagger": 7 } as React.CSSProperties}
-            data-animate
-            className="animate-enter pt-4 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
-          >
-            <p>
-              Lately, I&apos;ve been building a customer portal so Wave&apos;s customers can keep an
-              eye on hub activity more easily. If you&apos;re curious, you can check out more of
-              what I&apos;ve built, past and present,{" "}
-              <Link
-                className="underline underline-offset-2 decoration-1 decoration-neutral-200 dark:decoration-neutral-600 hover:decoration-neutral-400 hover:dark:decoration-neutral-300 transition-all"
-                href="/work"
-              >
-                <span className="newsreader-400">here</span>
-              </Link>
-              .
-            </p>
+        {/* recent writing */}
+        <Reveal>
+          <div className="mt-14 flex items-center">
+            <h4 className="newsreader-400">Recent writing.</h4>
           </div>
 
-          {/* connect */}
-          <div
-            style={{ "--stagger": 8 } as React.CSSProperties}
-            data-animate
-            className="animate-enter flex items-center mt-14"
-          >
+          <div className="my-4">
+            <Suspense fallback={null}>
+              <RecentWriting />
+            </Suspense>
+          </div>
+        </Reveal>
+
+        {/* connect */}
+        <Reveal>
+          <div className="flex items-center mt-14">
             <h4 className="newsreader-400">Connect with me.</h4>
           </div>
 
-          <div
-            style={{ "--stagger": 9 } as React.CSSProperties}
-            data-animate
-            className="animate-enter my-6"
-          >
-            <ul className="flex flex-wrap">
-              {social.map((social, index) => (
-                <li
-                  key={index}
-                  className="bg-neutral-100 text-neutral-600 hover:bg-neutral-800 hover:text-neutral-50 dark:hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-neutral-900 dark:bg-neutral-800 px-2.5 py-1 rounded-sm mr-2 mb-2"
-                >
-                  <a
-                    className="flex items-center"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    href={social.url}
-                  >
-                    <p className="mr-1 text-sm">{social.name}</p>
-                    <ArrowRightTopIcon />
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <div className="my-6">
+            <SocialPills />
           </div>
-        </div>
+
+          <p className="mt-10 text-xs font-mono text-neutral-400">
+            Press{" "}
+            <CommandMenuHint className="inline-flex mx-1 items-center gap-x-1 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300" />{" "}
+            to explore
+          </p>
+        </Reveal>
       </section>
     </div>
   );

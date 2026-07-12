@@ -114,9 +114,9 @@ function CustomCheckbox({ checked, children }: { checked: boolean; children: Rea
         type="checkbox"
         checked={checked}
         readOnly
-        className="mt-[11px] h-3.5 w-3.5 shrink-0 accent-neutral-600 checked:dark:accent-neutral-400 transition-all duration-150 ease-in-out"
+        className="mt-[5px] h-3.5 w-3.5 shrink-0 accent-neutral-600 checked:dark:accent-neutral-400 transition-all duration-150 ease-in-out"
       />
-      <label className="ml-1 leading-7.5">{children}</label>
+      <label className="ml-1 leading-7">{children}</label>
     </div>
   );
 }

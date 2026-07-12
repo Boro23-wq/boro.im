@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon, SunMoonIcon } from "lucide-react";
+import { playThemeSound } from "@/lib/theme-sound";
 
 const ThemeIndicator = () => (
   <span className="relative flex h-1.5 w-1.5">
@@ -29,18 +30,7 @@ export const ThemeChanger = () => {
   const handleChange = (newTheme) => {
     setTheme(newTheme);
     setIsOpen(false);
-
-    let audioFile;
-
-    if (newTheme === "dark") {
-      audioFile = "/audio/light-switch-off.mp3";
-    } else if (newTheme === "light") {
-      audioFile = "/audio/light-switch-on.mp3";
-    }
-
-    // Play the appropriate sound when the theme changes
-    const audio = new Audio(audioFile);
-    audio.play();
+    playThemeSound(newTheme, theme);
   };
 
   return (
@@ -49,7 +39,7 @@ export const ThemeChanger = () => {
         id="hs-dropdown-default"
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="py-1 px-2 inline-flex items-center gap-x-2 text-xs font-medium rounded-sm border border-neutral-200 bg-white text-neutral-400 shadow-sm hover:bg-neutral-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-500 dark:hover:bg-neutral-800"
+        className="py-1 px-2 inline-flex items-center gap-x-2 text-xs font-medium rounded-sm border border-neutral-200 bg-white text-neutral-400 shadow-sm hover:bg-neutral-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-500 dark:hover:bg-neutral-800 motion-safe:active:scale-[0.98] motion-safe:transition-transform"
       >
         {theme === "system" && <SunMoonIcon className="w-3.5 h-3.5" />}
         {theme === "light" && <SunIcon className="w-3.5 h-3.5" />}

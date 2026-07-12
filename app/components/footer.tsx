@@ -1,4 +1,5 @@
 import { ThemeChanger } from "./theme-changer";
+import { CommandMenuHint } from "./command-menu-hint";
 
 export default function Footer() {
   return (
@@ -12,7 +13,8 @@ export default function Footer() {
                   © {new Date().getFullYear()}
                 </p>
               </div>
-              <div>
+              <div className="flex items-center gap-2">
+                <CommandMenuHint />
                 <ThemeChanger />
               </div>
             </div>

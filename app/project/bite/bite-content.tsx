@@ -39,7 +39,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
   const checkScroll = () => {
     if (cardsScrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = cardsScrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollLeft(scrollLeft > 10);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
   };
@@ -108,22 +108,18 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
 
       {/* Cards row - below timeline */}
       <div className="relative overflow-hidden border-neutral-200 dark:border-neutral-800">
-        {/* Left blur gradient */}
-        {canScrollLeft && (
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white dark:from-[#161616] via-white/50 dark:via-[#161616]/50 to-transparent z-10 pointer-events-none" />
-        )}
-
-        {/* Right blur gradient */}
-        {canScrollRight && (
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white dark:from-[#161616] via-white/50 dark:via-[#161616]/50 to-transparent z-10 pointer-events-none" />
-        )}
-
         <div
           ref={cardsScrollRef}
-          className="overflow-x-auto scrollbar-hide"
+          className="overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
+            WebkitMaskImage: `linear-gradient(to right, ${
+              canScrollLeft ? "transparent 0, #000 48px" : "#000 0"
+            }, ${canScrollRight ? "#000 calc(100% - 48px), transparent 100%" : "#000 100%"})`,
+            maskImage: `linear-gradient(to right, ${
+              canScrollLeft ? "transparent 0, #000 48px" : "#000 0"
+            }, ${canScrollRight ? "#000 calc(100% - 48px), transparent 100%" : "#000 100%"})`,
           }}
           onScroll={(e) => {
             // Sync scroll between timeline and cards
@@ -140,7 +136,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
                 href={`/project/bite/${post.slug}`}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative flex flex-col flex-shrink-0 w-[320px] border-t border-b border-r border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ${
+                className={`group relative flex flex-col flex-shrink-0 w-[320px] snap-start border-t border-b border-r border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ${
                   index === 0 ? "border-l" : ""
                 }`}
               >
@@ -164,7 +160,7 @@ export function BiteContent({ bitePosts }: { bitePosts: Post[] }) {
 
             {/* Load more button inline */}
             {hasMore && (
-              <div className="flex-shrink-0 w-[200px] flex items-center justify-center border-t border-b border-r border-neutral-200 dark:border-neutral-800">
+              <div className="flex-shrink-0 w-[200px] snap-align-none flex items-center justify-center border-t border-b border-r border-neutral-200 dark:border-neutral-800">
                 <button
                   onClick={loadMore}
                   className="px-6 py-3 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-300 text-sm font-medium whitespace-nowrap"

@@ -9,7 +9,10 @@ function byRecent(a: { metadata: { publishedAt: string } }, b: { metadata: { pub
 }
 
 const Scroller = () => {
-  const recentPosts = getBlogPosts().sort(byRecent).slice(0, 2);
+  const featuredPosts = getBlogPosts()
+    .filter((post) => post.metadata.highlightTitle)
+    .sort(byRecent)
+    .slice(0, 2);
   const recentProjects = getProjects().sort(byRecent).slice(0, 2);
 
   return (
@@ -18,7 +21,7 @@ const Scroller = () => {
         {/* articles */}
         <div className="flex-shrink-0 w-56 sm:w-48">
           <h1 className="text-sm mb-4 text-neutral-500">articles</h1>
-          <div className="mb-8 content">
+          <div className="mb-8 content motion-safe:transition-transform motion-safe:hover:-translate-y-0.5 duration-300">
             <div className="flex items-center mb-0.5">
               <Link
                 href="https://overreacted.io/before-you-memo/"
@@ -34,7 +37,7 @@ const Scroller = () => {
               Rendering optimizations that come naturally.
             </p>
           </div>
-          <div className="mb-8 content">
+          <div className="mb-8 content motion-safe:transition-transform motion-safe:hover:-translate-y-0.5 duration-300">
             <div className="flex items-center mb-0.5">
               <Link
                 href="https://kentcdodds.com/blog/inversion-of-control"
@@ -52,11 +55,14 @@ const Scroller = () => {
           </div>
         </div>
 
-        {/* blogs */}
+        {/* featured writings */}
         <div className="flex-shrink-0 w-56 sm:w-48">
-          <h1 className="text-sm mb-4 text-neutral-500">recent writings</h1>
-          {recentPosts.map((post) => (
-            <div key={post.slug} className="mb-8 content">
+          <h1 className="text-sm mb-4 text-neutral-500">featured writings</h1>
+          {featuredPosts.map((post) => (
+            <div
+              key={post.slug}
+              className="mb-8 content motion-safe:transition-transform motion-safe:hover:-translate-y-0.5 duration-300"
+            >
               <div className="mb-0.5">
                 <Link
                   href={`/blog/${post.slug}`}
@@ -89,7 +95,10 @@ const Scroller = () => {
         <div className="flex-shrink-0 w-56 sm:w-48">
           <h1 className="text-sm mb-4 text-neutral-500">projects</h1>
           {recentProjects.map((project) => (
-            <div key={project.slug} className="mb-8 content">
+            <div
+              key={project.slug}
+              className="mb-8 content motion-safe:transition-transform motion-safe:hover:-translate-y-0.5 duration-300"
+            >
               <div className="mb-0.5">
                 <Link
                   href={`/project/${project.slug}`}
