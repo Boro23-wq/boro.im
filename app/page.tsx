@@ -5,6 +5,7 @@ import RecentWriting from "./components/recent-writing";
 import { SocialPills } from "./components/social-pills";
 import { CommandMenuHint } from "./components/command-menu-hint";
 import { Reveal } from "./components/motion";
+import { GenerativeHeader } from "./components/generative-header";
 import { getBlogPosts } from "./blog/utils";
 import { getVisibleProjects } from "./project/utils";
 
@@ -26,6 +27,15 @@ export default function Page() {
   return (
     <div>
       <section data-animation-controller="true" className="leading-7 dark:text-[#d4d4d4]">
+        {/* generative header — unique weave per visitor */}
+        <div
+          style={{ "--stagger": 1 } as React.CSSProperties}
+          data-animate
+          className="animate-enter mb-6"
+        >
+          <GenerativeHeader />
+        </div>
+
         {/* intro */}
         <div
           style={{ "--stagger": 1 } as React.CSSProperties}
