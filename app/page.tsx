@@ -6,11 +6,11 @@ import { SocialPills } from "./components/social-pills";
 import { CommandMenuHint } from "./components/command-menu-hint";
 import { Reveal } from "./components/motion";
 import { getBlogPosts } from "./blog/utils";
-import { getProjects } from "./project/utils";
+import { getVisibleProjects } from "./project/utils";
 
 function getStats() {
   const posts = getBlogPosts();
-  const projects = getProjects();
+  const projects = getVisibleProjects();
   const oldestYear = posts.reduce((min, post) => {
     const year = new Date(post.metadata.publishedAt).getFullYear();
     return year < min ? year : min;

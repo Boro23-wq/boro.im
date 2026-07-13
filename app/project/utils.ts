@@ -72,6 +72,14 @@ export function getProjects() {
   return getMDXData(path.join(process.cwd(), "app", "project", "projects"));
 }
 
+// Temporarily hidden from the project page and homepage counts
+// (files kept in app/project/projects/, not deleted).
+export const hiddenProjectSlugs = ["sharing-snippets", "pokedex"];
+
+export function getVisibleProjects() {
+  return getProjects().filter((project) => !hiddenProjectSlugs.includes(project.slug));
+}
+
 export function formatDate(date: string, includeRelative = false) {
   let currentDate = new Date();
   if (!date.includes("T")) {
