@@ -10,6 +10,7 @@ import { CommandMenu } from "./components/command-menu";
 import { getBlogPosts } from "./blog/utils";
 import { getProjects } from "./project/utils";
 import { baseUrl } from "./sitemap";
+import { social } from "@/lib/social";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -61,14 +62,14 @@ export const metadata: Metadata = {
         rel: "apple-touch-icon",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
-        url: "/apple-touch-icon-light.png?v=4",
+        url: "/apple-touch-icon-light.png?v=6",
         fetchPriority: "high",
       },
       {
         rel: "icon",
         type: "image/png",
         media: "(prefers-color-scheme: dark)",
-        url: "/apple-touch-icon-dark.png?v=4",
+        url: "/apple-touch-icon-dark.png?v=6",
         fetchPriority: "high",
       },
     ],
@@ -77,14 +78,14 @@ export const metadata: Metadata = {
         rel: "icon",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
-        url: "/icon-light.png?v=5",
+        url: "/icon-light.png?v=6",
         fetchPriority: "high",
       },
       {
         rel: "icon",
         type: "image/png",
         media: "(prefers-color-scheme: dark)",
-        url: "/icon-dark.png?v=5",
+        url: "/icon-dark.png?v=6",
         fetchPriority: "high",
       },
     ],
@@ -113,6 +114,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html suppressHydrationWarning lang="en" className={cx(geist.variable, newsreader.variable)}>
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": `${baseUrl}/#person`,
+                  name: "Sintu Boro",
+                  url: baseUrl,
+                  image: `${baseUrl}/opengraph-image.png`,
+                  jobTitle: "Software Developer",
+                  sameAs: social.map((s) => s.url),
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${baseUrl}/#website`,
+                  url: baseUrl,
+                  name: "Sintu Boro",
+                  publisher: { "@id": `${baseUrl}/#person` },
+                },
+              ],
+            }),
+          }}
+        />
         <ThemeProvider attribute="class" enableColorScheme={false} enableSystem>
           <div className="main-container">
             <div className="main-blur relative h-[100px]" aria-hidden="true" />

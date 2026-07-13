@@ -1,5 +1,6 @@
 import { getBlogPosts } from "./blog/utils";
-import { getProjects } from "./project/utils";
+import { getVisibleProjects } from "./project/utils";
+import { getBitePosts } from "./project/bite/utils";
 
 export const baseUrl = "https://boro.im";
 
@@ -9,9 +10,14 @@ export default async function sitemap() {
     lastModified: post.metadata.publishedAt,
   }));
 
-  let projects = getProjects().map((project) => ({
+  let projects = getVisibleProjects().map((project) => ({
     url: `${baseUrl}/project/${project.slug}`,
     lastModified: project.metadata.publishedAt,
+  }));
+
+  let bitePosts = getBitePosts().map((post) => ({
+    url: `${baseUrl}/project/bite/${post.slug}`,
+    lastModified: post.metadata.publishedAt,
   }));
 
   let routes = ["", "/blog", "/project", "/work"].map((route) => ({
@@ -19,5 +25,5 @@ export default async function sitemap() {
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...blogs, ...projects];
+  return [...routes, ...blogs, ...projects, ...bitePosts];
 }
