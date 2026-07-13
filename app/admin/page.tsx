@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { getBlogPosts, formatDate } from "@/app/blog/utils";
 import { getProjects } from "@/app/project/utils";
+import { listDrafts } from "@/lib/drafts";
 
 export const metadata = {
   title: "Admin",
   robots: { index: false, follow: false },
 };
+
+export const dynamic = "force-dynamic";
 
 function PostList({
   type,
@@ -41,9 +44,10 @@ function PostList({
   );
 }
 
-export default function AdminPage() {
+export default async function AdminPage() {
   const blogPosts = getBlogPosts();
   const projects = getProjects();
+  const drafts = await listDrafts().catch(() => []);
 
   return (
     <section className="leading-7 dark:text-[#d4d4d4]">
@@ -58,6 +62,34 @@ export default function AdminPage() {
           </button>
         </form>
       </div>
+
+      {drafts.length > 0 && (
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-3">
+            <h4 className="newsreader-400-tall text-lg">Drafts</h4>
+          </div>
+          <div className="border border-amber-200 dark:border-amber-900/60 rounded-sm bg-amber-50/50 dark:bg-amber-950/20 divide-y divide-amber-200/70 dark:divide-amber-900/40">
+            {drafts.map((draft) => (
+              <Link
+                key={`${draft.type}:${draft.slug}`}
+                href={`/admin/${draft.type}/${draft.slug}/draft`}
+                className="flex items-center justify-between p-4 hover:bg-amber-100/50 dark:hover:bg-amber-900/20 transition-colors"
+              >
+                <span className="text-sm text-neutral-800 dark:text-neutral-200">
+                  {draft.title || draft.slug}
+                  <span className="ml-2 text-xs text-amber-700 dark:text-amber-500">
+                    {draft.type}
+                    {!draft.isNew && " · edit"}
+                  </span>
+                </span>
+                <span className="text-xs text-neutral-400 dark:text-neutral-500 flex-shrink-0 ml-4">
+                  saved {formatDate(draft.savedAt)}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="mb-10">
         <div className="flex items-center justify-between mb-3">

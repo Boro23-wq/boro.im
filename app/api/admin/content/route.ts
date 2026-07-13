@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { list, del } from "@vercel/blob";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { getFileSha, putFile, deleteFile, textToBase64 } from "@/lib/github";
+import { deleteDraft } from "@/lib/drafts";
 
 export const runtime = "edge";
 
@@ -15,24 +17,18 @@ type SavePayload = {
   summary: string;
   tags?: string[];
   content: string;
-  coverImage?: { dataUrl: string } | null;
-  existingImagePath?: string;
+  image?: string;
 };
 
 function mdxPath(type: PostType, slug: string) {
   return type === "blog" ? `app/blog/posts/${slug}.mdx` : `app/project/projects/${slug}.mdx`;
 }
 
-function coverImagePath(type: PostType, slug: string, ext: string) {
-  return type === "blog"
-    ? { repoPath: `public/blog/${slug}/cover.${ext}`, publicPath: `/blog/${slug}/cover.${ext}` }
-    : {
-        repoPath: `public/projects/cover/${slug}.${ext}`,
-        publicPath: `/projects/cover/${slug}.${ext}`,
-      };
+function blobDir(type: PostType, slug: string) {
+  return type === "blog" ? `blog/${slug}` : `projects/${slug}`;
 }
 
-function buildFrontmatter(payload: SavePayload, imagePublicPath?: string) {
+function buildFrontmatter(payload: SavePayload) {
   const lines = [`title: ${payload.title}`];
   if (payload.type === "project") {
     lines.push(`summary: ${payload.summary}`);
@@ -41,13 +37,22 @@ function buildFrontmatter(payload: SavePayload, imagePublicPath?: string) {
     lines.push(`publishedAt: "${payload.publishedAt}"`);
     lines.push(`summary: ${payload.summary}`);
   }
-  if (imagePublicPath) {
-    lines.push(`image: ${imagePublicPath}`);
+  if (payload.image) {
+    lines.push(`image: ${payload.image}`);
   }
   if (payload.type === "project" && payload.tags && payload.tags.length > 0) {
     lines.push(`tags: [${payload.tags.map((t) => `"${t}"`).join(", ")}]`);
   }
   return `---\n${lines.join("\n")}\n---\n\n${payload.content.trim()}\n`;
+}
+
+async function cleanupOrphanBlobs(type: PostType, slug: string, keep: (url: string) => boolean) {
+  try {
+    const { blobs } = await list({ prefix: `${blobDir(type, slug)}/` });
+    await Promise.all(blobs.filter((b) => !keep(b.url)).map((b) => del(b.url)));
+  } catch {
+    // Cleanup is best-effort; never block a publish on it.
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -75,28 +80,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
-  let imagePublicPath: string | undefined = payload.existingImagePath;
-
-  if (payload.coverImage) {
-    const match = /^data:image\/(\w+);base64,(.+)$/.exec(payload.coverImage.dataUrl);
-    if (!match) {
-      return NextResponse.json({ error: "Invalid image data" }, { status: 400 });
-    }
-    const [, mime, base64] = match;
-    const ext = mime === "jpeg" ? "jpg" : mime;
-    const { repoPath, publicPath } = coverImagePath(type, slug, ext);
-    const imageSha = await getFileSha(session.accessToken, repoPath);
-    await putFile(
-      session.accessToken,
-      repoPath,
-      base64,
-      `${isNew ? "Add" : "Update"} cover image for ${slug}`,
-      imageSha ?? undefined,
-    );
-    imagePublicPath = publicPath;
-  }
-
-  const frontmatterText = buildFrontmatter(payload, imagePublicPath);
+  const frontmatterText = buildFrontmatter(payload);
 
   await putFile(
     session.accessToken,
@@ -105,6 +89,13 @@ export async function POST(req: NextRequest) {
     `${isNew ? "Add" : "Update"} ${type} post: ${payload.title}`,
     existingSha ?? undefined,
   );
+
+  await cleanupOrphanBlobs(
+    type,
+    slug,
+    (url) => payload.content.includes(url) || url === payload.image,
+  );
+  await deleteDraft(type, slug).catch(() => {});
 
   return NextResponse.json({ ok: true, slug });
 }
@@ -116,6 +107,11 @@ export async function DELETE(req: NextRequest) {
   }
 
   const { type, slug }: { type: PostType; slug: string } = await req.json();
+
+  if (!/^[a-z0-9-]+$/.test(slug)) {
+    return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
+  }
+
   const path = mdxPath(type, slug);
   const sha = await getFileSha(session.accessToken, path);
 
@@ -124,6 +120,9 @@ export async function DELETE(req: NextRequest) {
   }
 
   await deleteFile(session.accessToken, path, `Delete ${type} post: ${slug}`, sha);
+
+  await cleanupOrphanBlobs(type, slug, () => false);
+  await deleteDraft(type, slug).catch(() => {});
 
   return NextResponse.json({ ok: true });
 }

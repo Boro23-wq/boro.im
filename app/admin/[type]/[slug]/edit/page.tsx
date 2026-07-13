@@ -1,7 +1,11 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PostForm } from "@/app/components/admin/post-form";
 import { getBlogPosts } from "@/app/blog/utils";
 import { getProjects } from "@/app/project/utils";
+import { getDraft } from "@/lib/drafts";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Edit Post",
@@ -25,9 +29,18 @@ export default async function EditPostPage({ params }: Props) {
   }
 
   const metadata = post.metadata as { tags?: string; image?: string } & typeof post.metadata;
+  const draft = await getDraft(type, slug).catch(() => null);
 
   return (
     <section>
+      {draft && (
+        <p className="mb-6 text-sm text-amber-800 dark:text-amber-400 border border-amber-200 dark:border-amber-900/60 bg-amber-50/50 dark:bg-amber-950/20 rounded-sm px-3 py-2">
+          This post has unsaved draft changes.{" "}
+          <Link href={`/admin/${type}/${slug}/draft`} className="underline underline-offset-2">
+            Resume draft
+          </Link>
+        </p>
+      )}
       <PostForm
         type={type}
         mode="edit"

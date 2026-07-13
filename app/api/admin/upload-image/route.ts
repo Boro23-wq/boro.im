@@ -1,18 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { put } from "@vercel/blob";
 import { requireAdminSession } from "@/lib/admin-auth";
-import { putFile } from "@/lib/github";
 
 export const runtime = "edge";
 
 type PostType = "blog" | "project";
 
-function imageDir(type: PostType, slug: string) {
-  return type === "blog" ? `public/blog/${slug}` : `public/projects/${slug}`;
-}
-
-function publicDir(type: PostType, slug: string) {
-  return type === "blog" ? `/blog/${slug}` : `/projects/${slug}`;
-}
+const ALLOWED_EXTS = new Set(["png", "jpg", "jpeg", "webp", "gif", "avif", "svg"]);
 
 export async function POST(req: NextRequest) {
   const session = await requireAdminSession(req);
@@ -20,9 +14,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { type, slug, dataUrl }: { type: PostType; slug: string; dataUrl: string } =
-    await req.json();
+  const form = await req.formData();
+  const file = form.get("file");
+  const type = form.get("type") as PostType;
+  const slug = (form.get("slug") as string) ?? "";
+  const kind = form.get("kind") === "cover" ? "cover" : "img";
 
+  if (!(file instanceof File) || file.size === 0) {
+    return NextResponse.json({ error: "No file provided" }, { status: 400 });
+  }
+  if (type !== "blog" && type !== "project") {
+    return NextResponse.json({ error: "Invalid post type" }, { status: 400 });
+  }
   if (!/^[a-z0-9-]+$/.test(slug)) {
     return NextResponse.json(
       { error: "Enter a valid slug before uploading images" },
@@ -30,20 +33,19 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const match = /^data:image\/(\w+);base64,(.+)$/.exec(dataUrl);
-  if (!match) {
-    return NextResponse.json({ error: "Invalid image data" }, { status: 400 });
+  const ext = (file.name.split(".").pop() ?? "").toLowerCase();
+  if (!ALLOWED_EXTS.has(ext)) {
+    return NextResponse.json({ error: "Unsupported image format" }, { status: 400 });
   }
-  const [, mime, base64] = match;
-  const ext = mime === "jpeg" ? "jpg" : mime;
-  const filename = `image-${Date.now()}.${ext}`;
 
-  const repoPath = `${imageDir(type, slug)}/${filename}`;
-  const publicPath = `${publicDir(type, slug)}/${filename}`;
+  const dir = type === "blog" ? `blog/${slug}` : `projects/${slug}`;
+  const pathname = `${dir}/${kind}-${Date.now()}.${ext}`;
 
-  await putFile(session.accessToken, repoPath, base64, `Add image for ${slug}: ${filename}`);
+  const blob = await put(pathname, file, {
+    access: "public",
+    addRandomSuffix: false,
+    contentType: file.type || undefined,
+  });
 
-  const snippet = `<Image\n  width="800"\n  height="450"\n  src="${publicPath}"\n  alt=""\n/>`;
-
-  return NextResponse.json({ publicPath, snippet });
+  return NextResponse.json({ url: blob.url, pathname: blob.pathname });
 }
